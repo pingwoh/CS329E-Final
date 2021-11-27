@@ -14,7 +14,7 @@ class QuestionaireViewController: UIViewController {
     @IBOutlet weak var questionText: UILabel!
     
     override func viewDidLoad() {
-        
+        self.navigationItem.leftBarButtonItem = nil;
     }
     
     //TODO: save answers, and when finished segue to calendar
