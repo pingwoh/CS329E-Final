@@ -6,7 +6,7 @@ import CoreData
 import Firebase
 import FirebaseAuth //so we can do the Auth.auth().....
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     @IBOutlet weak var segCtrl: UISegmentedControl!
     @IBOutlet weak var userIDField: UITextField!
@@ -80,7 +80,7 @@ class ViewController: UIViewController {
                   email.count > 0,
                   password.count > 0
             else {
-                statusLabel.text = "Where my info at mf"
+                statusLabel.text = "Missing information"
                 return
             }
             
@@ -91,7 +91,7 @@ class ViewController: UIViewController {
                     self.statusLabel.text = "Sign In Failed"
                 } else {
                     self.statusLabel.text = "Sign In Successful"
-                    self.performSegue(withIdentifier: "SegueIdentifier", sender: nil)
+                    self.performSegue(withIdentifier: "QuestionSegue", sender: nil)
 
                 }
             }
@@ -113,7 +113,8 @@ class ViewController: UIViewController {
                     if error == nil {
                         Auth.auth().signIn(withEmail: email, password: password)
                         self.statusLabel.text = "Sign Up Successful"
-                        self.performSegue(withIdentifier: "SegueIdentifier", sender: nil)
+                        
+                        self.performSegue(withIdentifier: "QuestionSegue", sender: nil)
                     } else {
                         self.statusLabel.text = "Sign Up Failed"
                         return
