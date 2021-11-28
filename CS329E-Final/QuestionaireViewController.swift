@@ -20,7 +20,7 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
     @IBOutlet weak var pickerView: UIPickerView!
     
     var questions : [String] = ["What is your name?", "How are you feeling today?"]
-    var answers : [String] = ["Good", "Neutral", "Bad"]
+    var answers : [String] = ["Fantastic", "Good", "Okay", "Bad", "Awful"]
     
     var questionIndex : Int = 0
     var name : String!
