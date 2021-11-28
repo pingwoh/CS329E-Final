@@ -66,6 +66,24 @@ class LoginViewController: UIViewController {
         }
     }
 
+    //checks if user is already in CoreData
+    private func userExists() -> Bool {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName:"User")
+        var fetchedResults:[NSManagedObject]? = nil
+        
+        do {
+            try fetchedResults = context.fetch(request) as? [NSManagedObject]
+        } catch {
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+        
+        return (fetchedResults!.count > 0)
+    }
     
     @IBAction func segmentedControl(_ sender: UISegmentedControl) {
         // print(sender.selectedSegmentIndex) //test case to see if works
@@ -93,8 +111,12 @@ class LoginViewController: UIViewController {
                     self.statusLabel.text = "Sign In Failed"
                 } else {
                     self.statusLabel.text = "Sign In Successful"
-                    self.performSegue(withIdentifier: "QuestionSegue", sender: nil)
-
+                    if self.userExists() {
+                        self.performSegue(withIdentifier: "userExistsCalendarSegue", sender: nil)
+                    }
+                    else{
+                        self.performSegue(withIdentifier: "QuestionSegue", sender: nil)
+                    }
                 }
             }
         } else {
@@ -125,6 +147,18 @@ class LoginViewController: UIViewController {
             } else {
                 statusLabel.text = "Passwords dont match"
             }
+        }
+    }
+    
+    //passes email to questionnaire form for storing in user core data
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "QuestionSegue" {
+            let qvc:QuestionaireViewController = segue.destination as! QuestionaireViewController
+            qvc.email = userIDField.text!
+        }
+        else if segue.identifier == "userExistsCalendarSegue" {
+            let cvc:CalendarViewController = segue.destination as! CalendarViewController
+            cvc.email = userIDField.text!
         }
     }
 }

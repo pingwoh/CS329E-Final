@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -23,11 +24,13 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     var questionIndex : Int = 0
     var name : String = ""
+    var email : String? = nil
     var finalSelection : String = ""
     
     //REGION: On Start
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         pickerView.delegate = self
         pickerView.dataSource = self
         
@@ -58,6 +61,25 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         finalSelection = answers[row]
     }
     
+    //stores user in CoreData
+    func storeUser(name n:String,mail e:String) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
+        
+        entity.setValue(n, forKey: "name")
+        entity.setValue(e, forKey: "email")
+        
+        do{
+            try context.save()
+        } catch{
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+    }
+    
     //REGION: Button Actions
     @IBAction func onNextPressed(_ sender: Any) {
         print("next question")
@@ -69,6 +91,7 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
             titleLabel.text = ""
             break
         case 1:
+            storeUser(name:nameField.text!,mail:self.email!)
             nameField.isHidden = true
             name = nameField.text! //save answer
             nameField.text = ""
@@ -90,5 +113,12 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         print("save data and segue to calendar")
         print("final: \(finalSelection) \nname: \(name)")
         performSegue(withIdentifier: "CalendarSegue", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CalendarSegue" {
+            let cvc:CalendarViewController = segue.destination as! CalendarViewController
+            cvc.email = self.email
+        }
     }
 }

@@ -54,7 +54,7 @@
                                     <constraint firstAttribute="width" constant="205" id="C2R-DA-XoU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gIu-Rl-gA3">
                                 <rect key="frame" x="189" y="449" width="205" height="34"/>
@@ -62,7 +62,7 @@
                                     <constraint firstAttribute="width" constant="205" id="3Ce-zT-NyO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDQ-qR-Rvj">
                                 <rect key="frame" x="173.5" y="571" width="67" height="31"/>
@@ -126,6 +126,7 @@
                         <outlet property="statusLabel" destination="Usr-Ds-ABS" id="OV1-7g-1mI"/>
                         <outlet property="userIDField" destination="xD3-Ws-eyH" id="j5X-W5-PyS"/>
                         <segue destination="Y4K-Xv-CXx" kind="show" identifier="QuestionSegue" id="wTw-Z8-juG"/>
+                        <segue destination="nM5-py-8B2" kind="show" identifier="userExistsCalendarSegue" id="eGM-be-7PR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -286,6 +287,9 @@
             <point key="canvasLocation" x="2548" y="67"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="eGM-be-7PR"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
