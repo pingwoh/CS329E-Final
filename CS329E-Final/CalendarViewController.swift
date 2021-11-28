@@ -17,7 +17,7 @@ class CalendarViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         userEntity = retrieveUser(userID:email!)
-        print("Name: \(userEntity!.value(forKey:"name")!), Email: \(userEntity!.value(forKey:"email")!)")
+        //print("Name: \(userEntity!.value(forKey:"name")!), Email: \(userEntity!.value(forKey:"email")!)")
     }
     
     //retrieves user from CoreData based on email
