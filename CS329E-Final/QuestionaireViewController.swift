@@ -10,7 +10,6 @@ import UIKit
 class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     //REGION: variables
-    @IBOutlet weak var questionNumber: UILabel!
     @IBOutlet weak var questionText: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var nameField: UITextField!
@@ -23,8 +22,8 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
     var answers : [String] = ["Fantastic", "Good", "Okay", "Bad", "Awful"]
     
     var questionIndex : Int = 0
-    var name : String!
-    var finalSelection : String!
+    var name : String = ""
+    var finalSelection : String = ""
     
     //REGION: On Start
     override func viewDidLoad() {
@@ -32,14 +31,13 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         pickerView.delegate = self
         pickerView.dataSource = self
         
-        self.navigationItem.leftBarButtonItem = nil
+        self.navigationItem.hidesBackButton = true
         submitButton.isHidden = true
         nameField.isHidden = true
         pickerView.isHidden = true
         
         titleLabel.text = "Hello there! Welcome to the app, let's start by answering a few questions."
         questionText.text = ""
-        questionNumber.text = ""
     }
     
     //REGION: Picker View
@@ -55,9 +53,8 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         return answers[row]
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // This method is triggered whenever the user makes a change to the picker selection.
-        // The parameter named row and component represents what was selected.
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print(answers[row])
         finalSelection = answers[row]
     }
     
@@ -74,6 +71,7 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         case 1:
             nameField.isHidden = true
             name = nameField.text! //save answer
+            nameField.text = ""
             questionText.text = questions[questionIndex]
             pickerView.isHidden = false
             submitButton.isHidden = false
@@ -90,6 +88,7 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
     @IBAction func onSubmitPressed(_ sender: Any) {
         //TODO: save name and finalSelection to core data
         print("save data and segue to calendar")
+        print("final: \(finalSelection) \nname: \(name)")
         performSegue(withIdentifier: "CalendarSegue", sender: nil)
     }
 }
