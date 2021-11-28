@@ -49,6 +49,8 @@ class LoginViewController: UIViewController {
                 self.confirmPasswordField.text = nil
             }
         }
+        
+        //TODO: check if user has done questionaire or not. if so, go to main screen
     }
     
     //depending on the page (login or sign up) what elements will we see vs hide

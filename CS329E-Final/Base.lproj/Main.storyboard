@@ -204,6 +204,15 @@
                                     <action selector="onSubmitPressed:" destination="Y4K-Xv-CXx" eventType="touchUpInside" id="aW3-mM-Fq4"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xpT-OD-hcP">
+                                <rect key="frame" x="180" y="495" width="54" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Next"/>
+                                <connections>
+                                    <action selector="onNextPressed:" destination="Y4K-Xv-CXx" eventType="touchUpInside" id="CN1-tb-rzr"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Question Text" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAz-cO-aW3">
                                 <rect key="frame" x="97" y="174" width="105" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -211,14 +220,36 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVT-sV-ETo">
+                                <rect key="frame" x="30" y="124" width="33" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iez-nw-873">
+                                <rect key="frame" x="93" y="344" width="228" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JwT-kr-WyY">
+                                <rect key="frame" x="0.0" y="280" width="414" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="279-QJ-Oh9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Questionaire" id="0tJ-RP-gC7"/>
                     <connections>
+                        <outlet property="nameField" destination="iez-nw-873" id="pbD-kB-X9b"/>
+                        <outlet property="nextButton" destination="xpT-OD-hcP" id="ija-u6-NuO"/>
+                        <outlet property="pickerView" destination="JwT-kr-WyY" id="WPe-Ye-Rrb"/>
                         <outlet property="questionNumber" destination="uja-0K-rbp" id="u3W-CY-2Vo"/>
                         <outlet property="questionText" destination="bAz-cO-aW3" id="ybD-16-QiI"/>
+                        <outlet property="submitButton" destination="ciO-Sc-EcR" id="xRz-dg-Hz3"/>
+                        <outlet property="titleLabel" destination="RVT-sV-ETo" id="HLC-SP-baz"/>
                         <segue destination="nM5-py-8B2" kind="show" identifier="CalendarSegue" id="94J-5k-3lM"/>
                     </connections>
                 </viewController>
@@ -229,7 +260,6 @@
         <!--Navigation Controller-->
         <scene sceneID="olg-lQ-CF9">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5lZ-O4-xI1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ySq-86-5uU" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="83w-Vs-aR0">
@@ -241,6 +271,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="vrz-Zm-FYf"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5lZ-O4-xI1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1546" y="67"/>
         </scene>
