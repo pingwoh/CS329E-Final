@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 class CalendarViewController: UIViewController {
     
@@ -41,4 +42,18 @@ class CalendarViewController: UIViewController {
         
         return fetchedResults![0]
     }
+    
+    //for darkmode in settings
+    override func viewWillAppear(_ animated: Bool) {
+        let user = Auth.auth().currentUser
+        let leEmail:String = user?.email ?? "none"
+        
+        if UserDefaults.standard.bool(forKey: leEmail + "dark mode") {
+            view.backgroundColor = .black
+            
+        } else {
+            view.backgroundColor = .white
+        }
+    }
+
 }

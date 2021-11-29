@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -121,4 +122,22 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
             cvc.email = self.email
         }
     }
+    
+    //for darkmode in settings
+    override func viewWillAppear(_ animated: Bool) {
+        let user = Auth.auth().currentUser
+        let email:String = user?.email ?? "none"
+        
+        if UserDefaults.standard.bool(forKey: email + "dark mode") {
+            view.backgroundColor = .black
+            titleLabel.textColor = .white
+            questionText.textColor = .white
+            
+        } else {
+            view.backgroundColor = .white
+            titleLabel.textColor = .black
+            questionText.textColor = .black
+        }
+    }
+
 }
