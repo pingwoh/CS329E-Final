@@ -9,6 +9,11 @@ import UIKit
 import CoreData
 import Firebase
 
+// This gets the number of days in current month
+let cal = Calendar(identifier: .gregorian)
+let monthRange = cal.range(of: .day, in: .month, for: Date())!
+let daysInMonth = monthRange.count
+
 class CalendarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     let reuseIdentifier = "MyCell"
@@ -16,7 +21,10 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     var email : String? = nil
     var userEntity : NSManagedObject? = nil
     
-    var items = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"] // This is temporary we will eventually pull from the coredata model
+    // dynamically displays calendar days based on current month
+    var arr: [Int] = Array(1...daysInMonth)
+    var items: [String]!
+    
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -26,6 +34,9 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         self.navigationItem.hidesBackButton = true
         userEntity = retrieveUser(userID:email!)
         //print("Name: \(userEntity!.value(forKey:"name")!), Email: \(userEntity!.value(forKey:"email")!)")
+        
+        // converts array of ints into array of string
+        items = arr.map {String($0)}
         
         collectionView.delegate = self
         collectionView.dataSource = self
