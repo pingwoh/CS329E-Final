@@ -133,5 +133,4 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
             questionText.textColor = .black
         }
     }
-
 }

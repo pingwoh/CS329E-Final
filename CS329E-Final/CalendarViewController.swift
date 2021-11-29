@@ -34,7 +34,14 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         let defaults = UserDefaults.standard
         let email = defaults.string(forKey:"userID")
         userEntity = retrieveUser(userID:email!)
-        print("Name: \(userEntity!.value(forKey:"name")!), Email: \(userEntity!.value(forKey:"email")!)")
+        /*print("Name: \(userEntity!.value(forKey:"name")!), Email: \(userEntity!.value(forKey:"email")!)")
+        let logs = retrieveLogs()
+        var x = 1
+        for i in logs {
+            print("\(x) - \(i.value(forKey:"date")!) - \(i.value(forKey:"mood")!)")
+            x += 1
+        }
+        */
         
         // converts array of ints into array of string
         items = arr.map {String($0)}
@@ -115,6 +122,28 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         return fetchedResults![0]
     }
     
+    //retrieves mood logs from CoreData
+    private func retrieveLogs() -> [NSManagedObject] {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName:"Log")
+        var fetchedResults:[NSManagedObject]? = nil
+        
+        let sort = NSSortDescriptor(key: #keyPath(Log.date), ascending: true)
+        request.sortDescriptors = [sort]
+        
+        do {
+            try fetchedResults = context.fetch(request) as? [NSManagedObject]
+        } catch {
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+        
+        return fetchedResults!
+    }
+    
     //for darkmode in settings
     override func viewWillAppear(_ animated: Bool) {
         let user = Auth.auth().currentUser
@@ -128,6 +157,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
+    //logs user out(removes userdefaults)
     @IBAction func logoutButton(_ send:UIButton) {
         let defaults = UserDefaults.standard
         defaults.removeObject(forKey:"userID")
@@ -135,4 +165,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         performSegue(withIdentifier: "logoutSegue", sender: nil)
     }
 
+    //unwind segue for addentryviewcontroller
+    @IBAction func addUnwind( _ seg: UIStoryboardSegue) {
+    }
 }

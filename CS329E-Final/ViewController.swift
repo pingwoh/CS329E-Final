@@ -158,6 +158,7 @@ class LoginViewController: UIViewController {
         }
     }
     
+    //unwind segue for calendar view controller when logging out
     @IBAction func logoutUnwind( _ seg: UIStoryboardSegue) {
     }
 }
