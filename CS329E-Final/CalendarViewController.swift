@@ -65,7 +65,16 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         let selectedCell: UICollectionViewCell = collectionView.cellForItem(at: indexPath)!
         
-        selectedCell.backgroundColor = .red
+        //selectedCell.backgroundColor = .red
+        if selectedCell.backgroundColor == .gray {
+            selectedCell.backgroundColor = .red
+        }
+        else if selectedCell.backgroundColor == .red {
+            selectedCell.backgroundColor = .green
+        }
+        else if selectedCell.backgroundColor == .green {
+            selectedCell.backgroundColor = .gray
+        }
         
     }
     
