@@ -23,6 +23,7 @@
 		6EC2E7E9273CC6580062B283 /* CS329E_FinalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7E8273CC6580062B283 /* CS329E_FinalTests.swift */; };
 		6EC2E7F3273CC6580062B283 /* CS329E_FinalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7F2273CC6580062B283 /* CS329E_FinalUITests.swift */; };
 		6EC2E7F5273CC6580062B283 /* CS329E_FinalUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7F4273CC6580062B283 /* CS329E_FinalUITestsLaunchTests.swift */; };
+		B727872D27542A7500B15EDC /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B727872C27542A7500B15EDC /* CalendarCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		6EC2E7EE273CC6580062B283 /* CS329E-FinalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CS329E-FinalUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EC2E7F2273CC6580062B283 /* CS329E_FinalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CS329E_FinalUITests.swift; sourceTree = "<group>"; };
 		6EC2E7F4273CC6580062B283 /* CS329E_FinalUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CS329E_FinalUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B727872C27542A7500B15EDC /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				6EC2E7DF273CC6580062B283 /* Info.plist */,
 				6EC2E7D7273CC6570062B283 /* CS329E_Final.xcdatamodeld */,
 				6E762BAF2752A24B00950FED /* CalendarViewController.swift */,
+				B727872C27542A7500B15EDC /* CalendarCollectionViewCell.swift */,
 				6E762BB12752A59A00950FED /* SettingsViewController.swift */,
 				6E762BB32752A72200950FED /* QuestionaireViewController.swift */,
 				6E762BB52752AA7100950FED /* AddEntryViewController.swift */,
@@ -291,6 +294,7 @@
 				6EC2E7CF273CC6570062B283 /* AppDelegate.swift in Sources */,
 				6EC2E7D1273CC6570062B283 /* SceneDelegate.swift in Sources */,
 				6EC2E7D9273CC6570062B283 /* CS329E_Final.xcdatamodeld in Sources */,
+				B727872D27542A7500B15EDC /* CalendarCollectionViewCell.swift in Sources */,
 				6E762BB22752A59A00950FED /* SettingsViewController.swift in Sources */,
 				6E762BB42752A72200950FED /* QuestionaireViewController.swift in Sources */,
 			);

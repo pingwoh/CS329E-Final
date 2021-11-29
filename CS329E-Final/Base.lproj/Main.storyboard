@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -150,9 +151,55 @@
                                     <segue destination="9x1-XN-QQc" kind="presentation" identifier="AddSegue" id="PUU-6a-Wtp"/>
                                 </connections>
                             </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UJd-og-XiY">
+                                <rect key="frame" x="43" y="162" width="328" height="348"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="328" id="X1q-Qa-pvj"/>
+                                    <constraint firstAttribute="height" constant="348" id="cbT-0T-DCL"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Itb-RA-e7o">
+                                    <size key="itemSize" width="78" height="81"/>
+                                    <size key="estimatedItemSize" width="78" height="81"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MyCell" id="QWN-K9-xfC" customClass="CalendarCollectionViewCell" customModule="CS329E_Final" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="78" height="81"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="VvH-KJ-RhP">
+                                            <rect key="frame" x="0.0" y="0.0" width="78" height="81"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R0B-O7-dZV">
+                                                    <rect key="frame" x="18" y="30" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="R0B-O7-dZV" firstAttribute="centerX" secondItem="VvH-KJ-RhP" secondAttribute="centerX" id="C4H-RI-wgc"/>
+                                                <constraint firstItem="R0B-O7-dZV" firstAttribute="centerY" secondItem="VvH-KJ-RhP" secondAttribute="centerY" id="WP9-VO-W7p"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="78" height="81"/>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="R0B-O7-dZV" id="FZn-wl-v8U"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DxL-cn-JRb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="UJd-og-XiY" firstAttribute="leading" secondItem="DxL-cn-JRb" secondAttribute="leading" constant="43" id="As8-ef-D8v"/>
+                            <constraint firstItem="UJd-og-XiY" firstAttribute="centerX" secondItem="DxL-cn-JRb" secondAttribute="centerX" id="hnq-Lt-64G"/>
+                            <constraint firstItem="UJd-og-XiY" firstAttribute="top" secondItem="DxL-cn-JRb" secondAttribute="top" constant="74" id="wOm-Cg-QzM"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Calendar" id="RFT-Bk-tq3">
                         <barButtonItem key="rightBarButtonItem" image="gearshape.fill" catalog="system" id="905-Ih-Mkj">
@@ -161,10 +208,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="UJd-og-XiY" id="GDw-OP-9mo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uRO-5F-1ac" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1586" y="67"/>
+            <point key="canvasLocation" x="1585.5072463768117" y="66.964285714285708"/>
         </scene>
         <!--Add Entry View Controller-->
         <scene sceneID="U8j-71-qOl">
