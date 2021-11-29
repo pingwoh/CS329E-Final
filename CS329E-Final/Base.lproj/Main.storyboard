@@ -305,6 +305,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="darkModeLabel" destination="SsU-ck-PH8" id="V8z-mf-HOn"/>
+                        <outlet property="darkModeSwitch" destination="mxS-b3-58V" id="Bgn-au-JK8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5t-04-Tq3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
