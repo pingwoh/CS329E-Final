@@ -25,7 +25,6 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     var questionIndex : Int = 0
     var name : String = ""
-    var email : String? = nil
     var finalSelection : String = ""
     
     //REGION: On Start
@@ -92,7 +91,9 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
             titleLabel.text = ""
             break
         case 1:
-            storeUser(name:nameField.text!,mail:self.email!)
+            let defaults = UserDefaults.standard
+            let email = defaults.string(forKey:"userID")
+            storeUser(name:nameField.text!,mail:email!)
             nameField.isHidden = true
             name = nameField.text! //save answer
             nameField.text = ""
@@ -114,13 +115,6 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         print("save data and segue to calendar")
         print("final: \(finalSelection) \nname: \(name)")
         performSegue(withIdentifier: "CalendarSegue", sender: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "CalendarSegue" {
-            let cvc:CalendarViewController = segue.destination as! CalendarViewController
-            cvc.email = self.email
-        }
     }
     
     //for darkmode in settings

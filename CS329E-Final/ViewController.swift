@@ -36,6 +36,11 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         //FirebaseApp.configure()
         
+        let defaults = UserDefaults.standard
+        if (defaults.string(forKey:"userID") != nil && defaults.string(forKey:"userID")!.count > 0) {
+            performSegue(withIdentifier: "userExistsCalendarSegue", sender: nil)
+        }
+        
         //when view first appear, should be type login
         setupView(pageType: .login)
         
@@ -111,6 +116,8 @@ class LoginViewController: UIViewController {
                     self.statusLabel.text = "Sign In Failed"
                 } else {
                     self.statusLabel.text = "Sign In Successful"
+                    let defaults = UserDefaults.standard
+                    defaults.setValue(self.userIDField.text!, forKey:"userID")
                     if self.userExists() {
                         self.performSegue(withIdentifier: "userExistsCalendarSegue", sender: nil)
                     }
@@ -137,7 +144,8 @@ class LoginViewController: UIViewController {
                     if error == nil {
                         Auth.auth().signIn(withEmail: email, password: password)
                         self.statusLabel.text = "Sign Up Successful"
-                        
+                        let defaults = UserDefaults.standard
+                        defaults.setValue(self.userIDField.text!, forKey:"userID")
                         self.performSegue(withIdentifier: "QuestionSegue", sender: nil)
                     } else {
                         self.statusLabel.text = "Sign Up Failed"
@@ -150,16 +158,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    //passes email to questionnaire form for storing in user core data
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "QuestionSegue" {
-            let qvc:QuestionaireViewController = segue.destination as! QuestionaireViewController
-            qvc.email = userIDField.text!
-        }
-        else if segue.identifier == "userExistsCalendarSegue" {
-            let cvc:CalendarViewController = segue.destination as! CalendarViewController
-            cvc.email = userIDField.text!
-        }
+    @IBAction func logoutUnwind( _ seg: UIStoryboardSegue) {
     }
 }
 

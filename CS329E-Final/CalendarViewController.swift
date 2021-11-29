@@ -18,7 +18,6 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     let reuseIdentifier = "MyCell"
     
-    var email : String? = nil
     var userEntity : NSManagedObject? = nil
     
     // dynamically displays calendar days based on current month
@@ -32,8 +31,10 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
+        let defaults = UserDefaults.standard
+        let email = defaults.string(forKey:"userID")
         userEntity = retrieveUser(userID:email!)
-        //print("Name: \(userEntity!.value(forKey:"name")!), Email: \(userEntity!.value(forKey:"email")!)")
+        print("Name: \(userEntity!.value(forKey:"name")!), Email: \(userEntity!.value(forKey:"email")!)")
         
         // converts array of ints into array of string
         items = arr.map {String($0)}
@@ -125,6 +126,13 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         } else {
             view.backgroundColor = .white
         }
+    }
+    
+    @IBAction func logoutButton(_ send:UIButton) {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey:"userID")
+        defaults.synchronize()
+        performSegue(withIdentifier: "logoutSegue", sender: nil)
     }
 
 }

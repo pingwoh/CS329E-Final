@@ -192,6 +192,15 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kbl-ne-4Hb">
+                                <rect key="frame" x="142" y="635" width="130" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Log Out"/>
+                                <connections>
+                                    <action selector="logoutButton:" destination="nM5-py-8B2" eventType="primaryActionTriggered" id="ZdC-sW-NRU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DxL-cn-JRb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -210,9 +219,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="UJd-og-XiY" id="GDw-OP-9mo"/>
+                        <segue destination="2Y9-d7-MUO" kind="unwind" identifier="logoutSegue" unwindAction="logoutUnwind:" id="5sU-yr-Vgr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uRO-5F-1ac" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="2Y9-d7-MUO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1585.5072463768117" y="66.964285714285708"/>
         </scene>
@@ -364,7 +375,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="94J-5k-3lM"/>
+        <segue reference="eGM-be-7PR"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
