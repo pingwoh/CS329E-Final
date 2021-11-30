@@ -40,8 +40,8 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         for i in logs {
             print("\(x) - \(i.value(forKey:"date")!) - \(i.value(forKey:"mood")!)")
             x += 1
-        }
-        */
+        }*/
+        print("Core data isn't working - \(userEntity == nil)")
         
         // converts array of ints into array of string
         items = arr.map {String($0)}
@@ -107,7 +107,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     //retrieves user from CoreData based on email
-    private func retrieveUser(userID e:String) -> NSManagedObject {
+    private func retrieveUser(userID e:String) -> NSManagedObject? {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         
@@ -125,7 +125,12 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             abort()
         }
         
-        return fetchedResults![0]
+        if fetchedResults!.count>0 {
+            return fetchedResults![0]
+        }
+        else {
+            return nil
+        }
     }
     
     //retrieves mood logs from CoreData
