@@ -34,7 +34,10 @@ class SettingsViewController: UIViewController, AddSettings, UIImagePickerContro
         profilePic.contentMode = .scaleToFill
         
         if (userEntity != nil) {
-            nameField.text = userEntity!.value(forKey:"name") as? String
+            let name = userEntity!.value(forKey:"name") as? String
+            if (name != nil) {
+                nameField.text = name
+            }
             let propicdata = userEntity?.value(forKey:"propic") as? Data
             if (propicdata != nil) {
                 profilePic.image = UIImage(data:propicdata!)
@@ -59,6 +62,8 @@ class SettingsViewController: UIViewController, AddSettings, UIImagePickerContro
     //updates user name in coredata
     @IBAction func updateName(_ sender: UIButton) {
         if (userEntity != nil) {
+            self.view.endEditing(true)
+            
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
             
@@ -108,17 +113,9 @@ class SettingsViewController: UIViewController, AddSettings, UIImagePickerContro
         
         do{
             try context.save()
-            
-            let alert = UIAlertController(title: "Profile Picture Change", message: "New profile picture successfully changed!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            present(alert, animated:true)
         } catch{
             let nserror = error as NSError
             NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-            
-            let alert = UIAlertController(title: "Profile Picture Change", message: "Something went wrong!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            present(alert, animated:true)
             
             abort()
         }
@@ -129,7 +126,6 @@ class SettingsViewController: UIViewController, AddSettings, UIImagePickerContro
         }
         
         dismiss(animated: true, completion: nil)
-        
     }
     
     //dismisses imagepicker if no image is selected

@@ -396,12 +396,12 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYs-1u-2jx">
-                                <rect key="frame" x="107" y="389" width="130" height="31"/>
+                                <rect key="frame" x="142" y="389" width="130" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Update Name"/>
                                 <connections>
-                                    <action selector="updateProfilePic:" destination="uB5-Ca-FfY" eventType="primaryActionTriggered" id="vkM-Wo-5ND"/>
+                                    <action selector="updateName:" destination="uB5-Ca-FfY" eventType="primaryActionTriggered" id="v8N-zw-wDD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -414,6 +414,7 @@
                     <connections>
                         <outlet property="darkModeLabel" destination="SsU-ck-PH8" id="V8z-mf-HOn"/>
                         <outlet property="darkModeSwitch" destination="mxS-b3-58V" id="Bgn-au-JK8"/>
+                        <outlet property="nameField" destination="URb-ZA-yav" id="LAh-QK-gpU"/>
                         <outlet property="profilePic" destination="gCi-16-Wlc" id="e8g-2D-fEF"/>
                     </connections>
                 </viewController>
