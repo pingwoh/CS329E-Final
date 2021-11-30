@@ -34,14 +34,16 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         let defaults = UserDefaults.standard
         let email = defaults.string(forKey:"userID")
         userEntity = retrieveUser(userID:email!)
-        /*print("Name: \(userEntity!.value(forKey:"name")!), Email: \(userEntity!.value(forKey:"email")!)")
+        /*
+        print("Name: \(userEntity!.value(forKey:"name")!), Email: \(userEntity!.value(forKey:"email")!)")
         let logs = retrieveLogs()
         var x = 1
         for i in logs {
             print("\(x) - \(i.value(forKey:"date")!) - \(i.value(forKey:"mood")!)")
             x += 1
-        }*/
+        }
         print("Core data isn't working - \(userEntity == nil)")
+        */
         
         // converts array of ints into array of string
         items = arr.map {String($0)}

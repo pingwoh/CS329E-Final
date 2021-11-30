@@ -161,5 +161,10 @@ class LoginViewController: UIViewController {
     //unwind segue for calendar view controller when logging out
     @IBAction func logoutUnwind( _ seg: UIStoryboardSegue) {
     }
+    
+    //hides keyboard on background touch
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 }
 

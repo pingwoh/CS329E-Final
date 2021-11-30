@@ -63,6 +63,8 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     //stores user in CoreData
     func storeUser(name n:String,mail e:String) {
+        self.view.endEditing(true)
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         
@@ -78,6 +80,11 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
             NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
             abort()
         }
+    }
+    
+    //hides keyboard on background touch
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     //REGION: Button Actions

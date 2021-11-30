@@ -362,20 +362,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gCi-16-Wlc">
+                                <rect key="frame" x="143" y="132" width="128" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McL-uE-JNL">
+                                <rect key="frame" x="107" y="268" width="200" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Update Profile Picture"/>
+                                <connections>
+                                    <action selector="updateProfilePic:" destination="uB5-Ca-FfY" eventType="primaryActionTriggered" id="uDg-lG-5Gt"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dark Mode:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SsU-ck-PH8">
-                                <rect key="frame" x="103" y="225" width="89" height="21"/>
+                                <rect key="frame" x="98" y="522" width="89" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mxS-b3-58V">
-                                <rect key="frame" x="276" y="220" width="49" height="31"/>
+                                <rect key="frame" x="270" y="517" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="darkMode:" destination="uB5-Ca-FfY" eventType="valueChanged" id="aiZ-h5-pT3"/>
                                 </connections>
                             </switch>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="URb-ZA-yav">
+                                <rect key="frame" x="107" y="347" width="200" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYs-1u-2jx">
+                                <rect key="frame" x="107" y="389" width="130" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Update Name"/>
+                                <connections>
+                                    <action selector="updateProfilePic:" destination="uB5-Ca-FfY" eventType="primaryActionTriggered" id="vkM-Wo-5ND"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sOv-PJ-kIn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -386,15 +414,16 @@
                     <connections>
                         <outlet property="darkModeLabel" destination="SsU-ck-PH8" id="V8z-mf-HOn"/>
                         <outlet property="darkModeSwitch" destination="mxS-b3-58V" id="Bgn-au-JK8"/>
+                        <outlet property="profilePic" destination="gCi-16-Wlc" id="e8g-2D-fEF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5t-04-Tq3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2548" y="67"/>
+            <point key="canvasLocation" x="2547.826086956522" y="66.964285714285708"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="94J-5k-3lM"/>
+        <segue reference="eGM-be-7PR"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
