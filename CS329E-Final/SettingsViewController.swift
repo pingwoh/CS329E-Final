@@ -167,6 +167,25 @@ class SettingsViewController: UIViewController, AddSettings, UIImagePickerContro
         }
     }
     
+    @IBAction func resetLogs() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Log")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest:fetchRequest)
+        deleteRequest.resultType = .resultTypeObjectIDs
+        do {
+            let batchDelete = try context.execute(deleteRequest) as? NSBatchDeleteResult
+            guard let deleteResult = batchDelete?.result as? [NSManagedObjectID] else { return }
+            let deletedObjects: [AnyHashable: Any] = [NSDeletedObjectsKey: deleteResult]
+            NSManagedObjectContext.mergeChanges(fromRemoteContextSave: deletedObjects,into:[context])
+        } catch {
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+    }
+    
     internal func storeSettings(darkMode: String) {
         let user = Auth.auth().currentUser
         let email:String = user?.email ?? "none"

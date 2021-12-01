@@ -404,6 +404,15 @@
                                     <action selector="updateName:" destination="uB5-Ca-FfY" eventType="primaryActionTriggered" id="v8N-zw-wDD"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRB-PB-qRd">
+                                <rect key="frame" x="142" y="433" width="129" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Reset Entries"/>
+                                <connections>
+                                    <action selector="resetLogs" destination="uB5-Ca-FfY" eventType="primaryActionTriggered" id="59s-7V-TYb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sOv-PJ-kIn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

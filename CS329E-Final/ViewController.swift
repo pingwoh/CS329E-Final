@@ -16,7 +16,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var buttonLabel: UIButton!
     @IBOutlet weak var statusLabel: UILabel!
     
-    
     //private so cant access anywhere else in app but main page
     private enum PageType {
         case login
@@ -71,13 +70,16 @@ class LoginViewController: UIViewController {
         }
     }
 
-    //checks if user is already in CoreData
-    private func userExists() -> Bool {
+    //retrieves user from CoreData
+    private func userExists(userID e:String) -> Bool {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName:"User")
         var fetchedResults:[NSManagedObject]? = nil
+        
+        let predicate = NSPredicate(format: "email == '\(e)'")
+        request.predicate = predicate
         
         do {
             try fetchedResults = context.fetch(request) as? [NSManagedObject]
@@ -87,7 +89,7 @@ class LoginViewController: UIViewController {
             abort()
         }
         
-        return (fetchedResults!.count > 0)
+        return fetchedResults!.count > 0
     }
     
     @IBAction func segmentedControl(_ sender: UISegmentedControl) {
@@ -118,7 +120,7 @@ class LoginViewController: UIViewController {
                     self.statusLabel.text = "Sign In Successful"
                     let defaults = UserDefaults.standard
                     defaults.setValue(self.userIDField.text!, forKey:"userID")
-                    if self.userExists() {
+                    if self.userExists(userID:self.userIDField.text!) {
                         self.performSegue(withIdentifier: "userExistsCalendarSegue", sender: nil)
                     }
                     else{

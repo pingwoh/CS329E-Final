@@ -9,10 +9,16 @@ import UIKit
 import CoreData
 import Firebase
 
+protocol ReloadCollectionViewDelegate {
+    func refreshCalendar()
+}
+
 class AddEntryViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var moods:[String] = ["Fantastic", "Good", "Okay", "Bad", "Awful"]
+    var mood_dict:[String:Int16] = ["Fantastic":0, "Good":1, "Okay":2, "Bad":3, "Awful":4]
     var finalMood:String = ""
+    var delegate:ReloadCollectionViewDelegate? = nil
     
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var pickerView: UIPickerView!
@@ -58,13 +64,16 @@ class AddEntryViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     @IBAction func addLog(_ send: UIButton) {
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         
         let entity = NSEntityDescription.insertNewObject(forEntityName: "Log", into: context)
         
-        entity.setValue(finalMood, forKey: "mood")
-        entity.setValue(datePicker.date, forKey: "date")
+        entity.setValue(mood_dict[finalMood], forKey: "mood")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        entity.setValue(dateFormatter.string(from:datePicker.date), forKey: "date")
         
         do{
             try context.save()
@@ -74,6 +83,7 @@ class AddEntryViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             abort()
         }
         
+        self.delegate!.refreshCalendar()
         performSegue(withIdentifier:"addUnwindSegue", sender: self)
     }
 
