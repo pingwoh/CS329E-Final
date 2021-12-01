@@ -22,6 +22,7 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     var questions : [String] = ["What is your name?", "How are you feeling today?"]
     var answers : [String] = ["Fantastic", "Good", "Okay", "Bad", "Awful"]
+    var mood_dict:[String:Int16] = ["Fantastic":0, "Good":1, "Okay":2, "Bad":3, "Awful":4]
     
     var questionIndex : Int = 0
     var name : String = ""
@@ -41,6 +42,7 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         
         titleLabel.text = "Hello there! Welcome to the app, let's start by answering a few questions."
         questionText.text = ""
+        finalSelection = answers[0]
     }
     
     //REGION: Picker View
@@ -119,25 +121,27 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     @IBAction func onSubmitPressed(_ sender: Any) {
         //TODO: save name and finalSelection to core data
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.insertNewObject(forEntityName: "Log", into: context)
+        
+        entity.setValue(mood_dict[finalSelection], forKey: "mood")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        entity.setValue(dateFormatter.string(from:Date()), forKey: "date")
+        
+        do{
+            try context.save()
+        } catch{
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+        
         print("save data and segue to calendar")
         print("final: \(finalSelection) \nname: \(name)")
         performSegue(withIdentifier: "CalendarSegue", sender: nil)
-    }
-    
-    //for darkmode in settings
-    override func viewWillAppear(_ animated: Bool) {
-        let user = Auth.auth().currentUser
-        let email:String = user?.email ?? "none"
-        
-        if UserDefaults.standard.bool(forKey: email + "dark mode") {
-            view.backgroundColor = .black
-            titleLabel.textColor = .white
-            questionText.textColor = .white
-            
-        } else {
-            view.backgroundColor = .white
-            titleLabel.textColor = .black
-            questionText.textColor = .black
-        }
     }
 }

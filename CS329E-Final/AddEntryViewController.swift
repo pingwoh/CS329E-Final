@@ -35,13 +35,24 @@ class AddEntryViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     //for darkmode in settings
     override func viewWillAppear(_ animated: Bool) {
-        let user = Auth.auth().currentUser
-        let email:String = user?.email ?? "none"
+        super.viewWillAppear(animated)
         
-        if UserDefaults.standard.bool(forKey: email + "dark mode") {
-            view.backgroundColor = .black
-        } else {
+        if UserDefaults.standard.bool(forKey:"dark mode") {
+            let background = UIColor.init(red: 0.11, green: 0.11, blue: 0.118, alpha: 1)
+            view.backgroundColor = background
+            datePicker.backgroundColor = background
+            pickerView.backgroundColor = background
+            datePicker.setValue(UIColor.white, forKeyPath:"textColor")
+            datePicker.setValue(false, forKeyPath: "highlightsToday")
+            pickerView.setValue(UIColor.white, forKeyPath:"textColor")
+        }
+        else {
             view.backgroundColor = .white
+            datePicker.backgroundColor = .white
+            pickerView.backgroundColor = .white
+            datePicker.setValue(UIColor.black, forKeyPath:"textColor")
+            datePicker.setValue(false, forKeyPath: "highlightsToday")
+            pickerView.setValue(UIColor.black, forKeyPath:"textColor")
         }
     }
     
@@ -64,7 +75,6 @@ class AddEntryViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     @IBAction func addLog(_ send: UIButton) {
-        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         

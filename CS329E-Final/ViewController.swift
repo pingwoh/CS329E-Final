@@ -121,9 +121,15 @@ class LoginViewController: UIViewController {
                     let defaults = UserDefaults.standard
                     defaults.setValue(self.userIDField.text!, forKey:"userID")
                     if self.userExists(userID:self.userIDField.text!) {
+                        self.userIDField.text = ""
+                        self.passwordField.text = ""
+                        self.statusLabel.text = ""
                         self.performSegue(withIdentifier: "userExistsCalendarSegue", sender: nil)
                     }
                     else{
+                        self.userIDField.text = ""
+                        self.passwordField.text = ""
+                        self.statusLabel.text = ""
                         self.performSegue(withIdentifier: "QuestionSegue", sender: nil)
                     }
                 }
@@ -148,6 +154,10 @@ class LoginViewController: UIViewController {
                         self.statusLabel.text = "Sign Up Successful"
                         let defaults = UserDefaults.standard
                         defaults.setValue(self.userIDField.text!, forKey:"userID")
+                        self.userIDField.text = ""
+                        self.passwordField.text = ""
+                        self.confirmPasswordField.text = ""
+                        self.statusLabel.text = ""
                         self.performSegue(withIdentifier: "QuestionSegue", sender: nil)
                     } else {
                         self.statusLabel.text = "Sign Up Failed"

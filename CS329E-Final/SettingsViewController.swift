@@ -9,11 +9,7 @@ import UIKit
 import Firebase
 import CoreData
 
-protocol AddSettings {
-    func storeSettings(darkMode: String)
-}
-
-class SettingsViewController: UIViewController, AddSettings, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SettingsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var darkModeSwitch: UISwitch!
     @IBOutlet weak var darkModeLabel: UILabel!
@@ -22,8 +18,6 @@ class SettingsViewController: UIViewController, AddSettings, UIImagePickerContro
     
     var userEntity : NSManagedObject? = nil
     let picker = UIImagePickerController()
-    //let defaulter = UserDefaults.standard
-    var darkModeBool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +27,7 @@ class SettingsViewController: UIViewController, AddSettings, UIImagePickerContro
         let email = defaults.string(forKey:"userID")
         userEntity = retrieveUser(userID:email!)
         
-        profilePic.contentMode = .scaleToFill
+        profilePic.contentMode = .scaleAspectFill
         
         if (userEntity != nil) {
             let name = userEntity!.value(forKey:"name") as? String
@@ -48,21 +42,23 @@ class SettingsViewController: UIViewController, AddSettings, UIImagePickerContro
     }
     
     @IBAction func darkMode(_ sender: UISwitch) {
-        
-        let user = Auth.auth().currentUser
-        let email:String = user?.email ?? "none"
-        
         if darkModeSwitch.isOn {
-            darkModeBool = true
-//            defaulter.set(darkModeBool, forKey: "darkMode")
-//            view.backgroundColor = .black
-            UserDefaults.standard.set(true, forKey: email + "dark mode")
-            print("On") //testcase
-        } else {
-            darkModeBool = false
-//            defaulter.set(darkModeBool, forKey: "darkMode")
-            UserDefaults.standard.set(true, forKey: email + "none")
-            print("off") //test case
+            UserDefaults.standard.setValue(true, forKey:"dark mode")
+            view.backgroundColor = .black
+            darkModeLabel.textColor = .lightText
+            nameField.backgroundColor = .darkGray
+            nameField.textColor = .lightGray
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            navigationController?.navigationBar.barStyle = .black
+        }
+        else {
+            UserDefaults.standard.setValue(false, forKey:"dark mode")
+            view.backgroundColor = .white
+            darkModeLabel.textColor = .black
+            nameField.backgroundColor = .white
+            nameField.textColor = .black
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+            navigationController?.navigationBar.barStyle = .default
         }
     }
     
@@ -186,83 +182,26 @@ class SettingsViewController: UIViewController, AddSettings, UIImagePickerContro
         }
     }
     
-    internal func storeSettings(darkMode: String) {
-        let user = Auth.auth().currentUser
-        let email:String = user?.email ?? "none"
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let settings = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
-        
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName:"User")
-        var fetchedResults:[NSManagedObject]? = nil
-        
-        settings.setValue(darkModeSwitch, forKey: email + "darkMode")
-        
-        do {
-            try fetchedResults = context.fetch(request) as? [NSManagedObject]
-        } catch {
-            let nserror = error as NSError
-            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-            abort()
-        }
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        let darkModeEnabled = defaulter.bool(forKey: "darkMode")
-        
-        let user = Auth.auth().currentUser
-        let email:String = user?.email ?? "none"
-        
-        if UserDefaults.standard.bool(forKey: email + "darkMode"){
+        if UserDefaults.standard.bool(forKey:"dark mode") {
+            darkModeSwitch.setOn(true, animated: false)
             view.backgroundColor = .black
-        } else {
-            view.backgroundColor = .white
+            darkModeLabel.textColor = .white
+            nameField.backgroundColor = UIColor.init(red: 0.11, green: 0.11, blue: 0.118, alpha: 1)
+            nameField.textColor = .lightGray
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            navigationController?.navigationBar.barStyle = .black
         }
-        
-//        if darkModeEnabled {
-//            view.backgroundColor = .black
-//            darkModeLabel.textColor = .white
-//            print("darkmod enabled")
-//        } else {
-//            view.backgroundColor = .white
-//            darkModeLabel.textColor = .black
-//            print("darkmode disabled")
-//        }
-        
-//
-//        if UserDefaults.standard.bool(forKey: email + "dark mode") {
-//            view.backgroundColor = .black
-//            darkModeLabel.textColor = .white
-//
-//        } else {
-//            view.backgroundColor = .white
-//            darkModeLabel.textColor = .black
-//        }
+        else {
+            darkModeSwitch.setOn(false, animated: false)
+            view.backgroundColor = .white
+            darkModeLabel.textColor = .black
+            nameField.backgroundColor = .white
+            nameField.textColor = .black
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+            navigationController?.navigationBar.barStyle = .default
+        }
     }
-}
-
-//who knows if we need this
-func retrieveSettings() -> [NSManagedObject] {
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let context = appDelegate.persistentContainer.viewContext
-    
-    let request = NSFetchRequest<NSFetchRequestResult>(entityName:"User")
-    var fetchedResults:[NSManagedObject]? = nil
-    
-        let predicate = NSPredicate(format: "name CONTAINS[c] 'ie'")
-        request.predicate = predicate
-    
-    do {
-        try fetchedResults = context.fetch(request) as? [NSManagedObject]
-    } catch {
-        // If an error occurs
-        let nserror = error as NSError
-        NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-        abort()
-    }
-    
-    return(fetchedResults)!
 }
