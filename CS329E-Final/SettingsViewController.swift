@@ -22,6 +22,8 @@ class SettingsViewController: UIViewController, AddSettings, UIImagePickerContro
     
     var userEntity : NSManagedObject? = nil
     let picker = UIImagePickerController()
+    //let defaulter = UserDefaults.standard
+    var darkModeBool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,15 +48,20 @@ class SettingsViewController: UIViewController, AddSettings, UIImagePickerContro
     }
     
     @IBAction func darkMode(_ sender: UISwitch) {
+        
+        let user = Auth.auth().currentUser
+        let email:String = user?.email ?? "none"
+        
         if darkModeSwitch.isOn {
-            view.backgroundColor = .black
-            darkModeLabel.textColor = .white
-            //darkModeSwitch.setOn(false, animated: true)
+            darkModeBool = true
+//            defaulter.set(darkModeBool, forKey: "darkMode")
+//            view.backgroundColor = .black
+            UserDefaults.standard.set(true, forKey: email + "dark mode")
             print("On") //testcase
         } else {
-            view.backgroundColor = .white
-            darkModeLabel.textColor = .black
-            //darkModeSwitch.setOn(true, animated: true)
+            darkModeBool = false
+//            defaulter.set(darkModeBool, forKey: "darkMode")
+            UserDefaults.standard.set(true, forKey: email + "none")
             print("off") //test case
         }
     }
@@ -183,17 +190,38 @@ class SettingsViewController: UIViewController, AddSettings, UIImagePickerContro
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+//        let darkModeEnabled = defaulter.bool(forKey: "darkMode")
+        
         let user = Auth.auth().currentUser
         let email:String = user?.email ?? "none"
         
-        if UserDefaults.standard.bool(forKey: email + "dark mode") {
+        if UserDefaults.standard.bool(forKey: email + "darkMode"){
             view.backgroundColor = .black
-            darkModeLabel.textColor = .white
-            
         } else {
             view.backgroundColor = .white
-            darkModeLabel.textColor = .black
         }
+        
+//        if darkModeEnabled {
+//            view.backgroundColor = .black
+//            darkModeLabel.textColor = .white
+//            print("darkmod enabled")
+//        } else {
+//            view.backgroundColor = .white
+//            darkModeLabel.textColor = .black
+//            print("darkmode disabled")
+//        }
+        
+//
+//        if UserDefaults.standard.bool(forKey: email + "dark mode") {
+//            view.backgroundColor = .black
+//            darkModeLabel.textColor = .white
+//
+//        } else {
+//            view.backgroundColor = .white
+//            darkModeLabel.textColor = .black
+//        }
     }
 }
 

@@ -34,6 +34,9 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         let defaults = UserDefaults.standard
         let email = defaults.string(forKey:"userID")
         userEntity = retrieveUser(userID:email!)
+        
+        let user = Auth.auth().currentUser
+        let leEmail:String = user?.email ?? "none"
         /*
         print("Name: \(userEntity!.value(forKey:"name")!), Email: \(userEntity!.value(forKey:"email")!)")
         let logs = retrieveLogs()
@@ -50,6 +53,13 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        if UserDefaults.standard.bool(forKey: leEmail + "dark mode") {
+            view.backgroundColor = .black
+            
+        } else {
+            view.backgroundColor = .white
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
