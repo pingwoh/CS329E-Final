@@ -147,9 +147,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Add Entry"/>
-                                <connections>
-                                    <segue destination="9x1-XN-QQc" kind="presentation" identifier="AddSegue" id="PUU-6a-Wtp"/>
-                                </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UJd-og-XiY">
                                 <rect key="frame" x="43" y="162" width="328" height="348"/>
@@ -226,46 +223,6 @@
                 <exit id="2Y9-d7-MUO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1585.5072463768117" y="66.964285714285708"/>
-        </scene>
-        <!--Add Entry View Controller-->
-        <scene sceneID="U8j-71-qOl">
-            <objects>
-                <viewController id="9x1-XN-QQc" customClass="AddEntryViewController" customModule="CS329E_Final" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="CIG-NX-JbB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="zk5-pM-W0a">
-                                <rect key="frame" x="20" y="108" width="374" height="162"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oTv-cN-p3X">
-                                <rect key="frame" x="142" y="516" width="130" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Add"/>
-                                <connections>
-                                    <action selector="addLog:" destination="9x1-XN-QQc" eventType="primaryActionTriggered" id="eBa-oC-65Z"/>
-                                </connections>
-                            </button>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iei-uY-xcr">
-                                <rect key="frame" x="20" y="302" width="374" height="162"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="iAJ-5q-7C1"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <connections>
-                        <outlet property="datePicker" destination="zk5-pM-W0a" id="Fwa-ft-htr"/>
-                        <outlet property="pickerView" destination="iei-uY-xcr" id="3aJ-vh-MJa"/>
-                        <segue destination="ucw-Lc-MFt" kind="unwind" identifier="addUnwindSegue" unwindAction="addUnwind:" id="ckz-W6-hXP"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fzQ-O0-1o5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="ucw-Lc-MFt" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="1600.0000000000002" y="772.76785714285711"/>
         </scene>
         <!--Questionaire-->
         <scene sceneID="04a-KD-XCd">

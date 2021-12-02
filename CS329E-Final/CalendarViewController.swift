@@ -14,14 +14,13 @@ let cal = Calendar(identifier: .gregorian)
 let monthRange = cal.range(of: .day, in: .month, for: Date())!
 let daysInMonth = monthRange.count
 
-class CalendarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, ReloadCollectionViewDelegate {
+class CalendarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    
+    //MARK: Variables
     let reuseIdentifier = "MyCell"
-    
     var userEntity : NSManagedObject? = nil
-    
-    // dynamically displays calendar days based on current month
-    var arr: [Int] = Array(1...daysInMonth)
+    var arr: [Int] = Array(1...daysInMonth) // dynamically displays calendar days based on current month
     var items: [String]!
     
     var rg:CGFloat = 0
@@ -37,6 +36,13 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    let mood_dict: KeyValuePairs = ["Fantastic":0, "Good":1, "Okay":2, "Bad":3, "Awful":4]
+    var finalMood:String = ""
+    let screenWidth = UIScreen.main.bounds.width - 10
+    let screenHeight = UIScreen.main.bounds.height / 4
+    
+    
+    //MARK: On Start
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
@@ -44,10 +50,14 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         let email = defaults.string(forKey:"userID")
         userEntity = retrieveUser(userID:email!)
         
-        UIColor.green.getRed(&rg, green: &gg, blue: &bg, alpha: &ag)
-        UIColor.yellow.getRed(&ry, green: &gy, blue: &by, alpha: &ay)
-        lime = UIColor.init(red: (rg+ry)/2, green: (gg+gy)/2, blue: (bg+by)/2, alpha: (ag+ay)/2)
-        mood_colors.insert(lime!, at: 1)
+
+        //TODO: save this into a variable so you dont have to auth twice
+        //do we even need this?
+        let user = Auth.auth().currentUser
+        let leEmail:String = user?.email ?? "none"
+        
+        //TODO: display users name on screen
+        print("Hello \(userEntity!.value(forKey: "name")!)")
         
         // converts array of ints into array of string
         items = arr.map {String($0)}
@@ -56,6 +66,20 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         collectionView.dataSource = self
     }
     
+    //for darkmode in settings
+    override func viewWillAppear(_ animated: Bool) {
+        let user = Auth.auth().currentUser
+        let leEmail:String = user?.email ?? "none"
+        
+        if UserDefaults.standard.bool(forKey: leEmail + "dark mode") {
+            view.backgroundColor = .black
+            
+        } else {
+            view.backgroundColor = .white
+        }
+    }
+    
+    //MARK: Collection View
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }
@@ -65,27 +89,67 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CalendarCollectionViewCell
         
         cell.dateLabel.text = items[indexPath.row]
-        let mood = retrieveLog(date: indexPath.row+1)
-        if mood >= 0 {
-            cell.backgroundColor = mood_colors[Int(mood)]
-            cell.dateLabel.textColor = .black
-        }
-        else {
-            if UserDefaults.standard.bool(forKey: "dark mode") {
-                cell.backgroundColor = UIColor.init(red: 0.11, green: 0.11, blue: 0.118, alpha: 1)
-                cell.dateLabel.textColor = .white
-            }
-            else {
-                cell.backgroundColor = .gray
-                cell.dateLabel.textColor = .black
-            }
-        }
         
+       
+        cell.createDate(day: items[indexPath.row])
+        cell.backgroundColor = cell.getMood(d: indexPath.row+1)
+        if(cell.mood < 0) {
+            cell.dateLabel.textColor = UserDefaults.standard.bool(forKey: "dark mode") ? .white : .darkGray
+        } else {
+            cell.dateLabel.textColor = .darkGray
+        }
+
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 8
         
         return cell
+    }
+    
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let cell = collectionView.cellForItem(at: indexPath) as! CalendarCollectionViewCell
+        
+        let vc = UIViewController()
+        vc.preferredContentSize = CGSize(width: screenWidth, height: screenHeight)
+        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        pickerView.selectRow(0, inComponent: 0, animated: false)
+        
+        vc.view.addSubview(pickerView)
+        pickerView.centerYAnchor.constraint(equalTo: vc.view.centerYAnchor).isActive = true
+        pickerView.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
+        
+        let controller = UIAlertController(
+            title: "How are you feeling today?",
+            message: "Please select one:",
+            preferredStyle: .actionSheet)
+        
+        controller.setValue(vc, forKey: "contentViewController")
+        
+        let cancelAction = UIAlertAction(
+            title: "Cancel",
+            style: .cancel,
+            handler: nil )
+        controller.addAction(cancelAction)
+        
+        
+        let selectAction = UIAlertAction(
+            title: "Select",
+            style: .default,
+            handler: {(action) in
+                let selectedRow = pickerView.selectedRow(inComponent: 0)
+                let selected = Array(self.mood_dict)[selectedRow]
+                self.finalMood = selected.key
+                cell.setMood(selectedMood: selected.value)
+                collectionView.reloadData()
+            } )
+        controller.addAction(selectAction)
+        
+        self.present(controller, animated: true, completion: nil)
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -102,6 +166,28 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         
     }
     
+    //MARK: Picker View
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        mood_dict.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 60
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 20))
+        label.text = Array(mood_dict)[row].key
+        label.sizeToFit()
+        return label
+    }
+    
+    //MARK: Core Data
     //retrieves user from CoreData based on email
     private func retrieveUser(userID e:String) -> NSManagedObject? {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -158,30 +244,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
-    func refreshCalendar() {
-        collectionView.reloadData()
-    }
-    
-    //for darkmode in settings
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        collectionView.reloadData()
-        
-        if UserDefaults.standard.bool(forKey:"dark mode") {
-            view.backgroundColor = .black
-            collectionView.backgroundColor = .black
-            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-            navigationController?.navigationBar.barStyle = .black
-            
-        }
-        else {
-            view.backgroundColor = .white
-            collectionView.backgroundColor = .white
-            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-            navigationController?.navigationBar.barStyle = .default
-        }
-    }
-    
+    //MARK: Button Actions
     //logs user out(removes userdefaults)
     @IBAction func logoutButton(_ send:UIButton) {
         let defaults = UserDefaults.standard
@@ -189,15 +252,5 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         defaults.synchronize()
         performSegue(withIdentifier: "logoutSegue", sender: nil)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "AddSegue" {
-            let a_vc:AddEntryViewController = segue.destination as! AddEntryViewController
-            a_vc.delegate = self
-        }
-    }
 
-    //unwind segue for addentryviewcontroller
-    @IBAction func addUnwind( _ seg: UIStoryboardSegue) {
-    }
 }

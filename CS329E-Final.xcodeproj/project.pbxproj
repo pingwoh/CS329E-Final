@@ -12,7 +12,6 @@
 		6E762BB02752A24B00950FED /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E762BAF2752A24B00950FED /* CalendarViewController.swift */; };
 		6E762BB22752A59A00950FED /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E762BB12752A59A00950FED /* SettingsViewController.swift */; };
 		6E762BB42752A72200950FED /* QuestionaireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E762BB32752A72200950FED /* QuestionaireViewController.swift */; };
-		6E762BB62752AA7100950FED /* AddEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E762BB52752AA7100950FED /* AddEntryViewController.swift */; };
 		6EC2E7CF273CC6570062B283 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7CE273CC6570062B283 /* AppDelegate.swift */; };
 		6EC2E7D1273CC6570062B283 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7D0273CC6570062B283 /* SceneDelegate.swift */; };
 		6EC2E7D3273CC6570062B283 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7D2273CC6570062B283 /* ViewController.swift */; };
@@ -48,7 +47,6 @@
 		6E762BAF2752A24B00950FED /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		6E762BB12752A59A00950FED /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		6E762BB32752A72200950FED /* QuestionaireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionaireViewController.swift; sourceTree = "<group>"; };
-		6E762BB52752AA7100950FED /* AddEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryViewController.swift; sourceTree = "<group>"; };
 		6EC2E7CB273CC6570062B283 /* CS329E-Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CS329E-Final.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EC2E7CE273CC6570062B283 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6EC2E7D0273CC6570062B283 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 				B727872C27542A7500B15EDC /* CalendarCollectionViewCell.swift */,
 				6E762BB12752A59A00950FED /* SettingsViewController.swift */,
 				6E762BB32752A72200950FED /* QuestionaireViewController.swift */,
-				6E762BB52752AA7100950FED /* AddEntryViewController.swift */,
 			);
 			path = "CS329E-Final";
 			sourceTree = "<group>";
@@ -289,7 +286,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E762BB02752A24B00950FED /* CalendarViewController.swift in Sources */,
-				6E762BB62752AA7100950FED /* AddEntryViewController.swift in Sources */,
 				6EC2E7D3273CC6570062B283 /* ViewController.swift in Sources */,
 				6EC2E7CF273CC6570062B283 /* AppDelegate.swift in Sources */,
 				6EC2E7D1273CC6570062B283 /* SceneDelegate.swift in Sources */,

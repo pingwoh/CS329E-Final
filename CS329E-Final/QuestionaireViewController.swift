@@ -21,14 +21,14 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
     @IBOutlet weak var pickerView: UIPickerView!
     
     var questions : [String] = ["What is your name?", "How are you feeling today?"]
-    var answers : [String] = ["Fantastic", "Good", "Okay", "Bad", "Awful"]
+    var moods:[String] = ["Fantastic", "Good", "Okay", "Bad", "Awful"]
     var mood_dict:[String:Int16] = ["Fantastic":0, "Good":1, "Okay":2, "Bad":3, "Awful":4]
+    var finalMood:String = ""
+
     
     var questionIndex : Int = 0
-    var name : String = ""
-    var finalSelection : String = ""
     
-    //REGION: On Start
+    //MARK: On Start
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,27 +42,99 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         
         titleLabel.text = "Hello there! Welcome to the app, let's start by answering a few questions."
         questionText.text = ""
-        finalSelection = answers[0]
+        finalMood = moods[0]
     }
     
-    //REGION: Picker View
+    //for darkmode in settings
+    override func viewWillAppear(_ animated: Bool) {
+        let user = Auth.auth().currentUser
+        let email:String = user?.email ?? "none"
+        
+        if UserDefaults.standard.bool(forKey: email + "dark mode") {
+            view.backgroundColor = .black
+            titleLabel.textColor = .white
+            questionText.textColor = .white
+            
+        } else {
+            view.backgroundColor = .white
+            titleLabel.textColor = .black
+            questionText.textColor = .black
+        }
+    }
+    
+    //MARK: Picker View
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
         
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return answers.count
+        return moods.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return answers[row]
+        return moods[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print(answers[row])
-        finalSelection = answers[row]
+        print(moods[row])
+        finalMood = moods[row]
     }
     
+    //MARK: Button Actions
+    @IBAction func onNextPressed(_ sender: Any) {
+        
+        switch questionIndex {
+        case 0:
+            nameField.isHidden = false
+            questionText.text = questions[questionIndex]
+            titleLabel.text = ""
+            break
+        case 1:
+            let defaults = UserDefaults.standard
+            let email = defaults.string(forKey:"userID")
+            storeUser(name:nameField.text!,mail:email!)
+            nameField.isHidden = true
+            nameField.text = ""
+            questionText.text = questions[questionIndex]
+            pickerView.isHidden = false
+            submitButton.isHidden = false
+            nextButton.isHidden = true
+            break
+        default:
+            print("Something has gone horribly wrong")
+            break
+        }
+        
+        questionIndex += 1
+    }
+    
+    @IBAction func onSubmitPressed(_ sender: Any) {
+        //TODO: save name and finalSelection to core data
+        
+
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.insertNewObject(forEntityName: "Log", into: context)
+
+        entity.setValue(mood_dict[finalMood], forKey: "mood")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        entity.setValue(dateFormatter.string(from: Date()), forKey: "date")
+
+        
+        do{
+            try context.save()
+        } catch{
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+        
+        performSegue(withIdentifier: "CalendarSegue", sender: nil)
+    }
+    
+    //MARK: Helper Functions
     //stores user in CoreData
     func storeUser(name n:String,mail e:String) {
         self.view.endEditing(true)
@@ -87,61 +159,5 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
     //hides keyboard on background touch
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-    }
-    
-    //REGION: Button Actions
-    @IBAction func onNextPressed(_ sender: Any) {
-        print("next question")
-        
-        switch questionIndex {
-        case 0:
-            nameField.isHidden = false
-            questionText.text = questions[questionIndex]
-            titleLabel.text = ""
-            break
-        case 1:
-            let defaults = UserDefaults.standard
-            let email = defaults.string(forKey:"userID")
-            storeUser(name:nameField.text!,mail:email!)
-            nameField.isHidden = true
-            name = nameField.text! //save answer
-            nameField.text = ""
-            questionText.text = questions[questionIndex]
-            pickerView.isHidden = false
-            submitButton.isHidden = false
-            nextButton.isHidden = true
-            break
-        default:
-            print("Something has gone horribly wrong")
-            break
-        }
-        
-        questionIndex += 1
-    }
-    
-    @IBAction func onSubmitPressed(_ sender: Any) {
-        //TODO: save name and finalSelection to core data
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
-        let entity = NSEntityDescription.insertNewObject(forEntityName: "Log", into: context)
-        
-        entity.setValue(mood_dict[finalSelection], forKey: "mood")
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        entity.setValue(dateFormatter.string(from:Date()), forKey: "date")
-        
-        do{
-            try context.save()
-        } catch{
-            let nserror = error as NSError
-            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-            abort()
-        }
-        
-        print("save data and segue to calendar")
-        print("final: \(finalSelection) \nname: \(name)")
-        performSegue(withIdentifier: "CalendarSegue", sender: nil)
     }
 }
