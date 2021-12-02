@@ -15,6 +15,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var darkModeLabel: UILabel!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var profilePic: UIImageView!
+    @IBOutlet weak var fontStyleLabel: UILabel!
+    @IBOutlet weak var fontStyleSwitch: UISwitch!
     
     var userEntity : NSManagedObject? = nil
     let picker = UIImagePickerController()
@@ -46,6 +48,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             UserDefaults.standard.setValue(true, forKey:"dark mode")
             view.backgroundColor = .black
             darkModeLabel.textColor = .lightText
+            fontStyleLabel.textColor = .lightText
             nameField.backgroundColor = .darkGray
             nameField.textColor = .lightGray
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -55,10 +58,24 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             UserDefaults.standard.setValue(false, forKey:"dark mode")
             view.backgroundColor = .white
             darkModeLabel.textColor = .black
+            fontStyleLabel.textColor = .black
             nameField.backgroundColor = .white
             nameField.textColor = .black
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
             navigationController?.navigationBar.barStyle = .default
+        }
+    }
+    
+    @IBAction func fontStyle(_ sender: Any) {
+        if fontStyleSwitch.isOn {
+            UserDefaults.standard.setValue(true, forKey:"large font style")
+            fontStyleLabel.font = fontStyleLabel.font.withSize(30)
+            darkModeLabel.font = darkModeLabel.font.withSize(30)
+            
+        } else {
+            UserDefaults.standard.setValue(false, forKey:"large font style")
+            fontStyleLabel.font = fontStyleLabel.font.withSize(16)
+            darkModeLabel.font = darkModeLabel.font.withSize(16)
         }
     }
     
@@ -189,6 +206,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             darkModeSwitch.setOn(true, animated: false)
             view.backgroundColor = .black
             darkModeLabel.textColor = .white
+            fontStyleLabel.textColor = .white
             nameField.backgroundColor = UIColor.init(red: 0.11, green: 0.11, blue: 0.118, alpha: 1)
             nameField.textColor = .lightGray
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -198,10 +216,22 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             darkModeSwitch.setOn(false, animated: false)
             view.backgroundColor = .white
             darkModeLabel.textColor = .black
+            fontStyleLabel.textColor = .black
             nameField.backgroundColor = .white
             nameField.textColor = .black
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
             navigationController?.navigationBar.barStyle = .default
+        }
+        
+        if UserDefaults.standard.bool(forKey:"large font style") {
+            fontStyleSwitch.setOn(true, animated: false)
+            fontStyleLabel.font = fontStyleLabel.font.withSize(30)
+            darkModeLabel.font = darkModeLabel.font.withSize(30)
+        }
+        else {
+            fontStyleSwitch.setOn(false, animated: false)
+            fontStyleLabel.font = fontStyleLabel.font.withSize(16)
+            darkModeLabel.font = darkModeLabel.font.withSize(16)
         }
     }
 }

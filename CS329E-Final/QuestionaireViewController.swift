@@ -47,10 +47,8 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     //for darkmode in settings
     override func viewWillAppear(_ animated: Bool) {
-        let user = Auth.auth().currentUser
-        let email:String = user?.email ?? "none"
         
-        if UserDefaults.standard.bool(forKey: email + "dark mode") {
+        if UserDefaults.standard.bool(forKey: "dark mode") {
             view.backgroundColor = .black
             titleLabel.textColor = .white
             questionText.textColor = .white
@@ -59,6 +57,15 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
             view.backgroundColor = .white
             titleLabel.textColor = .black
             questionText.textColor = .black
+        }
+        
+        if UserDefaults.standard.bool(forKey:"large font style") {
+            questionText.font = questionText.font.withSize(30)
+            titleLabel.font = titleLabel.font.withSize(30)
+        }
+        else {
+            questionText.font = questionText.font.withSize(16)
+            titleLabel.font = titleLabel.font.withSize(16)
         }
     }
     

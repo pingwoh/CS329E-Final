@@ -333,14 +333,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dark Mode:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SsU-ck-PH8">
-                                <rect key="frame" x="98" y="522" width="89" height="21"/>
+                                <rect key="frame" x="56" y="509" width="233" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mxS-b3-58V">
-                                <rect key="frame" x="270" y="517" width="49" height="31"/>
+                                <rect key="frame" x="316" y="517" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="darkMode:" destination="uB5-Ca-FfY" eventType="valueChanged" id="aiZ-h5-pT3"/>
@@ -370,6 +370,20 @@
                                     <action selector="resetLogs" destination="uB5-Ca-FfY" eventType="primaryActionTriggered" id="59s-7V-TYb"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Large Font Style:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2i-p6-l7Q">
+                                <rect key="frame" x="56" y="576" width="233" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xFV-Ia-shk">
+                                <rect key="frame" x="316" y="584" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="fontStyle:" destination="uB5-Ca-FfY" eventType="valueChanged" id="HpF-Zx-eXP"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sOv-PJ-kIn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -380,6 +394,8 @@
                     <connections>
                         <outlet property="darkModeLabel" destination="SsU-ck-PH8" id="V8z-mf-HOn"/>
                         <outlet property="darkModeSwitch" destination="mxS-b3-58V" id="Bgn-au-JK8"/>
+                        <outlet property="fontStyleLabel" destination="p2i-p6-l7Q" id="VFi-Zd-aUg"/>
+                        <outlet property="fontStyleSwitch" destination="xFV-Ia-shk" id="dcO-EC-Xb2"/>
                         <outlet property="nameField" destination="URb-ZA-yav" id="LAh-QK-gpU"/>
                         <outlet property="profilePic" destination="gCi-16-Wlc" id="e8g-2D-fEF"/>
                     </connections>
