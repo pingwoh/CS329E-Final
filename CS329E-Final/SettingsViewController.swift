@@ -8,6 +8,8 @@
 import UIKit
 import Firebase
 import CoreData
+import AVFoundation
+import AudioToolbox
 
 class SettingsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -17,6 +19,9 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var fontStyleLabel: UILabel!
     @IBOutlet weak var fontStyleSwitch: UISwitch!
+    @IBOutlet weak var vibrationLabel: UILabel!
+    @IBOutlet weak var vibrationSwitch: UISwitch!
+    
     
     var userEntity : NSManagedObject? = nil
     let picker = UIImagePickerController()
@@ -41,6 +46,9 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
                 profilePic.image = UIImage(data:propicdata!)
             }
         }
+        
+        //making code vibrate
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
     }
     
     @IBAction func darkMode(_ sender: UISwitch) {
@@ -49,6 +57,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             view.backgroundColor = .black
             darkModeLabel.textColor = .lightText
             fontStyleLabel.textColor = .lightText
+            vibrationLabel.textColor = .lightText
             nameField.backgroundColor = .darkGray
             nameField.textColor = .lightGray
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -59,6 +68,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             view.backgroundColor = .white
             darkModeLabel.textColor = .black
             fontStyleLabel.textColor = .black
+            vibrationLabel.textColor = .black
             nameField.backgroundColor = .white
             nameField.textColor = .black
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
@@ -66,21 +76,36 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         }
     }
     
-    @IBAction func fontStyle(_ sender: Any) {
+    @IBAction func fontStyle(_ sender: UISwitch) {
         if fontStyleSwitch.isOn {
             UserDefaults.standard.setValue(true, forKey:"large font style")
             fontStyleLabel.font = fontStyleLabel.font.withSize(30)
             darkModeLabel.font = darkModeLabel.font.withSize(30)
+            vibrationLabel.font = vibrationLabel.font.withSize(30)
             
         } else {
             UserDefaults.standard.setValue(false, forKey:"large font style")
             fontStyleLabel.font = fontStyleLabel.font.withSize(16)
             darkModeLabel.font = darkModeLabel.font.withSize(16)
+            vibrationLabel.font = vibrationLabel.font.withSize(16)
+        }
+    }
+    
+    @IBAction func vibration(_ sender: UISwitch) {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+           
+        if vibrationSwitch.isOn {
+            UserDefaults.standard.setValue(true, forKey:"vibration")
+            generator.impactOccurred()
+        } else {
+            UserDefaults.standard.setValue(false, forKey:"vibration")
         }
     }
     
     //updates user name in coredata
     @IBAction func updateName(_ sender: UIButton) {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        
         if (userEntity != nil) {
             self.view.endEditing(true)
             
@@ -106,6 +131,11 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
                 abort()
             }
         }
+        
+        //allow vibration when clicking button
+        if vibrationSwitch.isOn {
+            generator.impactOccurred()
+        }
     }
     
     //hides keyboard on background touch
@@ -115,12 +145,64 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     
     //brings up imagepicker to update user profile picture in core data
     @IBAction func updateProfilePic(_ sender: UIButton) {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        
         if (userEntity != nil) {
             picker.allowsEditing = false
             picker.sourceType = .photoLibrary
             present(picker, animated: true, completion: nil)
         }
+        
+        //vibration when clicking button
+        if vibrationSwitch.isOn {
+            generator.impactOccurred()
+        }
     }
+    
+    @IBAction func cameraProfilePic(_ sender: Any) {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        
+        if UIImagePickerController.availableCaptureModes(for: .rear) != nil {
+            switch AVCaptureDevice.authorizationStatus(for: .video) {
+            case .notDetermined:
+                AVCaptureDevice.requestAccess(for: .video) {
+                    accessGranted in
+                    guard accessGranted == true else { return }
+                }
+            case .authorized:
+                break
+            default:
+                print("Access denied")
+                return
+            }
+            
+            picker.allowsEditing = false
+            picker.sourceType = .camera
+            picker.cameraCaptureMode = .photo
+            
+            present(picker, animated: true, completion: nil)
+        
+        } else {
+            
+            let alertVC = UIAlertController(
+                title: "No camera",
+                message: "Buy a better phone",
+                preferredStyle: .alert)
+            let okAction = UIAlertAction(
+                title: "OK",
+                style: .default,
+                handler: nil)
+            alertVC.addAction(okAction)
+            present(alertVC, animated: true, completion: nil)
+            
+        }
+        
+        //allow for vibration when clicking button
+        if vibrationSwitch.isOn {
+            generator.impactOccurred()
+        }
+    }
+    
     
     //updates user profile picture in core data
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -181,6 +263,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func resetLogs() {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         
@@ -197,16 +281,24 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
             abort()
         }
+        
+        //allow for vibration when button clicked
+        if vibrationSwitch.isOn {
+            generator.impactOccurred()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let generator = UIImpactFeedbackGenerator(style: .medium)
         
+        //view for dark mode
         if UserDefaults.standard.bool(forKey:"dark mode") {
             darkModeSwitch.setOn(true, animated: false)
             view.backgroundColor = .black
             darkModeLabel.textColor = .white
             fontStyleLabel.textColor = .white
+            vibrationLabel.textColor = .white
             nameField.backgroundColor = UIColor.init(red: 0.11, green: 0.11, blue: 0.118, alpha: 1)
             nameField.textColor = .lightGray
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -217,21 +309,34 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             view.backgroundColor = .white
             darkModeLabel.textColor = .black
             fontStyleLabel.textColor = .black
+            vibrationLabel.textColor = .black
             nameField.backgroundColor = .white
             nameField.textColor = .black
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
             navigationController?.navigationBar.barStyle = .default
         }
         
+        //view for font size
         if UserDefaults.standard.bool(forKey:"large font style") {
             fontStyleSwitch.setOn(true, animated: false)
             fontStyleLabel.font = fontStyleLabel.font.withSize(30)
             darkModeLabel.font = darkModeLabel.font.withSize(30)
+            vibrationLabel.font = vibrationLabel.font.withSize(30)
         }
         else {
             fontStyleSwitch.setOn(false, animated: false)
             fontStyleLabel.font = fontStyleLabel.font.withSize(16)
             darkModeLabel.font = darkModeLabel.font.withSize(16)
+            vibrationLabel.font = vibrationLabel.font.withSize(16)
+        }
+        
+        //view for vibration
+        if UserDefaults.standard.bool(forKey: "vibration") {
+            vibrationSwitch.setOn(true, animated: false)
+            generator.impactOccurred()
+        }
+        else {
+            vibrationSwitch.setOn(false, animated: false)
         }
     }
 }

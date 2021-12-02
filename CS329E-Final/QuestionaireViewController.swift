@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import Firebase
+import AudioToolbox
 
 class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -89,6 +90,7 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     //MARK: Button Actions
     @IBAction func onNextPressed(_ sender: Any) {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
         
         switch questionIndex {
         case 0:
@@ -113,9 +115,16 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         }
         
         questionIndex += 1
+        
+        //allow vibration if button pressed
+        if UserDefaults.standard.bool(forKey: "vibration") {
+            generator.impactOccurred()
+        }
     }
     
     @IBAction func onSubmitPressed(_ sender: Any) {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        
         //TODO: save name and finalSelection to core data
         
 
@@ -139,6 +148,11 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         }
         
         performSegue(withIdentifier: "CalendarSegue", sender: nil)
+        
+        //allow for vibration if button pressed
+        if UserDefaults.standard.bool(forKey: "vibration") {
+            generator.impactOccurred()
+        }
     }
     
     //MARK: Helper Functions

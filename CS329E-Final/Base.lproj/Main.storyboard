@@ -333,14 +333,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dark Mode:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SsU-ck-PH8">
-                                <rect key="frame" x="56" y="509" width="233" height="46"/>
+                                <rect key="frame" x="56" y="502" width="233" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mxS-b3-58V">
-                                <rect key="frame" x="316" y="517" width="49" height="31"/>
+                                <rect key="frame" x="316" y="510" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="darkMode:" destination="uB5-Ca-FfY" eventType="valueChanged" id="aiZ-h5-pT3"/>
@@ -371,17 +371,40 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Large Font Style:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2i-p6-l7Q">
-                                <rect key="frame" x="56" y="576" width="233" height="46"/>
+                                <rect key="frame" x="56" y="563" width="233" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xFV-Ia-shk">
-                                <rect key="frame" x="316" y="584" width="49" height="31"/>
+                                <rect key="frame" x="316" y="571" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="fontStyle:" destination="uB5-Ca-FfY" eventType="valueChanged" id="HpF-Zx-eXP"/>
+                                </connections>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V6l-sG-FQv">
+                                <rect key="frame" x="107" y="304" width="200" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Take Profile Picture"/>
+                                <connections>
+                                    <action selector="cameraProfilePic:" destination="uB5-Ca-FfY" eventType="touchUpInside" id="uD1-ah-FTr"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vibration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVd-Nz-Vcr">
+                                <rect key="frame" x="56" y="617" width="233" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6GM-MH-RDd">
+                                <rect key="frame" x="316" y="629" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="vibration:" destination="uB5-Ca-FfY" eventType="valueChanged" id="1u0-7m-ihb"/>
                                 </connections>
                             </switch>
                         </subviews>
@@ -398,6 +421,8 @@
                         <outlet property="fontStyleSwitch" destination="xFV-Ia-shk" id="dcO-EC-Xb2"/>
                         <outlet property="nameField" destination="URb-ZA-yav" id="LAh-QK-gpU"/>
                         <outlet property="profilePic" destination="gCi-16-Wlc" id="e8g-2D-fEF"/>
+                        <outlet property="vibrationLabel" destination="tVd-Nz-Vcr" id="5Jb-Qu-qpU"/>
+                        <outlet property="vibrationSwitch" destination="6GM-MH-RDd" id="gQ1-FF-SPZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5t-04-Tq3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
