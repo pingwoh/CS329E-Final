@@ -68,14 +68,22 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     //for darkmode in settings
     override func viewWillAppear(_ animated: Bool) {
+        //so the stuff is specific to each user
         let user = Auth.auth().currentUser
-        let leEmail:String = user?.email ?? "none"
+        let email = user?.email ?? "none"
         
-        if UserDefaults.standard.bool(forKey: leEmail + "dark mode") {
-            view.backgroundColor = .black
+        if UserDefaults.standard.bool(forKey: email + "dark mode") {
+            view.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             
         } else {
-            view.backgroundColor = .white
+            view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        }
+        
+        //changing the background color of the collection view if darkmode
+        if UserDefaults.standard.bool(forKey: email + "dark mode") {
+            self.collectionView.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        } else {
+            self.collectionView.backgroundColor = .white
         }
     }
     
@@ -86,6 +94,10 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        //so the stuff is specific to each user
+        let user = Auth.auth().currentUser
+        let email = user?.email ?? "none"
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CalendarCollectionViewCell
         
         cell.dateLabel.text = items[indexPath.row]
@@ -94,10 +106,13 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         cell.createDate(day: items[indexPath.row])
         cell.backgroundColor = cell.getMood(d: indexPath.row+1)
         if(cell.mood < 0) {
-            cell.dateLabel.textColor = UserDefaults.standard.bool(forKey: "dark mode") ? .white : .darkGray
+            cell.dateLabel.textColor = UserDefaults.standard.bool(forKey: email + "dark mode") ? .white : .darkGray
         } else {
             cell.dateLabel.textColor = .darkGray
         }
+        
+        
+        //print("da mood \(cell.mood)")
 
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 1
@@ -217,6 +232,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     //retrieves mood logs from CoreData
     private func retrieveLog(date d:Int) -> Int16 {
+        
         let dS = String(format: "%02d", d)
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -237,7 +253,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         
         if fetchedResults!.count > 0 {
-            return fetchedResults![0].value(forKey:"mood") as! Int16
+            return fetchedResults![0].value(forKey: "mood") as! Int16
         }
         else {
             return -1

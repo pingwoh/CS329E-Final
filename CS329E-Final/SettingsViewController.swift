@@ -52,9 +52,12 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func darkMode(_ sender: UISwitch) {
+        let user = Auth.auth().currentUser
+        let email = user?.email ?? "none"
+        
         if darkModeSwitch.isOn {
-            UserDefaults.standard.setValue(true, forKey:"dark mode")
-            view.backgroundColor = .black
+            UserDefaults.standard.setValue(true, forKey: email + "dark mode")
+            view.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             darkModeLabel.textColor = .lightText
             fontStyleLabel.textColor = .lightText
             vibrationLabel.textColor = .lightText
@@ -62,43 +65,50 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             nameField.textColor = .lightGray
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
             navigationController?.navigationBar.barStyle = .black
-        }
-        else {
-            UserDefaults.standard.setValue(false, forKey:"dark mode")
+        } else {
+            UserDefaults.standard.setValue(false, forKey: email + "dark mode")
             view.backgroundColor = .white
-            darkModeLabel.textColor = .black
-            fontStyleLabel.textColor = .black
-            vibrationLabel.textColor = .black
+            darkModeLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            fontStyleLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            vibrationLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             nameField.backgroundColor = .white
-            nameField.textColor = .black
+            nameField.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
             navigationController?.navigationBar.barStyle = .default
         }
     }
     
     @IBAction func fontStyle(_ sender: UISwitch) {
+        
+        let user = Auth.auth().currentUser
+        let email = user?.email ?? "none"
+        
         if fontStyleSwitch.isOn {
-            UserDefaults.standard.setValue(true, forKey:"large font style")
+            UserDefaults.standard.setValue(true, forKey: email + "large font style")
             fontStyleLabel.font = fontStyleLabel.font.withSize(30)
             darkModeLabel.font = darkModeLabel.font.withSize(30)
             vibrationLabel.font = vibrationLabel.font.withSize(30)
-            
+            nameField.font = nameField.font?.withSize(30)
         } else {
-            UserDefaults.standard.setValue(false, forKey:"large font style")
+            UserDefaults.standard.setValue(false, forKey: email + "large font style")
             fontStyleLabel.font = fontStyleLabel.font.withSize(16)
             darkModeLabel.font = darkModeLabel.font.withSize(16)
             vibrationLabel.font = vibrationLabel.font.withSize(16)
+            nameField.font = nameField.font?.withSize(16)
         }
     }
     
     @IBAction func vibration(_ sender: UISwitch) {
+        let user = Auth.auth().currentUser
+        let email = user?.email ?? "none"
+        
         let generator = UIImpactFeedbackGenerator(style: .medium)
            
         if vibrationSwitch.isOn {
-            UserDefaults.standard.setValue(true, forKey:"vibration")
+            UserDefaults.standard.setValue(true, forKey: email + "vibration")
             generator.impactOccurred()
         } else {
-            UserDefaults.standard.setValue(false, forKey:"vibration")
+            UserDefaults.standard.setValue(false, forKey:email + "vibration")
         }
     }
     
@@ -290,12 +300,17 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        //so the stuff is specific to each user
+        let user = Auth.auth().currentUser
+        let email = user?.email ?? "none"
+        
         let generator = UIImpactFeedbackGenerator(style: .medium)
         
         //view for dark mode
-        if UserDefaults.standard.bool(forKey:"dark mode") {
+        if UserDefaults.standard.bool(forKey: email + "dark mode") {
             darkModeSwitch.setOn(true, animated: false)
-            view.backgroundColor = .black
+            view.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             darkModeLabel.textColor = .white
             fontStyleLabel.textColor = .white
             vibrationLabel.textColor = .white
@@ -307,31 +322,33 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         else {
             darkModeSwitch.setOn(false, animated: false)
             view.backgroundColor = .white
-            darkModeLabel.textColor = .black
-            fontStyleLabel.textColor = .black
-            vibrationLabel.textColor = .black
+            darkModeLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            fontStyleLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            vibrationLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             nameField.backgroundColor = .white
-            nameField.textColor = .black
+            nameField.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
             navigationController?.navigationBar.barStyle = .default
         }
         
         //view for font size
-        if UserDefaults.standard.bool(forKey:"large font style") {
+        if UserDefaults.standard.bool(forKey: email + "large font style") {
             fontStyleSwitch.setOn(true, animated: false)
             fontStyleLabel.font = fontStyleLabel.font.withSize(30)
             darkModeLabel.font = darkModeLabel.font.withSize(30)
             vibrationLabel.font = vibrationLabel.font.withSize(30)
+            nameField.font = nameField.font?.withSize(30)
         }
         else {
             fontStyleSwitch.setOn(false, animated: false)
             fontStyleLabel.font = fontStyleLabel.font.withSize(16)
             darkModeLabel.font = darkModeLabel.font.withSize(16)
             vibrationLabel.font = vibrationLabel.font.withSize(16)
+            nameField.font = nameField.font?.withSize(16)
         }
         
         //view for vibration
-        if UserDefaults.standard.bool(forKey: "vibration") {
+        if UserDefaults.standard.bool(forKey: email + "vibration") {
             vibrationSwitch.setOn(true, animated: false)
             generator.impactOccurred()
         }

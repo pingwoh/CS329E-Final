@@ -54,14 +54,18 @@ class LoginViewController: UIViewController {
             }
         }
         
+        //when we load up the app, it is initially hidden
+        confirmPasswordField.isHidden = true
+        confirmPassLabel.isHidden = true
+        
         //TODO: check if user has done questionaire or not. if so, go to main screen
     }
     
     //depending on the page (login or sign up) what elements will we see vs hide
     private func setupView(pageType: PageType) {
         //if pageType is == to .login, then confirmPass is hidden
-        confirmPasswordField.isHidden = pageType == .login
-        confirmPassLabel.isHidden = pageType == .login
+//        confirmPasswordField.isHidden = pageType == .login
+//        confirmPassLabel.isHidden = pageType == .login
         
         if pageType == .login {
             buttonLabel.setTitle("Sign In", for: .normal)
@@ -97,9 +101,68 @@ class LoginViewController: UIViewController {
         
         //if current page type is 0, its login, otherwise its sign up
         currentPageType = sender.selectedSegmentIndex == 0 ? .login : .signup
+        
+        if segCtrl.selectedSegmentIndex == 0 {
+            currentPageType = .login
+            UIView.animate(
+                            withDuration: 0.25,
+                            delay: 0.0,
+                            options: .curveEaseOut,
+                            animations: {
+                                self.buttonLabel.alpha = 0.0
+                                self.confirmPassLabel.alpha = 0.0
+                                self.confirmPasswordField.alpha = 0.0
+                            },
+                            completion: {_ in
+                                self.buttonLabel.setImage(UIImage(named: "login.png"), for: .normal)
+                                UIView.animate(
+                                    withDuration: 0.25,
+                                    delay: 0.0,
+                                    options: .curveEaseIn,
+                                    animations: {
+                                        self.buttonLabel.alpha = 1.0
+                                        self.confirmPassLabel.isHidden = true
+                                        self.confirmPasswordField.isHidden = true
+                                    },
+                                    completion: nil
+                                )
+                            }
+                        )
+
+        } else {
+            currentPageType = .signup
+            UIView.animate(
+                            withDuration: 0.25,
+                            delay: 0.0,
+                            options: .curveEaseOut,
+                            animations: {
+                                self.buttonLabel.alpha = 0.0
+                            },
+                            completion: {_ in
+                                self.buttonLabel.setImage(UIImage(named: "login.png"), for: .normal)
+                                UIView.animate(
+                                    withDuration: 0.25,
+                                    delay: 0.0,
+                                    options: .curveEaseIn,
+                                    animations: {
+                                        self.buttonLabel.alpha = 1.0
+                                        self.confirmPassLabel.isHidden = false
+                                        self.confirmPasswordField.isHidden = false
+                                        self.confirmPassLabel.alpha = 1.0
+                                        self.confirmPasswordField.alpha = 1.0
+                                    },
+                                    completion: nil
+                                )
+                            }
+                        )
+        }
     }
     
     @IBAction func didTouch(_ sender: Any) {
+        
+        let user = Auth.auth().currentUser
+        let leEmail = user?.email ?? "none"
+        
         //sign in
         if confirmPassLabel.isHidden {
             guard let email = userIDField.text,
@@ -164,10 +227,17 @@ class LoginViewController: UIViewController {
                         return
                     }
                 }
-            } else {
-                statusLabel.text = "Passwords dont match"
             }
+            
+            if password != confirmPass {
+                statusLabel.text = "Passwords dont match"
+            } 
         }
+        
+        //set user defaults == nil 
+        UserDefaults.standard.set(false, forKey: leEmail + "dark mode")
+        UserDefaults.standard.set(false, forKey: leEmail + "large font style")
+        UserDefaults.standard.set(false, forKey: leEmail + "vibration")
     }
     
     //unwind segue for calendar view controller when logging out

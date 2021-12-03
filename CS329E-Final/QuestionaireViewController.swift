@@ -49,7 +49,11 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
     //for darkmode in settings
     override func viewWillAppear(_ animated: Bool) {
         
-        if UserDefaults.standard.bool(forKey: "dark mode") {
+        //so the stuff is specific to each user
+        let user = Auth.auth().currentUser
+        let email = user?.email ?? "none"
+        
+        if UserDefaults.standard.bool(forKey: email + "dark mode") {
             view.backgroundColor = .black
             titleLabel.textColor = .white
             questionText.textColor = .white
@@ -60,7 +64,7 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
             questionText.textColor = .black
         }
         
-        if UserDefaults.standard.bool(forKey:"large font style") {
+        if UserDefaults.standard.bool(forKey: email + "large font style") {
             questionText.font = questionText.font.withSize(30)
             titleLabel.font = titleLabel.font.withSize(30)
         }
@@ -90,6 +94,11 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     //MARK: Button Actions
     @IBAction func onNextPressed(_ sender: Any) {
+        
+        //so the stuff is specific to each user
+        let user = Auth.auth().currentUser
+        let leEmail = user?.email ?? "none"
+        
         let generator = UIImpactFeedbackGenerator(style: .medium)
         
         switch questionIndex {
@@ -117,12 +126,16 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         questionIndex += 1
         
         //allow vibration if button pressed
-        if UserDefaults.standard.bool(forKey: "vibration") {
+        if UserDefaults.standard.bool(forKey: leEmail + "vibration") {
             generator.impactOccurred()
         }
     }
     
     @IBAction func onSubmitPressed(_ sender: Any) {
+        //so the stuff is specific to each user
+        let user = Auth.auth().currentUser
+        let email = user?.email ?? "none"
+        
         let generator = UIImpactFeedbackGenerator(style: .medium)
         
         //TODO: save name and finalSelection to core data
@@ -133,7 +146,7 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         
         let entity = NSEntityDescription.insertNewObject(forEntityName: "Log", into: context)
 
-        entity.setValue(mood_dict[finalMood], forKey: "mood")
+        entity.setValue(mood_dict[finalMood], forKey: "mood") //selective mood *gulp*
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         entity.setValue(dateFormatter.string(from: Date()), forKey: "date")
@@ -150,7 +163,7 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         performSegue(withIdentifier: "CalendarSegue", sender: nil)
         
         //allow for vibration if button pressed
-        if UserDefaults.standard.bool(forKey: "vibration") {
+        if UserDefaults.standard.bool(forKey: email + "vibration") {
             generator.impactOccurred()
         }
     }
@@ -158,6 +171,7 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
     //MARK: Helper Functions
     //stores user in CoreData
     func storeUser(name n:String,mail e:String) {
+        
         self.view.endEditing(true)
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

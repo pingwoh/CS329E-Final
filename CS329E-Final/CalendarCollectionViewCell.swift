@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import AudioToolbox
+import Firebase
 
 class CalendarCollectionViewCell: UICollectionViewCell {
     
@@ -71,7 +72,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         }
         
         if fetchedResults!.count > 0 {
-            return fetchedResults![0].value(forKey:"mood") as! Int16
+            return fetchedResults![0].value(forKey: "mood") as! Int16 //associate mood w specific email
         }
         else {
             return -1
@@ -89,6 +90,10 @@ class CalendarCollectionViewCell: UICollectionViewCell {
     
     func getMood(d: Int) -> UIColor
     {
+        //so the stuff is specific to each user
+        let user = Auth.auth().currentUser
+        let email = user?.email ?? "none"
+        
         let m = retrieveMood(d: d)
         mood = Int(m)
         
@@ -97,7 +102,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
             
         }
         else {
-            if UserDefaults.standard.bool(forKey: "dark mode") {
+            if UserDefaults.standard.bool(forKey: email + "dark mode") {
                 return UIColor.init(red: 0.11, green: 0.11, blue: 0.118, alpha: 1)
             }
             else {
@@ -118,6 +123,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         
         let entity = NSEntityDescription.insertNewObject(forEntityName: "Log", into: context)
         
+        //setting mood to w specific email 
         entity.setValue(selectedMood, forKey: "mood")
         
         let dateFormatter = DateFormatter()
