@@ -12,6 +12,7 @@
 		6E762BB02752A24B00950FED /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E762BAF2752A24B00950FED /* CalendarViewController.swift */; };
 		6E762BB22752A59A00950FED /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E762BB12752A59A00950FED /* SettingsViewController.swift */; };
 		6E762BB42752A72200950FED /* QuestionaireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E762BB32752A72200950FED /* QuestionaireViewController.swift */; };
+		6EAD7096275B330D00E8C91C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EAD7095275B330D00E8C91C /* Colors.xcassets */; };
 		6EC2E7CF273CC6570062B283 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7CE273CC6570062B283 /* AppDelegate.swift */; };
 		6EC2E7D1273CC6570062B283 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7D0273CC6570062B283 /* SceneDelegate.swift */; };
 		6EC2E7D3273CC6570062B283 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7D2273CC6570062B283 /* ViewController.swift */; };
@@ -47,6 +48,7 @@
 		6E762BAF2752A24B00950FED /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		6E762BB12752A59A00950FED /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		6E762BB32752A72200950FED /* QuestionaireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionaireViewController.swift; sourceTree = "<group>"; };
+		6EAD7095275B330D00E8C91C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		6EC2E7CB273CC6570062B283 /* CS329E-Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CS329E-Final.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EC2E7CE273CC6570062B283 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6EC2E7D0273CC6570062B283 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				6EC2E7D2273CC6570062B283 /* ViewController.swift */,
 				6EC2E7D4273CC6570062B283 /* Main.storyboard */,
 				6EC2E7DA273CC6580062B283 /* Assets.xcassets */,
+				6EAD7095275B330D00E8C91C /* Colors.xcassets */,
 				6EC2E7DC273CC6580062B283 /* LaunchScreen.storyboard */,
 				6EC2E7DF273CC6580062B283 /* Info.plist */,
 				6EC2E7D7273CC6570062B283 /* CS329E_Final.xcdatamodeld */,
@@ -257,6 +260,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EAD7096275B330D00E8C91C /* Colors.xcassets in Resources */,
 				6EC2E7DE273CC6580062B283 /* LaunchScreen.storyboard in Resources */,
 				3E08569E2750CA6B00CE7F47 /* GoogleService-Info.plist in Resources */,
 				6EC2E7DB273CC6580062B283 /* Assets.xcassets in Resources */,

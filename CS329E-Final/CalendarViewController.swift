@@ -14,6 +14,12 @@ let cal = Calendar(identifier: .gregorian)
 let monthRange = cal.range(of: .day, in: .month, for: Date())!
 let daysInMonth = monthRange.count
 
+extension UIColor {
+    static let lightBackground : UIColor = UIColor(named: "LightBackground")!
+    static let darkBackground : UIColor = UIColor(named: "DarkBackground")!
+    static let cellBackground : UIColor = UIColor(named: "CellBackground")!
+}
+
 class CalendarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
     
     
@@ -22,17 +28,6 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     var userEntity : NSManagedObject? = nil
     var arr: [Int] = Array(1...daysInMonth) // dynamically displays calendar days based on current month
     var items: [String]!
-    
-    var rg:CGFloat = 0
-    var gg:CGFloat = 0
-    var bg:CGFloat = 0
-    var ag:CGFloat = 0
-    var ry:CGFloat = 0
-    var gy:CGFloat = 0
-    var by:CGFloat = 0
-    var ay:CGFloat = 0
-    var lime:UIColor? = nil
-    var mood_colors:[UIColor] = [.green, .yellow, .orange, .red]
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -73,18 +68,16 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         let email = user?.email ?? "none"
         
         if UserDefaults.standard.bool(forKey: email + "dark mode") {
-            view.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-            
+            //view.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            //self.collectionView.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            view.backgroundColor = .darkBackground
+            self.collectionView.backgroundColor = .darkBackground
         } else {
-            view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            //view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            view.backgroundColor = .lightBackground
+            self.collectionView.backgroundColor = .lightBackground
         }
         
-        //changing the background color of the collection view if darkmode
-        if UserDefaults.standard.bool(forKey: email + "dark mode") {
-            self.collectionView.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-        } else {
-            self.collectionView.backgroundColor = .white
-        }
     }
     
     //MARK: Collection View
@@ -102,13 +95,12 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         cell.dateLabel.text = items[indexPath.row]
         
-       
         cell.createDate(day: items[indexPath.row])
         cell.backgroundColor = cell.getMood(d: indexPath.row+1)
         if(cell.mood < 0) {
-            cell.dateLabel.textColor = UserDefaults.standard.bool(forKey: email + "dark mode") ? .white : .darkGray
+            cell.dateLabel.textColor = UserDefaults.standard.bool(forKey: email + "dark mode") ? .lightBackground : .darkBackground
         } else {
-            cell.dateLabel.textColor = .darkGray
+            cell.dateLabel.textColor = .darkBackground
         }
         
         
@@ -135,7 +127,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         vc.view.addSubview(pickerView)
         pickerView.centerYAnchor.constraint(equalTo: vc.view.centerYAnchor).isActive = true
-        pickerView.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
+        //pickerView.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
         
         let controller = UIAlertController(
             title: "How are you feeling today?",
@@ -182,7 +174,6 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     //MARK: Picker View
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

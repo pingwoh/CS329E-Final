@@ -28,7 +28,8 @@ class CalendarCollectionViewCell: UICollectionViewCell {
     var by:CGFloat = 0
     var ay:CGFloat = 0
     var lime:UIColor? = nil
-    var mood_colors:[UIColor] = [.green, .cyan, .yellow, .orange, .red]
+    //var mood_colors:[UIColor] = [.green, .cyan, .yellow, .orange, .red]
+    var mood_colors: [UIColor] = [UIColor(named: "Fantastic")!, UIColor(named: "Good")!, UIColor(named: "Okay")!, UIColor(named: "Bad")!, UIColor(named:"Awful")!]
     
     //MARK: Methods
     func createDate(day: String)
@@ -98,6 +99,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         mood = Int(m)
         
         if m >= 0 {
+            print("The mood on \(getDate()) is \(moods[mood])")
             return mood_colors[Int(m)]
             
         }
@@ -106,7 +108,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
                 return UIColor.init(red: 0.11, green: 0.11, blue: 0.118, alpha: 1)
             }
             else {
-                return .gray
+                return .cellBackground
             }
         }
         
@@ -140,7 +142,5 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         }
         
         print("You felt \(moods[mood]) on \(dateFormatter.string(from: date))")
-       
-        //TODO: update color on calendar
     }
 }
