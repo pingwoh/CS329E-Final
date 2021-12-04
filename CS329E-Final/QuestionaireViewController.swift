@@ -54,14 +54,14 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         let email = user?.email ?? "none"
         
         if UserDefaults.standard.bool(forKey: email + "dark mode") {
-            view.backgroundColor = .black
-            titleLabel.textColor = .white
-            questionText.textColor = .white
+            view.backgroundColor = .darkBackground
+            titleLabel.textColor = .lightBackground
+            questionText.textColor = .lightBackground
             
         } else {
-            view.backgroundColor = .white
-            titleLabel.textColor = .black
-            questionText.textColor = .black
+            view.backgroundColor = .lightBackground
+            titleLabel.textColor = .darkBackground
+            questionText.textColor = .darkBackground
         }
         
         if UserDefaults.standard.bool(forKey: email + "large font style") {

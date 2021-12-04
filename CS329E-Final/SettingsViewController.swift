@@ -57,7 +57,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         
         if darkModeSwitch.isOn {
             UserDefaults.standard.setValue(true, forKey: email + "dark mode")
-            view.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            view.backgroundColor = .darkBackground
             darkModeLabel.textColor = .lightText
             fontStyleLabel.textColor = .lightText
             vibrationLabel.textColor = .lightText
@@ -67,7 +67,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             navigationController?.navigationBar.barStyle = .black
         } else {
             UserDefaults.standard.setValue(false, forKey: email + "dark mode")
-            view.backgroundColor = .white
+            view.backgroundColor = .lightBackground
             darkModeLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             fontStyleLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             vibrationLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
@@ -310,10 +310,10 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         //view for dark mode
         if UserDefaults.standard.bool(forKey: email + "dark mode") {
             darkModeSwitch.setOn(true, animated: false)
-            view.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-            darkModeLabel.textColor = .white
-            fontStyleLabel.textColor = .white
-            vibrationLabel.textColor = .white
+            view.backgroundColor = .darkBackground
+            darkModeLabel.textColor = .lightBackground
+            fontStyleLabel.textColor = .lightBackground
+            vibrationLabel.textColor = .lightBackground
             nameField.backgroundColor = UIColor.init(red: 0.11, green: 0.11, blue: 0.118, alpha: 1)
             nameField.textColor = .lightGray
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -321,12 +321,12 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         }
         else {
             darkModeSwitch.setOn(false, animated: false)
-            view.backgroundColor = .white
-            darkModeLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-            fontStyleLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-            vibrationLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-            nameField.backgroundColor = .white
-            nameField.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            view.backgroundColor = .lightBackground
+            darkModeLabel.textColor = .darkBackground
+            fontStyleLabel.textColor = .darkBackground
+            vibrationLabel.textColor = .darkBackground
+            nameField.backgroundColor = .cellBackground
+            nameField.textColor = .darkBackground
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
             navigationController?.navigationBar.barStyle = .default
         }
