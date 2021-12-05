@@ -198,12 +198,24 @@
                                     <action selector="logoutButton:" destination="nM5-py-8B2" eventType="primaryActionTriggered" id="ZdC-sW-NRU"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJc-pz-NNt">
+                                <rect key="frame" x="82" y="124" width="250" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="0pw-Bw-5gO"/>
+                                    <constraint firstAttribute="height" constant="30" id="Jjl-et-bvt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DxL-cn-JRb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="UJd-og-XiY" firstAttribute="leading" secondItem="DxL-cn-JRb" secondAttribute="leading" constant="43" id="As8-ef-D8v"/>
+                            <constraint firstItem="uJc-pz-NNt" firstAttribute="centerX" secondItem="oNw-RU-KBJ" secondAttribute="centerX" id="E2a-xM-uaE"/>
                             <constraint firstItem="UJd-og-XiY" firstAttribute="centerX" secondItem="DxL-cn-JRb" secondAttribute="centerX" id="hnq-Lt-64G"/>
+                            <constraint firstItem="UJd-og-XiY" firstAttribute="top" secondItem="uJc-pz-NNt" secondAttribute="bottom" constant="8" symbolic="YES" id="iab-5z-6y2"/>
                             <constraint firstItem="UJd-og-XiY" firstAttribute="top" secondItem="DxL-cn-JRb" secondAttribute="top" constant="74" id="wOm-Cg-QzM"/>
                         </constraints>
                     </view>
@@ -216,6 +228,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="UJd-og-XiY" id="GDw-OP-9mo"/>
+                        <outlet property="monthName" destination="uJc-pz-NNt" id="s3a-Am-3Db"/>
                         <segue destination="2Y9-d7-MUO" kind="unwind" identifier="logoutSegue" unwindAction="logoutUnwind:" id="5sU-yr-Vgr"/>
                     </connections>
                 </viewController>

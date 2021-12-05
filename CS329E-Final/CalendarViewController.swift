@@ -13,6 +13,10 @@ import Firebase
 let cal = Calendar(identifier: .gregorian)
 let monthRange = cal.range(of: .day, in: .month, for: Date())!
 let daysInMonth = monthRange.count
+// Dynamically finds the name of the current month
+let monthInt = Calendar.current.component(.month, from: Date())
+let monthStr = Calendar.current.monthSymbols[monthInt-1]
+
 
 extension UIColor {
     static let lightBackground : UIColor = UIColor(named: "LightBackground")!
@@ -59,6 +63,8 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        self.monthName.text = monthStr
     }
     
     //for darkmode in settings
@@ -79,6 +85,9 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         
     }
+    
+    //MARK: Month Label
+    @IBOutlet weak var monthName: UILabel!
     
     //MARK: Collection View
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
