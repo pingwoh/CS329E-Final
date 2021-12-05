@@ -234,6 +234,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="RFT-Bk-tq3">
                         <barButtonItem key="rightBarButtonItem" image="gearshape.fill" catalog="system" id="905-Ih-Mkj">
+                            <color key="tintColor" name="Good"/>
                             <connections>
                                 <segue destination="uB5-Ca-FfY" kind="show" identifier="SettingSegue" id="iRy-uk-Sax"/>
                             </connections>
@@ -363,7 +364,11 @@
                                 <rect key="frame" x="107" y="268" width="200" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Update Profile Picture">
+                                <buttonConfiguration key="configuration" style="tinted" title="Update Profile Picture" cornerStyle="capsule">
+                                    <backgroundConfiguration key="background">
+                                        <color key="strokeColor" name="Good"/>
+                                    </backgroundConfiguration>
+                                    <fontDescription key="titleFontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="13"/>
                                     <color key="baseForegroundColor" name="Good"/>
                                     <color key="baseBackgroundColor" name="Good"/>
                                 </buttonConfiguration>
@@ -381,8 +386,8 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mxS-b3-58V">
                                 <rect key="frame" x="316" y="510" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="onTintColor" name="Okay"/>
-                                <color key="thumbTintColor" name="CellBackground"/>
+                                <color key="onTintColor" name="Good"/>
+                                <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="darkMode:" destination="uB5-Ca-FfY" eventType="valueChanged" id="aiZ-h5-pT3"/>
                                 </connections>
@@ -427,8 +432,8 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xFV-Ia-shk">
                                 <rect key="frame" x="316" y="571" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="onTintColor" name="Okay"/>
-                                <color key="thumbTintColor" name="CellBackground"/>
+                                <color key="onTintColor" name="Good"/>
+                                <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="fontStyle:" destination="uB5-Ca-FfY" eventType="valueChanged" id="HpF-Zx-eXP"/>
                                 </connections>
@@ -455,8 +460,8 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6GM-MH-RDd">
                                 <rect key="frame" x="316" y="629" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="onTintColor" name="Okay"/>
-                                <color key="thumbTintColor" name="CellBackground"/>
+                                <color key="onTintColor" name="Good"/>
+                                <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="vibration:" destination="uB5-Ca-FfY" eventType="valueChanged" id="1u0-7m-ihb"/>
                                 </connections>
@@ -479,7 +484,10 @@
                                 <rect key="frame" x="141" y="761" width="130" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Log Out"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Log Out">
+                                    <color key="baseForegroundColor" name="Good"/>
+                                    <color key="baseBackgroundColor" name="Good"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="logoutButton:" destination="nM5-py-8B2" eventType="primaryActionTriggered" id="ZdC-sW-NRU"/>
                                     <action selector="logoutButton:" destination="uB5-Ca-FfY" eventType="primaryActionTriggered" id="wkf-6Z-0zJ"/>
@@ -490,7 +498,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="KR5-Jj-KJg">
-                        <barButtonItem key="backBarButtonItem" title="Calendar" id="mAf-rm-Nu0"/>
+                        <barButtonItem key="backBarButtonItem" title="Calendar" id="mAf-rm-Nu0">
+                            <color key="tintColor" name="Good"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="darkModeLabel" destination="SsU-ck-PH8" id="V8z-mf-HOn"/>
@@ -517,14 +527,8 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
-        <namedColor name="CellBackground">
-            <color red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
         <namedColor name="Good">
             <color red="0.0" green="0.67843137254901964" blue="0.71372549019607845" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Okay">
-            <color red="1" green="0.81176470588235294" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
