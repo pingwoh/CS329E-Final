@@ -46,6 +46,12 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             if (propicdata != nil) {
                 profilePic.image = UIImage(data:propicdata!)
             }
+            let notifdate = userEntity?.value(forKey: "notif") as? String
+            if (notifdate != nil) {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat =  "HH:mm"
+                timePicker.date = dateFormatter.date(from: notifdate!)!
+            }
         }
         
         //making code vibrate
@@ -307,6 +313,21 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["repeatingNotif"])
         print("Time selected is: \(timePicker.date)")
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        userEntity?.setValue(dateFormatter.string(from: timePicker.date), forKey: "notif")
+        
+        do{
+            try context.save()
+        } catch{
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            
+            abort()
+        }
         
         // create an object that holds the data for our notification
         let notification = UNMutableNotificationContent()
