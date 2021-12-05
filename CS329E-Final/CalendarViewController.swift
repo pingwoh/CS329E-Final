@@ -167,6 +167,15 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             } )
         controller.addAction(selectAction)
         
+        let deleteAction = UIAlertAction(
+            title: "Delete",
+            style: .destructive,
+            handler: {(action) in
+                cell.deleteMood()
+                collectionView.reloadData()
+            })
+        controller.addAction(deleteAction)
+        
         self.present(controller, animated: true, completion: nil)
 
     }

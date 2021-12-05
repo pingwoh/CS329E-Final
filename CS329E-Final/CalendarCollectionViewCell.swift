@@ -143,4 +143,9 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         
         print("You felt \(moods[mood]) on \(dateFormatter.string(from: date))")
     }
+    
+    func deleteMood()
+    {
+        
+    }
 }
