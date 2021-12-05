@@ -78,10 +78,12 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             //self.collectionView.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             view.backgroundColor = .darkBackground
             self.collectionView.backgroundColor = .darkBackground
+            self.monthName.textColor = .lightText
         } else {
             //view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             view.backgroundColor = .lightBackground
             self.collectionView.backgroundColor = .lightBackground
+            self.monthName.textColor = .darkText
         }
         
     }
