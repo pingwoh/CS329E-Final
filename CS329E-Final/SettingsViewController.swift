@@ -21,7 +21,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var fontStyleSwitch: UISwitch!
     @IBOutlet weak var vibrationLabel: UILabel!
     @IBOutlet weak var vibrationSwitch: UISwitch!
-    
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var timePicker: UIDatePicker!
     
     var userEntity : NSManagedObject? = nil
     let picker = UIImagePickerController()
@@ -63,6 +64,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             vibrationLabel.textColor = .lightText
             nameField.backgroundColor = .darkGray
             nameField.textColor = .lightGray
+            timeLabel.textColor = .lightText
+            timePicker.backgroundColor = .darkBackground
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
             navigationController?.navigationBar.barStyle = .black
         } else {
@@ -73,6 +76,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             vibrationLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             nameField.backgroundColor = .white
             nameField.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            timeLabel.textColor = .darkBackground
+            timePicker.backgroundColor = .lightBackground
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
             navigationController?.navigationBar.barStyle = .default
         }
@@ -296,6 +301,41 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         if vibrationSwitch.isOn {
             generator.impactOccurred()
         }
+    }
+    
+    @IBAction func onTimeChanged(_ sender: Any) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["repeatingNotif"])
+        print("Time selected is: \(timePicker.date)")
+        
+        
+        // create an object that holds the data for our notification
+        let notification = UNMutableNotificationContent()
+        notification.title = "Time to check-in!"
+        notification.body = "Don't forget to chart your mood daily!"
+
+        // set up the notification's trigger
+        let now = Date()
+        let selectedDate = Calendar.current.dateComponents([.hour, .minute, .second], from: timePicker.date)
+        var triggerDate = Calendar.current.dateComponents([.hour, .minute, .second], from: now)
+        
+        //set one to trigger @ a date
+        triggerDate.hour = selectedDate.hour
+        triggerDate.minute = selectedDate.minute
+        triggerDate.second = 0
+        
+        let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: true)
+
+        // set up a request to tell iOS to submit the notification with that trigger
+        let request = UNNotificationRequest(identifier: "repeatingNotif",
+                                            content: notification,
+                                            trigger: notificationTrigger)
+
+
+        // submit the request to iOS
+        UNUserNotificationCenter.current().add(request) { (error) in
+            print("Request error: ",error as Any)
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

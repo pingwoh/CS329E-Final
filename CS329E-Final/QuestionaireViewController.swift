@@ -20,12 +20,13 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var timePicker: UIDatePicker!
     
-    var questions : [String] = ["What is your name?", "How are you feeling today?"]
+    
+    var questions : [String] = ["What is your name?", "When would you like to be reminded?", "How are you feeling today?"]
     var moods:[String] = ["Fantastic", "Good", "Okay", "Bad", "Awful"]
     var mood_dict:[String:Int16] = ["Fantastic":0, "Good":1, "Okay":2, "Bad":3, "Awful":4]
     var finalMood:String = ""
-
     
     var questionIndex : Int = 0
     
@@ -40,6 +41,7 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         submitButton.isHidden = true
         nameField.isHidden = true
         pickerView.isHidden = true
+        timePicker.isHidden = true
         
         titleLabel.text = "Hello there! Welcome to the app, let's start by answering a few questions."
         questionText.text = ""
@@ -114,9 +116,44 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
             nameField.isHidden = true
             nameField.text = ""
             questionText.text = questions[questionIndex]
+            timePicker.isHidden = false
+            
+            break
+        case 2:
+            timePicker.isHidden = true
             pickerView.isHidden = false
             submitButton.isHidden = false
             nextButton.isHidden = true
+            questionText.text = questions[questionIndex]
+            
+            // create an object that holds the data for our notification
+            let notification = UNMutableNotificationContent()
+            notification.title = "Time to check-in!"
+            notification.body = "Don't forget to chart your mood daily!"
+
+            // set up the notification's trigger
+            let now = Date()
+            let selectedDate = Calendar.current.dateComponents([.hour, .minute, .second], from: timePicker.date)
+            var triggerDate = Calendar.current.dateComponents([.hour, .minute, .second], from: now)
+            
+            //set one to trigger @ a date
+            triggerDate.hour = selectedDate.hour
+            triggerDate.minute = selectedDate.minute
+            triggerDate.second = 0
+            
+            let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: true)
+
+            // set up a request to tell iOS to submit the notification with that trigger
+            let request = UNNotificationRequest(identifier: "repeatingNotif",
+                                                content: notification,
+                                                trigger: notificationTrigger)
+
+
+            // submit the request to iOS
+            UNUserNotificationCenter.current().add(request) { (error) in
+                print("Request error: ",error as Any)
+            }
+            
             break
         default:
             print("Something has gone horribly wrong")
