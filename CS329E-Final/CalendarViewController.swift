@@ -165,7 +165,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             title: "Delete",
             style: .destructive,
             handler: {(action) in
-                cell.deleteMood()
+                cell.deleteMood(d: indexPath.row+1)
                 collectionView.reloadData()
             })
         controller.addAction(deleteAction)

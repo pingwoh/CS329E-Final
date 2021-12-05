@@ -291,7 +291,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Log")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest:fetchRequest)
-        deleteRequest.resultType = .resultTypeObjectIDs
+        
         do {
             let batchDelete = try context.execute(deleteRequest) as? NSBatchDeleteResult
             guard let deleteResult = batchDelete?.result as? [NSManagedObjectID] else { return }
