@@ -115,7 +115,8 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         
         let entity = NSEntityDescription.insertNewObject(forEntityName: "Log", into: context)
         
-        //setting mood to w specific email 
+        deleteMood()
+        //setting mood to w specific email
         entity.setValue(selectedMood, forKey: "mood")
         
         let dateFormatter = DateFormatter()
@@ -134,15 +135,15 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         print("You felt \(moods[mood]) on \(dateFormatter.string(from: date))")
     }
     
-    func deleteMood(d: Int)
+    func deleteMood()
     {
-        let dS = String(format: "%02d", d)
+        let dS = getDate()
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Log")
-        fetchRequest.predicate = NSPredicate(format: "date ENDSWITH %@",dS)
+        fetchRequest.predicate = NSPredicate(format: "date == %@",dS)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest:fetchRequest)
         
         do {
