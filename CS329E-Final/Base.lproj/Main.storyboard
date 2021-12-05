@@ -135,7 +135,7 @@
             </objects>
             <point key="canvasLocation" x="-562" y="67"/>
         </scene>
-        <!--Calendar-->
+        <!--Calendar View Controller-->
         <scene sceneID="9Th-a3-jNy">
             <objects>
                 <viewController id="nM5-py-8B2" customClass="CalendarViewController" customModule="CS329E_Final" customModuleProvider="target" sceneMemberID="viewController">
@@ -217,14 +217,14 @@
                             <constraint firstItem="qJx-aV-usp" firstAttribute="top" secondItem="DxL-cn-JRb" secondAttribute="top" constant="26" id="Nzw-cL-xYM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Calendar" id="RFT-Bk-tq3">
+                    <navigationItem key="navigationItem" id="RFT-Bk-tq3">
                         <barButtonItem key="rightBarButtonItem" image="gearshape.fill" catalog="system" id="905-Ih-Mkj">
                             <connections>
                                 <segue destination="uB5-Ca-FfY" kind="show" identifier="SettingSegue" id="iRy-uk-Sax"/>
                             </connections>
                         </barButtonItem>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHidden" value="YES"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="hidden" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </navigationItem>
                     <connections>
