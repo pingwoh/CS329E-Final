@@ -112,7 +112,8 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         case 1:
             let defaults = UserDefaults.standard
             let email = defaults.string(forKey:"userID")
-            storeUser(name:nameField.text!,mail:email!)
+            let default_pic = UIImage(named: "default_propic")
+            storeUser(name:nameField.text!,mail:email!,propic:default_pic!)
             nameField.isHidden = true
             nameField.text = ""
             questionText.text = questions[questionIndex]
@@ -207,7 +208,7 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     //MARK: Helper Functions
     //stores user in CoreData
-    func storeUser(name n:String,mail e:String) {
+    func storeUser(name n:String,mail e:String,propic p:UIImage) {
         
         self.view.endEditing(true)
         
@@ -218,6 +219,9 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         
         entity.setValue(n, forKey: "name")
         entity.setValue(e, forKey: "email")
+        
+        let p_data = p.jpegData(compressionQuality: 0.75)
+        entity.setValue(p_data, forKey: "propic")
         
         do{
             try context.save()

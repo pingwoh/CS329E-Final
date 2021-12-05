@@ -396,4 +396,13 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             vibrationSwitch.setOn(false, animated: false)
         }
     }
+    
+    //MARK: Button Actions
+    //logs user out(removes userdefaults)
+    @IBAction func logoutButton(_ send:UIButton) {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey:"userID")
+        defaults.synchronize()
+        performSegue(withIdentifier: "logoutSegue", sender: nil)
+    }
 }
