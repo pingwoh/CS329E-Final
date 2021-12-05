@@ -148,15 +148,6 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Add Entry"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kbl-ne-4Hb">
-                                <rect key="frame" x="142" y="635" width="130" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Log Out"/>
-                                <connections>
-                                    <action selector="logoutButton:" destination="nM5-py-8B2" eventType="primaryActionTriggered" id="ZdC-sW-NRU"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qJx-aV-usp">
                                 <rect key="frame" x="43" y="114" width="328" height="378"/>
                                 <subviews>
@@ -235,11 +226,9 @@
                     <connections>
                         <outlet property="collectionView" destination="UJd-og-XiY" id="GDw-OP-9mo"/>
                         <outlet property="monthName" destination="uJc-pz-NNt" id="s3a-Am-3Db"/>
-                        <segue destination="2Y9-d7-MUO" kind="unwind" identifier="logoutSegue" unwindAction="logoutUnwind:" id="5sU-yr-Vgr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uRO-5F-1ac" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="2Y9-d7-MUO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1585.5072463768117" y="66.964285714285708"/>
         </scene>
@@ -448,6 +437,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kbl-ne-4Hb">
+                                <rect key="frame" x="141" y="761" width="130" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Log Out"/>
+                                <connections>
+                                    <action selector="logoutButton:" destination="nM5-py-8B2" eventType="primaryActionTriggered" id="ZdC-sW-NRU"/>
+                                    <action selector="logoutButton:" destination="uB5-Ca-FfY" eventType="primaryActionTriggered" id="wkf-6Z-0zJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sOv-PJ-kIn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -466,9 +465,11 @@
                         <outlet property="timePicker" destination="1cv-xl-Yoy" id="Jmn-dy-Jgd"/>
                         <outlet property="vibrationLabel" destination="tVd-Nz-Vcr" id="5Jb-Qu-qpU"/>
                         <outlet property="vibrationSwitch" destination="6GM-MH-RDd" id="gQ1-FF-SPZ"/>
+                        <segue destination="Wuy-aH-i0f" kind="unwind" identifier="logoutSegue" unwindAction="logoutUnwind:" id="tl0-NC-hxu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5t-04-Tq3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Wuy-aH-i0f" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2547.826086956522" y="66.964285714285708"/>
         </scene>

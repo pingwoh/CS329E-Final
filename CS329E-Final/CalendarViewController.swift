@@ -69,6 +69,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     //for darkmode in settings
     override func viewWillAppear(_ animated: Bool) {
+        collectionView.reloadData()
         //so the stuff is specific to each user
         let user = Auth.auth().currentUser
         let email = user?.email ?? "none"
@@ -260,15 +261,6 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         else {
             return -1
         }
-    }
-    
-    //MARK: Button Actions
-    //logs user out(removes userdefaults)
-    @IBAction func logoutButton(_ send:UIButton) {
-        let defaults = UserDefaults.standard
-        defaults.removeObject(forKey:"userID")
-        defaults.synchronize()
-        performSegue(withIdentifier: "logoutSegue", sender: nil)
     }
 
 }
