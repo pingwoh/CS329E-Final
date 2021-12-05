@@ -16,20 +16,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="kZg-pu-2Hm">
-                                <rect key="frame" x="87.5" y="347.5" width="239" height="201"/>
-                                <color key="tintColor" name="LightBackground"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="203.5" id="KxV-Bv-OAX"/>
-                                    <constraint firstAttribute="width" constant="239" id="edH-KX-SgX"/>
-                                </constraints>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7Yg-2h-U5t">
+                                <rect key="frame" x="87.5" y="320" width="239" height="256"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pixel Mood" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KV8-aP-ubb">
+                                        <rect key="frame" x="0.0" y="0.0" width="239" height="52.5"/>
+                                        <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="42"/>
+                                        <color key="textColor" name="LightBackground"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="kZg-pu-2Hm">
+                                        <rect key="frame" x="0.0" y="53.5" width="239" height="201"/>
+                                        <color key="tintColor" name="LightBackground"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="203.5" id="KxV-Bv-OAX"/>
+                                            <constraint firstAttribute="width" constant="239" id="edH-KX-SgX"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="Fantastic"/>
                         <constraints>
-                            <constraint firstItem="kZg-pu-2Hm" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="raw-m3-C68"/>
-                            <constraint firstItem="kZg-pu-2Hm" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="rnz-zN-er8"/>
+                            <constraint firstItem="7Yg-2h-U5t" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="PRM-Pw-YIE"/>
+                            <constraint firstItem="7Yg-2h-U5t" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="gtd-Jk-3ZG"/>
                         </constraints>
                     </view>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
