@@ -54,6 +54,10 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             }
         }
         
+        let swipeRecogRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight(recognizer:)))
+        swipeRecogRight.direction = .right
+        self.view.addGestureRecognizer(swipeRecogRight)
+        
         //making code vibrate
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
     }
@@ -100,12 +104,14 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             darkModeLabel.font = darkModeLabel.font.withSize(30)
             vibrationLabel.font = vibrationLabel.font.withSize(30)
             nameField.font = nameField.font?.withSize(30)
+            timeLabel.font = timeLabel.font.withSize(30)
         } else {
             UserDefaults.standard.setValue(false, forKey: email + "large font style")
             fontStyleLabel.font = fontStyleLabel.font.withSize(16)
             darkModeLabel.font = darkModeLabel.font.withSize(16)
             vibrationLabel.font = vibrationLabel.font.withSize(16)
             nameField.font = nameField.font?.withSize(16)
+            timeLabel.font = timeLabel.font.withSize(16)
         }
     }
     
@@ -399,6 +405,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             darkModeLabel.font = darkModeLabel.font.withSize(30)
             vibrationLabel.font = vibrationLabel.font.withSize(30)
             nameField.font = nameField.font?.withSize(30)
+            timeLabel.font = timeLabel.font.withSize(30)
+
         }
         else {
             fontStyleSwitch.setOn(false, animated: false)
@@ -406,6 +414,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             darkModeLabel.font = darkModeLabel.font.withSize(16)
             vibrationLabel.font = vibrationLabel.font.withSize(16)
             nameField.font = nameField.font?.withSize(16)
+            timeLabel.font = timeLabel.font.withSize(16)
+
         }
         
         //view for vibration
@@ -425,5 +435,12 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         defaults.removeObject(forKey:"userID")
         defaults.synchronize()
         performSegue(withIdentifier: "logoutSegue", sender: nil)
+    }
+    
+    @IBAction func swipeRight (recognizer: UISwipeGestureRecognizer) {
+        if recognizer.direction == .right {
+            print("Right swipe")
+            _ = navigationController?.popViewController(animated: true)
+         }
     }
 }

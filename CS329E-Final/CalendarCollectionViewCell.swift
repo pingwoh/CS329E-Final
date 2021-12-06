@@ -90,12 +90,12 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         mood = Int(m)
         
         if m >= 0 {
-            print("The mood on \(getDate()) is \(moods[mood])")
+            //print("The mood on \(getDate()) is \(moods[mood])")
             return mood_colors[Int(m)]
         }
         else {
             if UserDefaults.standard.bool(forKey: email + "dark mode") {
-                return UIColor.init(red: 0.11, green: 0.11, blue: 0.118, alpha: 1)
+                return UIColor.darkCellBackground
             }
             else {
                 return .cellBackground

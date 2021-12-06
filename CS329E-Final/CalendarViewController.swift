@@ -16,12 +16,15 @@ let daysInMonth = monthRange.count
 // Dynamically finds the name of the current month
 let monthInt = Calendar.current.component(.month, from: Date())
 let monthStr = Calendar.current.monthSymbols[monthInt-1]
+// Dynamically finds the current year
+let yearInt = Calendar.current.component(.year, from: Date())
 
 
 extension UIColor {
     static let lightBackground : UIColor = UIColor(named: "LightBackground")!
     static let darkBackground : UIColor = UIColor(named: "DarkBackground")!
     static let cellBackground : UIColor = UIColor(named: "CellBackground")!
+    static let darkCellBackground : UIColor = UIColor(named: "DarkCellBackground")!
 }
 
 class CalendarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
@@ -41,6 +44,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     let screenWidth = UIScreen.main.bounds.width - 10
     let screenHeight = UIScreen.main.bounds.height / 4
     
+    @IBOutlet weak var monthLabel: UILabel!
     
     //MARK: On Start
     override func viewDidLoad() {
@@ -61,7 +65,15 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        self.monthName.text = monthStr
+        self.monthName.text = "\(monthStr) - \(yearInt)"
+        
+        collectionView.layer.borderColor = UIColor.darkBackground.cgColor
+        collectionView.layer.borderWidth = 3.0
+        collectionView.layer.cornerRadius = 10.0//if you want corner radius.addtional
+        
+//        let swipeRecogLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft(recognizer:)))
+//        swipeRecogLeft.direction = .left
+//        self.view.addGestureRecognizer(swipeRecogLeft)
     }
     
     //for darkmode in settings
@@ -80,6 +92,12 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             self.collectionView.backgroundColor = .lightBackground
             self.monthName.textColor = .darkText
         }
+        
+//        if UserDefaults.standard.bool(forKey: email + "large font style") {
+//            monthLabel.font = monthLabel.font.withSize(50)
+//        } else {
+//            monthLabel.font = monthLabel.font.withSize(30)
+//        }
         
     }
     
@@ -112,7 +130,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         //print("da mood \(cell.mood)")
 
-        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderColor = UIColor.darkBackground.cgColor
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 8
         
@@ -125,8 +143,8 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         let cell = collectionView.cellForItem(at: indexPath) as! CalendarCollectionViewCell
         
         let vc = UIViewController()
-        vc.preferredContentSize = CGSize(width: screenWidth, height: screenHeight)
-        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
+        vc.preferredContentSize = CGSize(width: screenWidth, height: 130)
+        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 130))
         pickerView.dataSource = self
         pickerView.delegate = self
         pickerView.selectRow(0, inComponent: 0, animated: false)
@@ -183,7 +201,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         layout.itemSize = CGSize(width: cellSize, height: cellSize)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 5
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
         collectionView.collectionViewLayout = layout
         
     }
@@ -198,12 +216,17 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 60
+        return 40
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        return 100
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 20))
         label.text = Array(mood_dict)[row].key
+        label.textAlignment = .center
         label.sizeToFit()
         return label
     }
@@ -265,9 +288,4 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             return -1
         }
     }
-    
-    @IBAction func addEntry(_ sender: Any) {
-        
-    }
-    
 }
