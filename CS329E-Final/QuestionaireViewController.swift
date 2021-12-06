@@ -110,12 +110,7 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
             titleLabel.text = ""
             break
         case 1:
-            let defaults = UserDefaults.standard
-            let email = defaults.string(forKey:"userID")
-            let default_pic = UIImage(named: "default_propic")
-            storeUser(name:nameField.text != nil ? nameField.text! : "User",mail:email!,propic:default_pic!)
             nameField.isHidden = true
-            nameField.text = ""
             questionText.text = questions[questionIndex]
             timePicker.isHidden = false
             
@@ -126,6 +121,12 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
             submitButton.isHidden = false
             nextButton.isHidden = true
             questionText.text = questions[questionIndex]
+            
+            //creates and stores user in core data
+            let defaults = UserDefaults.standard
+            let email = defaults.string(forKey:"userID")
+            let default_pic = UIImage(named: "default_propic")
+            storeUser(name:nameField.text != nil ? nameField.text! : "User",mail:email!,propic:default_pic!,notime:timePicker.date)
             
             // create an object that holds the data for our notification
             let notification = UNMutableNotificationContent()
@@ -208,7 +209,7 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     //MARK: Helper Functions
     //stores user in CoreData
-    func storeUser(name n:String,mail e:String,propic p:UIImage) {
+    func storeUser(name n:String,mail e:String,propic p:UIImage,notime:Date) {
         
         self.view.endEditing(true)
         
@@ -222,6 +223,10 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         
         let p_data = p.jpegData(compressionQuality: 0.75)
         entity.setValue(p_data, forKey: "propic")
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        entity.setValue(dateFormatter.string(from: notime), forKey: "notif")
         
         do{
             try context.save()
