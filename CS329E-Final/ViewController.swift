@@ -70,6 +70,12 @@ class LoginViewController: UIViewController {
         self.view.addGestureRecognizer(swipeRecognizerRight)
         
         //TODO: check if user has done questionaire or not. if so, go to main screen
+        
+        segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.darkText], for: UIControl.State.normal)
+        
+        segCtrl.setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "AmericanTypewriter", size: 16)! ], for: UIControl.State.normal)
+        
+        buttonLabel.titleLabel?.font = UIFont(name: "AmericanTypewriter", size: 16)!
     }
     
     //depending on the page (login or sign up) what elements will we see vs hide
