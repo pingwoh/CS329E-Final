@@ -64,9 +64,9 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         self.monthName.text = monthStr
         
-        let swipeRecogLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft(recognizer:)))
-        swipeRecogLeft.direction = .left
-        self.view.addGestureRecognizer(swipeRecogLeft)
+//        let swipeRecogLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft(recognizer:)))
+//        swipeRecogLeft.direction = .left
+//        self.view.addGestureRecognizer(swipeRecogLeft)
     }
     
     //for darkmode in settings
@@ -276,19 +276,4 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             return -1
         }
     }
-    
-<<<<<<< HEAD
-    @IBAction func swipeLeft (recognizer: UISwipeGestureRecognizer) {
-        if recognizer.direction == .left {
-            print("left swipe")
-             performSegue(withIdentifier: "SettingSegue", sender: nil)
-         }
-    }
-
-=======
-    @IBAction func addEntry(_ sender: Any) {
-        
-    }
-    
->>>>>>> 69e386727cbb114df4d8c1b8ef1dd854a6928ac9
 }
