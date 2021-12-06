@@ -113,7 +113,7 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
             let defaults = UserDefaults.standard
             let email = defaults.string(forKey:"userID")
             let default_pic = UIImage(named: "default_propic")
-            storeUser(name:nameField.text!,mail:email!,propic:default_pic!)
+            storeUser(name:nameField.text != nil ? nameField.text! : "User",mail:email!,propic:default_pic!)
             nameField.isHidden = true
             nameField.text = ""
             questionText.text = questions[questionIndex]
