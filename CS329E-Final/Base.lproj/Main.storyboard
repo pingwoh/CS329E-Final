@@ -249,11 +249,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="UJd-og-XiY" id="GDw-OP-9mo"/>
-<<<<<<< HEAD
                         <outlet property="monthLabel" destination="uJc-pz-NNt" id="0jy-HS-UHl"/>
-=======
                         <outlet property="greetingLabel" destination="5TB-no-0co" id="S0Z-E1-srl"/>
->>>>>>> 69e386727cbb114df4d8c1b8ef1dd854a6928ac9
                         <outlet property="monthName" destination="uJc-pz-NNt" id="s3a-Am-3Db"/>
                     </connections>
                 </viewController>
