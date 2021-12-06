@@ -16,6 +16,8 @@ let daysInMonth = monthRange.count
 // Dynamically finds the name of the current month
 let monthInt = Calendar.current.component(.month, from: Date())
 let monthStr = Calendar.current.monthSymbols[monthInt-1]
+// Dynamically finds the current year
+let yearInt = Calendar.current.component(.year, from: Date())
 
 
 extension UIColor {
@@ -63,7 +65,11 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        self.monthName.text = monthStr
+        self.monthName.text = "\(monthStr) - \(yearInt)"
+        
+        collectionView.layer.borderColor = UIColor.darkBackground.cgColor
+        collectionView.layer.borderWidth = 3.0
+        collectionView.layer.cornerRadius = 10.0//if you want corner radius.addtional
         
 //        let swipeRecogLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft(recognizer:)))
 //        swipeRecogLeft.direction = .left
@@ -195,7 +201,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         layout.itemSize = CGSize(width: cellSize, height: cellSize)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 5
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
         collectionView.collectionViewLayout = layout
         
     }
