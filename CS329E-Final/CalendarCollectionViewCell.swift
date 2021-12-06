@@ -90,7 +90,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         mood = Int(m)
         
         if m >= 0 {
-            print("The mood on \(getDate()) is \(moods[mood])")
+            //print("The mood on \(getDate()) is \(moods[mood])")
             return mood_colors[Int(m)]
         }
         else {

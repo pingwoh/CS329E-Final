@@ -137,8 +137,8 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         let cell = collectionView.cellForItem(at: indexPath) as! CalendarCollectionViewCell
         
         let vc = UIViewController()
-        vc.preferredContentSize = CGSize(width: screenWidth, height: screenHeight)
-        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
+        vc.preferredContentSize = CGSize(width: screenWidth, height: 130)
+        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 130))
         pickerView.dataSource = self
         pickerView.delegate = self
         pickerView.selectRow(0, inComponent: 0, animated: false)
@@ -210,12 +210,17 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 60
+        return 40
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        return 100
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 20))
         label.text = Array(mood_dict)[row].key
+        label.textAlignment = .center
         label.sizeToFit()
         return label
     }
