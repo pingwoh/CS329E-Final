@@ -66,6 +66,9 @@ class LoginViewController: UIViewController {
         swipeRecognizerLeft.direction = .left
         self.segCtrl.addGestureRecognizer(swipeRecognizerLeft)
         
+        self.view.addGestureRecognizer(swipeRecognizerLeft)
+        self.view.addGestureRecognizer(swipeRecognizerRight)
+        
         //TODO: check if user has done questionaire or not. if so, go to main screen
     }
     
@@ -307,19 +310,6 @@ class LoginViewController: UIViewController {
                 )
             }
         )
-    }
-
-    @IBAction func recognizeSwipeGesture(recognizer: UISwipeGestureRecognizer) {
-            if recognizer.state == .ended {
-            switch recognizer.direction {
-                case .right:
-                    print("swiped right")
-                case .left:
-                    print("swiped left")
-                default:
-                    break
-            }
-        }
     }
 }
 
