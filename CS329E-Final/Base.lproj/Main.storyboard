@@ -152,7 +152,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qJx-aV-usp">
-                                <rect key="frame" x="43" y="114" width="328" height="378"/>
+                                <rect key="frame" x="43" y="114" width="328" height="408"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJc-pz-NNt">
                                         <rect key="frame" x="0.0" y="0.0" width="328" height="30"/>
@@ -205,12 +205,22 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press a date if you want to log an entry" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPM-Jo-WY0">
+                                        <rect key="frame" x="0.0" y="378" width="328" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="5DB-OV-Hgy"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="328" id="f5x-6y-Xsn"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <color key="textColor" name="DarkBackground"/>
+                                        <color key="highlightedColor" name="DarkBackground"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="328" id="uWV-MH-mag"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K2i-hb-zf6">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K2i-hb-zf6">
                                 <rect key="frame" x="106" y="801" width="203" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Add Entry" cornerStyle="capsule">
@@ -581,7 +591,7 @@
             <color red="0.0" green="0.67843137254901964" blue="0.71372549019607845" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="LightBackground">
-            <color red="0.91707580258147881" green="0.91707580258147881" blue="0.91707580258147881" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
