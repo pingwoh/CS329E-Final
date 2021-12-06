@@ -22,6 +22,7 @@ extension UIColor {
     static let lightBackground : UIColor = UIColor(named: "LightBackground")!
     static let darkBackground : UIColor = UIColor(named: "DarkBackground")!
     static let cellBackground : UIColor = UIColor(named: "CellBackground")!
+    static let darkCellBackground : UIColor = UIColor(named: "DarkCellBackground")!
 }
 
 class CalendarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
@@ -123,7 +124,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         //print("da mood \(cell.mood)")
 
-        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderColor = UIColor.darkBackground.cgColor
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 8
         

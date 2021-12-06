@@ -18,28 +18,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Calendar Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yg5-0C-g98">
-                                <rect key="frame" x="154" y="123" width="107" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User ID: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qeC-xH-ggo">
                                 <rect key="frame" x="20" y="270" width="66" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="DarkBackground"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oi3-Nf-RFA">
                                 <rect key="frame" x="20" y="357" width="78" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="DarkBackground"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Pass: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFT-va-Fv4">
                                 <rect key="frame" x="20" y="456" width="110" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="DarkBackground"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xD3-Ws-eyH">
@@ -47,6 +41,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="205" id="3Nb-nc-qbO"/>
                                 </constraints>
+                                <color key="textColor" name="DarkBackground"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -55,6 +50,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="205" id="C2R-DA-XoU"/>
                                 </constraints>
+                                <color key="textColor" name="DarkBackground"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
@@ -63,6 +59,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="205" id="3Ce-zT-NyO"/>
                                 </constraints>
+                                <color key="textColor" name="DarkBackground"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
@@ -88,21 +85,19 @@
                                 <rect key="frame" x="186" y="670" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="DarkBackground"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="LightBackground"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qeC-xH-ggo" secondAttribute="trailing" constant="328" id="4vb-dg-CHX"/>
                             <constraint firstItem="gIu-Rl-gA3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="361" id="BzO-lV-V4h"/>
                             <constraint firstItem="5Np-wz-hn4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="FP2-Qy-vJ9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gIu-Rl-gA3" secondAttribute="trailing" constant="20" id="NQK-0i-JCG"/>
-                            <constraint firstItem="yg5-0C-g98" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="35" id="No1-aM-cJ0"/>
                             <constraint firstItem="5Np-wz-hn4" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Q7W-SP-j6k"/>
-                            <constraint firstItem="yg5-0C-g98" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Zbq-Cl-C5Y"/>
                             <constraint firstItem="Oi3-Nf-RFA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="269" id="aN1-jV-Wgx"/>
                             <constraint firstItem="xD3-Ws-eyH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="175" id="arC-vy-LAl"/>
                             <constraint firstItem="PFT-va-Fv4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="368" id="aug-TO-gFc"/>
@@ -148,13 +143,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi Name, how are you feeling today?" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5TB-no-0co">
-                                <rect key="frame" x="28" y="558" width="358.33333333333331" height="30"/>
+                                <rect key="frame" x="28" y="560" width="358" height="179"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="cst-p8-9Ic"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="328" id="dbt-TQ-LAi"/>
+                                    <constraint firstAttribute="width" constant="358" id="hZP-G8-Iln"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="DarkBackground"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qJx-aV-usp">
@@ -166,9 +160,9 @@
                                             <constraint firstAttribute="height" constant="30" id="Jjl-et-bvt"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="328" id="eBW-4X-inS"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="22"/>
+                                        <color key="textColor" name="DarkBackground"/>
+                                        <color key="highlightedColor" name="DarkBackground"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UJd-og-XiY">
                                         <rect key="frame" x="0.0" y="30" width="328" height="348"/>
@@ -229,11 +223,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="qJx-aV-usp" firstAttribute="centerX" secondItem="oNw-RU-KBJ" secondAttribute="centerX" id="2yu-Sp-KNe"/>
-                            <constraint firstItem="DxL-cn-JRb" firstAttribute="bottom" secondItem="5TB-no-0co" secondAttribute="bottom" constant="274" id="5GJ-tg-Nkt"/>
+                            <constraint firstItem="DxL-cn-JRb" firstAttribute="bottom" secondItem="5TB-no-0co" secondAttribute="bottom" constant="123" id="5GJ-tg-Nkt"/>
                             <constraint firstItem="5TB-no-0co" firstAttribute="centerX" secondItem="DxL-cn-JRb" secondAttribute="centerX" id="IUh-DM-Tye"/>
                             <constraint firstItem="K2i-hb-zf6" firstAttribute="centerX" secondItem="DxL-cn-JRb" secondAttribute="centerX" id="MuB-hC-gUm"/>
                             <constraint firstItem="qJx-aV-usp" firstAttribute="top" secondItem="DxL-cn-JRb" secondAttribute="top" constant="26" id="Nzw-cL-xYM"/>
                             <constraint firstItem="DxL-cn-JRb" firstAttribute="bottom" secondItem="K2i-hb-zf6" secondAttribute="bottom" constant="31" id="sl8-nJ-F30"/>
+                            <constraint firstItem="5TB-no-0co" firstAttribute="top" secondItem="UJd-og-XiY" secondAttribute="bottom" constant="68" id="xJ2-4I-Qe9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="RFT-Bk-tq3">
@@ -249,8 +244,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="UJd-og-XiY" id="GDw-OP-9mo"/>
-                        <outlet property="monthLabel" destination="uJc-pz-NNt" id="0jy-HS-UHl"/>
                         <outlet property="greetingLabel" destination="5TB-no-0co" id="S0Z-E1-srl"/>
+                        <outlet property="monthLabel" destination="uJc-pz-NNt" id="0jy-HS-UHl"/>
                         <outlet property="monthName" destination="uJc-pz-NNt" id="s3a-Am-3Db"/>
                     </connections>
                 </viewController>
@@ -258,7 +253,7 @@
             </objects>
             <point key="canvasLocation" x="1585.5072463768117" y="66.964285714285708"/>
         </scene>
-        <!--Questionaire-->
+        <!--Questionaire View Controller-->
         <scene sceneID="04a-KD-XCd">
             <objects>
                 <viewController id="Y4K-Xv-CXx" customClass="QuestionaireViewController" customModule="CS329E_Final" customModuleProvider="target" sceneMemberID="viewController">
@@ -279,14 +274,14 @@
                                 <rect key="frame" x="30" y="174" width="321" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="DarkBackground"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVT-sV-ETo">
                                 <rect key="frame" x="30" y="124" width="321" height="149"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="DarkBackground"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iez-nw-873">
@@ -317,9 +312,9 @@
                             </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="279-QJ-Oh9"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="LightBackground"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Questionaire" id="0tJ-RP-gC7"/>
+                    <navigationItem key="navigationItem" id="0tJ-RP-gC7"/>
                     <connections>
                         <outlet property="nameField" destination="iez-nw-873" id="pbD-kB-X9b"/>
                         <outlet property="nextButton" destination="xpT-OD-hcP" id="ija-u6-NuO"/>
@@ -528,12 +523,19 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="eGM-be-7PR"/>
+        <segue reference="94J-5k-3lM"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" name="Good"/>
     <resources>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="DarkBackground">
+            <color red="0.32549019607843138" green="0.24705882352941178" blue="0.24705882352941178" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="Good">
             <color red="0.0" green="0.67843137254901964" blue="0.71372549019607845" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightBackground">
+            <color red="0.91764705882352937" green="0.84705882352941175" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

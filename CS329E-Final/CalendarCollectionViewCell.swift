@@ -95,7 +95,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         }
         else {
             if UserDefaults.standard.bool(forKey: email + "dark mode") {
-                return UIColor.init(red: 0.11, green: 0.11, blue: 0.118, alpha: 1)
+                return UIColor.darkCellBackground
             }
             else {
                 return .cellBackground
