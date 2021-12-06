@@ -40,6 +40,8 @@ class LoginViewController: UIViewController {
             performSegue(withIdentifier: "userExistsCalendarSegue", sender: nil)
         }
         
+        self.statusLabel.text = ""
+        
         //when view first appear, should be type login
         setupView(pageType: .login)
         
