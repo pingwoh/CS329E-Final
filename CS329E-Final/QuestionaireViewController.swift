@@ -85,14 +85,28 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         return moods.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return moods[row]
-    }
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        return moods[row]
+//    }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print(moods[row])
         finalMood = moods[row]
     }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let label = (view as? UILabel) ?? UILabel()
+
+        //label.textColor = .black
+        label.textAlignment = .center
+        label.font = UIFont(name: "AmericanTypewriter", size: 18)
+
+        // where data is an Array of String
+        label.text = moods[row]
+
+        return label
+      }
+
     
     //MARK: Button Actions
     @IBAction func onNextPressed(_ sender: Any) {
