@@ -40,6 +40,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     let screenWidth = UIScreen.main.bounds.width - 10
     let screenHeight = UIScreen.main.bounds.height / 4
     
+    @IBOutlet weak var monthLabel: UILabel!
     
     //MARK: On Start
     override func viewDidLoad() {
@@ -65,6 +66,10 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         collectionView.dataSource = self
         
         self.monthName.text = monthStr
+        
+        let swipeRecogLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft(recognizer:)))
+        swipeRecogLeft.direction = .left
+        self.view.addGestureRecognizer(swipeRecogLeft)
     }
     
     //for darkmode in settings
@@ -86,6 +91,12 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             self.collectionView.backgroundColor = .lightBackground
             self.monthName.textColor = .darkText
         }
+        
+//        if UserDefaults.standard.bool(forKey: email + "large font style") {
+//            monthLabel.font = monthLabel.font.withSize(50)
+//        } else {
+//            monthLabel.font = monthLabel.font.withSize(30)
+//        }
         
     }
     
@@ -270,6 +281,13 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         else {
             return -1
         }
+    }
+    
+    @IBAction func swipeLeft (recognizer: UISwipeGestureRecognizer) {
+        if recognizer.direction == .left {
+            print("left swipe")
+             performSegue(withIdentifier: "SettingSegue", sender: nil)
+         }
     }
 
 }

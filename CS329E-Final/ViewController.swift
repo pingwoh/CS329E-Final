@@ -58,6 +58,14 @@ class LoginViewController: UIViewController {
         confirmPasswordField.isHidden = true
         confirmPassLabel.isHidden = true
         
+        //for swipe with login 
+        let swipeRecognizerRight = UISwipeGestureRecognizer(target: self, action: #selector(recogRightSwipe(recognizer:)))
+        swipeRecognizerRight.direction = .right
+        self.segCtrl.addGestureRecognizer(swipeRecognizerRight)
+        let swipeRecognizerLeft = UISwipeGestureRecognizer(target: self, action: #selector(recogLeftSwipe(recognizer:)))
+        swipeRecognizerLeft.direction = .left
+        self.segCtrl.addGestureRecognizer(swipeRecognizerLeft)
+        
         //TODO: check if user has done questionaire or not. if so, go to main screen
     }
     
@@ -114,7 +122,6 @@ class LoginViewController: UIViewController {
                                 self.confirmPasswordField.alpha = 0.0
                             },
                             completion: {_ in
-                                self.buttonLabel.setImage(UIImage(named: "login.png"), for: .normal)
                                 UIView.animate(
                                     withDuration: 0.25,
                                     delay: 0.0,
@@ -139,7 +146,6 @@ class LoginViewController: UIViewController {
                                 self.buttonLabel.alpha = 0.0
                             },
                             completion: {_ in
-                                self.buttonLabel.setImage(UIImage(named: "login.png"), for: .normal)
                                 UIView.animate(
                                     withDuration: 0.25,
                                     delay: 0.0,
@@ -247,6 +253,73 @@ class LoginViewController: UIViewController {
     //hides keyboard on background touch
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+
+    @IBAction func recogRightSwipe(recognizer: UISwipeGestureRecognizer) {
+        segCtrl.selectedSegmentIndex = 0
+        UIView.animate(
+            withDuration: 0.25,
+            delay: 0.0,
+            options: .curveEaseOut,
+            animations: {
+                self.buttonLabel.alpha = 0.0
+                self.confirmPassLabel.alpha = 0.0
+                self.confirmPasswordField.alpha = 0.0
+            },
+            completion: {_ in
+                UIView.animate(
+                    withDuration: 0.25,
+                    delay: 0.0,
+                    options: .curveEaseIn,
+                    animations: {
+                        self.buttonLabel.alpha = 1.0
+                        self.confirmPassLabel.isHidden = true
+                        self.confirmPasswordField.isHidden = true
+                    },
+                    completion: nil
+                )
+            }
+        )
+    }
+
+    @IBAction func recogLeftSwipe(recognizer: UISwipeGestureRecognizer) {
+        segCtrl.selectedSegmentIndex = 1
+        UIView.animate(
+            withDuration: 0.25,
+            delay: 0.0,
+            options: .curveEaseOut,
+            animations: {
+                self.buttonLabel.alpha = 0.0
+            },
+            completion: {_ in
+                UIView.animate(
+                    withDuration: 0.25,
+                    delay: 0.0,
+                    options: .curveEaseIn,
+                    animations: {
+                        self.buttonLabel.alpha = 1.0
+                        self.confirmPassLabel.alpha = 1.0
+                        self.confirmPasswordField.alpha = 1.0
+                        self.confirmPassLabel.isHidden = false
+                        self.confirmPasswordField.isHidden = false
+                    },
+                    completion: nil
+                )
+            }
+        )
+    }
+
+    @IBAction func recognizeSwipeGesture(recognizer: UISwipeGestureRecognizer) {
+            if recognizer.state == .ended {
+            switch recognizer.direction {
+                case .right:
+                    print("swiped right")
+                case .left:
+                    print("swiped left")
+                default:
+                    break
+            }
+        }
     }
 }
 

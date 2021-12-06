@@ -74,12 +74,6 @@
                                     <action selector="didTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qIi-cU-hM7"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usr-Ds-ABS">
-                                <rect key="frame" x="186" y="645" width="49" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5Np-wz-hn4">
                                 <rect key="frame" x="15" y="175" width="384" height="32"/>
                                 <segments>
@@ -90,13 +84,20 @@
                                     <action selector="segmentedControl:" destination="BYZ-38-t0r" eventType="valueChanged" id="GWe-ar-YSH"/>
                                 </connections>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9F3-Eq-9n2">
+                                <rect key="frame" x="186" y="670" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qeC-xH-ggo" secondAttribute="trailing" constant="328" id="4vb-dg-CHX"/>
                             <constraint firstItem="gIu-Rl-gA3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="361" id="BzO-lV-V4h"/>
-                            <constraint firstItem="Usr-Ds-ABS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="557" id="CJo-pZ-46Q"/>
                             <constraint firstItem="5Np-wz-hn4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="FP2-Qy-vJ9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gIu-Rl-gA3" secondAttribute="trailing" constant="20" id="NQK-0i-JCG"/>
                             <constraint firstItem="yg5-0C-g98" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="35" id="No1-aM-cJ0"/>
@@ -113,10 +114,12 @@
                             <constraint firstItem="5Np-wz-hn4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="87" id="mPC-UJ-pgI"/>
                             <constraint firstItem="eDQ-qR-Rvj" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="pZO-sS-8k2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xD3-Ws-eyH" secondAttribute="trailing" constant="20" id="qW3-TX-hb5"/>
-                            <constraint firstItem="Usr-Ds-ABS" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="thv-FE-WjT"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5Np-wz-hn4" secondAttribute="trailing" constant="15" id="tjd-EN-rcD"/>
                             <constraint firstItem="DTW-0p-8Q6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="262" id="wYj-or-eXd"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="JSf-nv-1uI" appends="YES" id="r1y-e2-10T"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="7Im-ss-cWn"/>
                     <connections>
@@ -125,13 +128,14 @@
                         <outlet property="confirmPasswordField" destination="gIu-Rl-gA3" id="kQp-Mn-chG"/>
                         <outlet property="passwordField" destination="DTW-0p-8Q6" id="8RI-9L-Ilh"/>
                         <outlet property="segCtrl" destination="5Np-wz-hn4" id="YAN-OZ-awN"/>
-                        <outlet property="statusLabel" destination="Usr-Ds-ABS" id="OV1-7g-1mI"/>
+                        <outlet property="statusLabel" destination="9F3-Eq-9n2" id="ewY-VW-X7J"/>
                         <outlet property="userIDField" destination="xD3-Ws-eyH" id="j5X-W5-PyS"/>
                         <segue destination="Y4K-Xv-CXx" kind="show" identifier="QuestionSegue" id="wTw-Z8-juG"/>
                         <segue destination="nM5-py-8B2" kind="show" identifier="userExistsCalendarSegue" id="eGM-be-7PR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="JSf-nv-1uI"/>
             </objects>
             <point key="canvasLocation" x="-562" y="67"/>
         </scene>
@@ -229,6 +233,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="UJd-og-XiY" id="GDw-OP-9mo"/>
+                        <outlet property="monthLabel" destination="uJc-pz-NNt" id="0jy-HS-UHl"/>
                         <outlet property="monthName" destination="uJc-pz-NNt" id="s3a-Am-3Db"/>
                     </connections>
                 </viewController>
@@ -429,7 +434,7 @@
                                     <action selector="cameraProfilePic:" destination="uB5-Ca-FfY" eventType="touchUpInside" id="uD1-ah-FTr"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vibration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVd-Nz-Vcr">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vibration:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVd-Nz-Vcr">
                                 <rect key="frame" x="56" y="617" width="233" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -446,19 +451,12 @@
                                 </connections>
                             </switch>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="10" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="1cv-xl-Yoy">
-                                <rect key="frame" x="217" y="679" width="161" height="74"/>
+                                <rect key="frame" x="243" y="679" width="161" height="74"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="onTimeChanged:" destination="uB5-Ca-FfY" eventType="valueChanged" id="n41-Vh-ch1"/>
                                 </connections>
                             </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notification Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYl-W1-1HT">
-                                <rect key="frame" x="56" y="689" width="233" height="54"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kbl-ne-4Hb">
                                 <rect key="frame" x="141" y="761" width="130" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -469,6 +467,13 @@
                                     <action selector="logoutButton:" destination="uB5-Ca-FfY" eventType="primaryActionTriggered" id="wkf-6Z-0zJ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notification Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYl-W1-1HT">
+                                <rect key="frame" x="20" y="689" width="233" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sOv-PJ-kIn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -497,7 +502,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="94J-5k-3lM"/>
+        <segue reference="eGM-be-7PR"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
