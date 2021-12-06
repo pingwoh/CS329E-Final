@@ -23,6 +23,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var vibrationSwitch: UISwitch!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var timePicker: UIDatePicker!
+    @IBOutlet weak var settingsLabel: UILabel!
     
     var userEntity : NSManagedObject? = nil
     let picker = UIImagePickerController()
@@ -75,6 +76,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             nameField.backgroundColor = .darkGray
             nameField.textColor = .lightGray
             timeLabel.textColor = .lightText
+            settingsLabel.textColor = .lightText
             timePicker.backgroundColor = .darkBackground
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
             navigationController?.navigationBar.barStyle = .black
@@ -87,6 +89,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             nameField.backgroundColor = .white
             nameField.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             timeLabel.textColor = .darkBackground
+            settingsLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             timePicker.backgroundColor = .lightBackground
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
             navigationController?.navigationBar.barStyle = .default
@@ -105,6 +108,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             vibrationLabel.font = vibrationLabel.font.withSize(30)
             nameField.font = nameField.font?.withSize(30)
             timeLabel.font = timeLabel.font.withSize(30)
+            self.settingsLabel.font.withSize(35)
         } else {
             UserDefaults.standard.setValue(false, forKey: email + "large font style")
             fontStyleLabel.font = fontStyleLabel.font.withSize(16)
@@ -112,6 +116,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             vibrationLabel.font = vibrationLabel.font.withSize(16)
             nameField.font = nameField.font?.withSize(16)
             timeLabel.font = timeLabel.font.withSize(16)
+            self.settingsLabel.font.withSize(21)
         }
     }
     
@@ -378,10 +383,13 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         if UserDefaults.standard.bool(forKey: email + "dark mode") {
             darkModeSwitch.setOn(true, animated: false)
             view.backgroundColor = .darkBackground
-            darkModeLabel.textColor = .lightBackground
-            fontStyleLabel.textColor = .lightBackground
-            vibrationLabel.textColor = .lightBackground
-            nameField.backgroundColor = UIColor.init(red: 0.11, green: 0.11, blue: 0.118, alpha: 1)
+            darkModeLabel.textColor = .lightText
+            fontStyleLabel.textColor = .lightText
+            vibrationLabel.textColor = .lightText
+            settingsLabel.textColor = .lightText
+            timeLabel.textColor = .lightText
+//            nameField.backgroundColor = UIColor.init(red: 0.11, green: 0.11, blue: 0.118, alpha: 1)
+            nameField.backgroundColor = .darkGray
             nameField.textColor = .lightGray
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
             navigationController?.navigationBar.barStyle = .black
@@ -392,6 +400,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             darkModeLabel.textColor = .darkBackground
             fontStyleLabel.textColor = .darkBackground
             vibrationLabel.textColor = .darkBackground
+            settingsLabel.textColor = .darkBackground
+            timeLabel.textColor = .darkBackground
             nameField.backgroundColor = .cellBackground
             nameField.textColor = .darkBackground
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
@@ -406,6 +416,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             vibrationLabel.font = vibrationLabel.font.withSize(30)
             nameField.font = nameField.font?.withSize(30)
             timeLabel.font = timeLabel.font.withSize(30)
+            self.settingsLabel.font.withSize(35)
 
         }
         else {
@@ -415,6 +426,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             vibrationLabel.font = vibrationLabel.font.withSize(16)
             nameField.font = nameField.font?.withSize(16)
             timeLabel.font = timeLabel.font.withSize(16)
+            self.settingsLabel.font.withSize(21)
 
         }
         

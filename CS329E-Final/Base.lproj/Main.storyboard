@@ -262,6 +262,7 @@
                         <outlet property="greetingLabel" destination="5TB-no-0co" id="S0Z-E1-srl"/>
                         <outlet property="monthLabel" destination="uJc-pz-NNt" id="0jy-HS-UHl"/>
                         <outlet property="monthName" destination="uJc-pz-NNt" id="s3a-Am-3Db"/>
+                        <outlet property="pickDateLabel" destination="LPM-Jo-WY0" id="od5-QL-72P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uRO-5F-1ac" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -401,15 +402,8 @@
                                     <action selector="updateProfilePic:" destination="uB5-Ca-FfY" eventType="primaryActionTriggered" id="uDg-lG-5Gt"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dark Mode:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SsU-ck-PH8">
-                                <rect key="frame" x="29" y="480" width="233" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="15"/>
-                                <color key="textColor" name="DarkBackground"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mxS-b3-58V">
-                                <rect key="frame" x="287" y="489" width="49" height="31"/>
+                                <rect key="frame" x="306" y="488" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="onTintColor" name="Good"/>
                                 <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -441,7 +435,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRB-PB-qRd">
-                                <rect key="frame" x="29" y="746" width="129" height="31"/>
+                                <rect key="frame" x="29" y="787" width="129" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Reset Entries" cornerStyle="capsule">
@@ -457,14 +451,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Large Font Style:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2i-p6-l7Q">
-                                <rect key="frame" x="29" y="541" width="233" height="46"/>
+                                <rect key="frame" x="20" y="541" width="269" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="15"/>
                                 <color key="textColor" name="DarkBackground"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xFV-Ia-shk">
-                                <rect key="frame" x="287" y="550" width="49" height="31"/>
+                                <rect key="frame" x="306" y="549" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="onTintColor" name="Good"/>
                                 <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -489,14 +483,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vibration:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVd-Nz-Vcr">
-                                <rect key="frame" x="29" y="595" width="233" height="54"/>
+                                <rect key="frame" x="20" y="596" width="269" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="15"/>
                                 <color key="textColor" name="DarkBackground"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6GM-MH-RDd">
-                                <rect key="frame" x="287" y="608" width="49" height="31"/>
+                                <rect key="frame" x="306" y="607" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="onTintColor" name="Good"/>
                                 <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -512,7 +506,7 @@
                                 </connections>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kbl-ne-4Hb">
-                                <rect key="frame" x="248" y="746" width="130" height="31"/>
+                                <rect key="frame" x="248" y="787" width="130" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Log Out" cornerStyle="capsule">
@@ -529,7 +523,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notification Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYl-W1-1HT">
-                                <rect key="frame" x="29" y="667" width="158" height="54"/>
+                                <rect key="frame" x="20" y="663" width="218" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="15"/>
                                 <color key="textColor" name="DarkBackground"/>
@@ -549,6 +543,13 @@
                                 <color key="textColor" name="DarkBackground"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dark Mode:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SsU-ck-PH8">
+                                <rect key="frame" x="20" y="480" width="269" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="15"/>
+                                <color key="textColor" name="DarkBackground"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sOv-PJ-kIn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -565,6 +566,7 @@
                         <outlet property="fontStyleSwitch" destination="xFV-Ia-shk" id="dcO-EC-Xb2"/>
                         <outlet property="nameField" destination="URb-ZA-yav" id="LAh-QK-gpU"/>
                         <outlet property="profilePic" destination="gCi-16-Wlc" id="e8g-2D-fEF"/>
+                        <outlet property="settingsLabel" destination="frn-Bd-Iaq" id="5Pe-JX-iKJ"/>
                         <outlet property="timeLabel" destination="xYl-W1-1HT" id="731-I2-1XO"/>
                         <outlet property="timePicker" destination="1cv-xl-Yoy" id="Jmn-dy-Jgd"/>
                         <outlet property="vibrationLabel" destination="tVd-Nz-Vcr" id="5Jb-Qu-qpU"/>

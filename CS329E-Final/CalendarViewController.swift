@@ -24,7 +24,7 @@ extension UIColor {
     static let lightBackground : UIColor = UIColor(named: "LightBackground")!
     static let darkBackground : UIColor = UIColor(named: "DarkBackground")!
     static let cellBackground : UIColor = UIColor(named: "CellBackground")!
-    static let darkCellBackground : UIColor = UIColor(named: "DarkCellBackground")!
+    static let darkCellBackground : UIColor = UIColor(named: "darkCellBackground")!
 }
 
 class CalendarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
@@ -45,6 +45,8 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     let screenHeight = UIScreen.main.bounds.height / 4
     
     @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var pickDateLabel: UILabel!
+    
     
     //MARK: On Start
     override func viewDidLoad() {
@@ -67,13 +69,14 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         self.monthName.text = "\(monthStr) - \(yearInt)"
         
-        collectionView.layer.borderColor = UIColor.darkBackground.cgColor
+        //comment this out allows for black border regardless
+        //collectionView.layer.borderColor = UIColor.darkBackground.cgColor
         collectionView.layer.borderWidth = 3.0
         collectionView.layer.cornerRadius = 10.0//if you want corner radius.addtional
         
-//        let swipeRecogLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft(recognizer:)))
-//        swipeRecogLeft.direction = .left
-//        self.view.addGestureRecognizer(swipeRecogLeft)
+        let swipeRecogLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft(recognizer:)))
+        swipeRecogLeft.direction = .left
+        self.view.addGestureRecognizer(swipeRecogLeft)
     }
     
     //for darkmode in settings
@@ -87,17 +90,23 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             view.backgroundColor = .darkBackground
             self.collectionView.backgroundColor = .darkBackground
             self.monthName.textColor = .lightText
+            self.greetingLabel.textColor = .lightText
+            self.pickDateLabel.textColor = .lightText
         } else {
             view.backgroundColor = .lightBackground
             self.collectionView.backgroundColor = .lightBackground
             self.monthName.textColor = .darkText
+            self.greetingLabel.textColor = .darkText
+            self.pickDateLabel.textColor = .darkText
         }
         
-//        if UserDefaults.standard.bool(forKey: email + "large font style") {
-//            monthLabel.font = monthLabel.font.withSize(50)
-//        } else {
-//            monthLabel.font = monthLabel.font.withSize(30)
-//        }
+        if UserDefaults.standard.bool(forKey: email + "large font style") {
+            monthLabel.font = monthLabel.font.withSize(35)
+            self.pickDateLabel.font.withSize(22)
+        } else {
+            monthLabel.font = monthLabel.font.withSize(25)
+            self.pickDateLabel.font.withSize(18)
+        }
         
     }
     
@@ -287,5 +296,12 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         else {
             return -1
         }
+    }
+    
+    @IBAction func swipeLeft (recognizer: UISwipeGestureRecognizer) {
+        if recognizer.direction == .left {
+            print("Left swipe")
+            self.performSegue(withIdentifier: "SettingSegue", sender: nil)
+         }
     }
 }
