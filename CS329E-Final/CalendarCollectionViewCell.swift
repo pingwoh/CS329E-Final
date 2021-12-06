@@ -19,15 +19,6 @@ class CalendarCollectionViewCell: UICollectionViewCell {
     var date : Date!
     var mood : Int!
     
-    var rg:CGFloat = 0
-    var gg:CGFloat = 0
-    var bg:CGFloat = 0
-    var ag:CGFloat = 0
-    var ry:CGFloat = 0
-    var gy:CGFloat = 0
-    var by:CGFloat = 0
-    var ay:CGFloat = 0
-    var lime:UIColor? = nil
     //var mood_colors:[UIColor] = [.green, .cyan, .yellow, .orange, .red]
     var mood_colors: [UIColor] = [UIColor(named: "Fantastic")!, UIColor(named: "Good")!, UIColor(named: "Okay")!, UIColor(named: "Bad")!, UIColor(named:"Awful")!]
     
@@ -101,7 +92,6 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         if m >= 0 {
             print("The mood on \(getDate()) is \(moods[mood])")
             return mood_colors[Int(m)]
-            
         }
         else {
             if UserDefaults.standard.bool(forKey: email + "dark mode") {
@@ -144,8 +134,24 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         print("You felt \(moods[mood]) on \(dateFormatter.string(from: date))")
     }
     
-    func deleteMood()
+    func deleteMood(d: Int)
     {
+        let dS = String(format: "%02d", d)
         
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Log")
+        fetchRequest.predicate = NSPredicate(format: "date ENDSWITH %@",dS)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest:fetchRequest)
+        
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch {
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
     }
 }

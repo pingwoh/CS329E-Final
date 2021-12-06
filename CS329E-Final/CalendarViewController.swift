@@ -34,6 +34,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     var items: [String]!
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var greetingLabel: UILabel!
     
     let mood_dict: KeyValuePairs = ["Fantastic":0, "Good":1, "Okay":2, "Bad":3, "Awful":4]
     var finalMood:String = ""
@@ -50,14 +51,10 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         let email = defaults.string(forKey:"userID")
         userEntity = retrieveUser(userID:email!)
         
-
-        //TODO: save this into a variable so you dont have to auth twice
-        //do we even need this?
-        let user = Auth.auth().currentUser
-        let leEmail:String = user?.email ?? "none"
         
-        //TODO: display users name on screen
         print("Hello \(userEntity!.value(forKey: "name")!)")
+        greetingLabel.text = "Hello \(userEntity!.value(forKey:"name")!), how are you feeling today?"
+        
         
         // converts array of ints into array of string
         items = arr.map {String($0)}
@@ -80,13 +77,10 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         let email = user?.email ?? "none"
         
         if UserDefaults.standard.bool(forKey: email + "dark mode") {
-            //view.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-            //self.collectionView.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             view.backgroundColor = .darkBackground
             self.collectionView.backgroundColor = .darkBackground
             self.monthName.textColor = .lightText
         } else {
-            //view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             view.backgroundColor = .lightBackground
             self.collectionView.backgroundColor = .lightBackground
             self.monthName.textColor = .darkText
@@ -182,7 +176,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             title: "Delete",
             style: .destructive,
             handler: {(action) in
-                cell.deleteMood()
+                cell.deleteMood(d: indexPath.row+1)
                 collectionView.reloadData()
             })
         controller.addAction(deleteAction)
@@ -283,6 +277,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
+<<<<<<< HEAD
     @IBAction func swipeLeft (recognizer: UISwipeGestureRecognizer) {
         if recognizer.direction == .left {
             print("left swipe")
@@ -290,4 +285,10 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
          }
     }
 
+=======
+    @IBAction func addEntry(_ sender: Any) {
+        
+    }
+    
+>>>>>>> 69e386727cbb114df4d8c1b8ef1dd854a6928ac9
 }

@@ -37,7 +37,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" name="Fantastic"/>
+                        <color key="backgroundColor" name="Good"/>
                         <constraints>
                             <constraint firstItem="7Yg-2h-U5t" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="PRM-Pw-YIE"/>
                             <constraint firstItem="7Yg-2h-U5t" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="gtd-Jk-3ZG"/>
@@ -52,8 +52,8 @@
     </scenes>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
-        <namedColor name="Fantastic">
-            <color red="0.0078431372549019607" green="0.47450980392156861" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="Good">
+            <color red="0.0" green="0.67843137254901964" blue="0.71372549019607845" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="LightBackground">
             <color red="0.88627450980392153" green="0.88627450980392153" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
