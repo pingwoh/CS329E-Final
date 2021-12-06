@@ -56,8 +56,6 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         
         print("Hello \(userEntity!.value(forKey: "name")!)")
-        greetingLabel.text = "Hello \(userEntity!.value(forKey:"name")!), how are you feeling today?"
-        
         
         // converts array of ints into array of string
         items = arr.map {String($0)}
@@ -79,6 +77,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     //for darkmode in settings
     override func viewWillAppear(_ animated: Bool) {
         collectionView.reloadData()
+        greetingLabel.text = "Hello \(userEntity!.value(forKey:"name")!), how are you feeling today?"
         //so the stuff is specific to each user
         let user = Auth.auth().currentUser
         let email = user?.email ?? "none"
