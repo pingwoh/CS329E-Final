@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
+        let customFont = UIFont(name: "AmericanTypewriter", size: 17.0)!
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: customFont], for: .normal)
+        
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert], completionHandler: {
             (success, error) in
             if success {
