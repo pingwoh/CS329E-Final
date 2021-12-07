@@ -307,10 +307,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         let deleteRequest = NSBatchDeleteRequest(fetchRequest:fetchRequest)
         
         do {
-            let batchDelete = try context.execute(deleteRequest) as? NSBatchDeleteResult
-            guard let deleteResult = batchDelete?.result as? [NSManagedObjectID] else { return }
-            let deletedObjects: [AnyHashable: Any] = [NSDeletedObjectsKey: deleteResult]
-            NSManagedObjectContext.mergeChanges(fromRemoteContextSave: deletedObjects,into:[context])
+            try context.execute(deleteRequest)
+            try context.save()
         } catch {
             let nserror = error as NSError
             NSLog("Unresolved error \(nserror), \(nserror.userInfo)")

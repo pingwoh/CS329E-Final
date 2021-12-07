@@ -134,9 +134,6 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         } else {
             cell.dateLabel.textColor = .darkBackground
         }
-        
-        
-        //print("da mood \(cell.mood)")
 
         cell.layer.borderColor = UIColor.darkBackground.cgColor
         cell.layer.borderWidth = 1
@@ -183,7 +180,11 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
                 let selected = Array(self.mood_dict)[selectedRow]
                 self.finalMood = selected.key
                 cell.setMood(selectedMood: selected.value)
-                collectionView.reloadData()
+                UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
+                        self.collectionView.performBatchUpdates({
+                            self.collectionView.reloadItems(at: [indexPath])
+                        }, completion: nil)
+                })
             } )
         controller.addAction(selectAction)
         
@@ -192,7 +193,11 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             style: .destructive,
             handler: {(action) in
                 cell.deleteMood()
-                collectionView.reloadData()
+                UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
+                        self.collectionView.performBatchUpdates({
+                            self.collectionView.reloadItems(at: [indexPath])
+                        }, completion: nil)
+                })
             })
         controller.addAction(deleteAction)
         
