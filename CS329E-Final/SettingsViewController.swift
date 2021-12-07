@@ -34,15 +34,20 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let user = Auth.auth().currentUser
+        let leEmail = user?.email ?? "none"
+        
         picker.delegate = self
         let defaults = UserDefaults.standard
-        let email = defaults.string(forKey:"userID")
+        let email = defaults.string(forKey: "userID")
         userEntity = retrieveUser(userID:email!)
         
         profilePic.contentMode = .scaleAspectFill
         
         if (userEntity != nil) {
-            let name = userEntity!.value(forKey:"name") as? String
+            
+            //changing this real quick to email + , see if that helps
+            let name = userEntity!.value(forKey: "name") as? String
             if (name != nil) {
                 nameField.text = name
             }
@@ -161,13 +166,16 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func updateName(_ sender: UIButton) {
         let generator = UIImpactFeedbackGenerator(style: .medium)
         
+        let user = Auth.auth().currentUser
+        let email = user?.email ?? "none"
+        
         if (userEntity != nil) {
             self.view.endEditing(true)
             
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
             
-            userEntity?.setValue(nameField.text, forKey:"name")
+            userEntity?.setValue(nameField.text, forKey: email + "name")
             
             do{
                 try context.save()

@@ -283,6 +283,15 @@ class LoginViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    //shows login everytime it loads in
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        currentPageType = .login
+        
+        segCtrl.selectedSegmentIndex = 0
+    }
 
     @IBAction func recogRightSwipe(recognizer: UISwipeGestureRecognizer) {
         segCtrl.selectedSegmentIndex = 0
