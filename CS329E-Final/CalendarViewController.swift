@@ -67,8 +67,6 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         self.monthName.text = "\(monthStr) - \(yearInt)"
         
-        //comment this out allows for black border regardless
-        //collectionView.layer.borderColor = UIColor.darkBackground.cgColor
         collectionView.layer.borderWidth = 3.0
         collectionView.layer.cornerRadius = 10.0//if you want corner radius.addtional
         
@@ -134,6 +132,8 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         } else {
             cell.dateLabel.textColor = .darkBackground
         }
+        
+        //print("da mood \(cell.mood)")
 
         cell.layer.borderColor = UIColor.darkBackground.cgColor
         cell.layer.borderWidth = 1
