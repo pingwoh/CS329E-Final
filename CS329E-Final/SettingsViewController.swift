@@ -175,7 +175,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
             
-            userEntity?.setValue(nameField.text, forKey: email + "name")
+            userEntity?.setValue(nameField.text, forKey: "name")
             
             do{
                 try context.save()
@@ -279,7 +279,6 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             AudioServicesPlaySystemSound(1026)
         }
     }
-    
     
     //updates user profile picture in core data
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -411,7 +410,6 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
                                             content: notification,
                                             trigger: notificationTrigger)
 
-
         // submit the request to iOS
         UNUserNotificationCenter.current().add(request) { (error) in
             print("Request error: ",error as Any)
@@ -427,7 +425,6 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         if soundEffectsSwitch.isOn {
             AudioServicesPlaySystemSound(1026)
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

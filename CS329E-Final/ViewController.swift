@@ -230,8 +230,8 @@ class LoginViewController: UIViewController {
                 }
             }
         } else {
-            //sign up
             
+            //sign up
             guard let email = userIDField.text,
                   let password = passwordField.text,
                   let confirmPass = confirmPasswordField.text,
