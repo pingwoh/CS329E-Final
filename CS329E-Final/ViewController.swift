@@ -38,6 +38,7 @@ class LoginViewController: UIViewController {
         let defaults = UserDefaults.standard
         if (defaults.string(forKey:"userID") != nil && defaults.string(forKey:"userID")!.count > 0) {
             performSegue(withIdentifier: "userExistsCalendarSegue", sender: nil)
+            return
         }
         
         self.statusLabel.text = ""
@@ -77,7 +78,7 @@ class LoginViewController: UIViewController {
         
         segCtrl.setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "AmericanTypewriter", size: 16)! ], for: UIControl.State.normal)
         
-        buttonLabel.titleLabel?.font = UIFont(name: "AmericanTypewriter", size: 16)!
+        buttonLabel.titleLabel?.font = UIFont(name: "AmericanTypewriter-Semibold", size: 12)
     }
     
     //depending on the page (login or sign up) what elements will we see vs hide
@@ -259,6 +260,8 @@ class LoginViewController: UIViewController {
     
     //unwind segue for calendar view controller when logging out
     @IBAction func logoutUnwind( _ seg: UIStoryboardSegue) {
+        confirmPassLabel.isHidden = true
+        confirmPasswordField.isHidden = true
     }
     
     //hides keyboard on background touch
@@ -273,7 +276,7 @@ class LoginViewController: UIViewController {
             delay: 0.0,
             options: .curveEaseOut,
             animations: {
-                self.buttonLabel.alpha = 0.0
+                //self.buttonLabel.alpha = 0.0
                 self.confirmPassLabel.alpha = 0.0
                 self.confirmPasswordField.alpha = 0.0
             },
@@ -283,7 +286,7 @@ class LoginViewController: UIViewController {
                     delay: 0.0,
                     options: .curveEaseIn,
                     animations: {
-                        self.buttonLabel.alpha = 1.0
+                        //self.buttonLabel.alpha = 1.0
                         self.confirmPassLabel.isHidden = true
                         self.confirmPasswordField.isHidden = true
                     },
@@ -300,7 +303,7 @@ class LoginViewController: UIViewController {
             delay: 0.0,
             options: .curveEaseOut,
             animations: {
-                self.buttonLabel.alpha = 0.0
+                //self.buttonLabel.alpha = 0.0
             },
             completion: {_ in
                 UIView.animate(
@@ -308,7 +311,7 @@ class LoginViewController: UIViewController {
                     delay: 0.0,
                     options: .curveEaseIn,
                     animations: {
-                        self.buttonLabel.alpha = 1.0
+                        //self.buttonLabel.alpha = 1.0
                         self.confirmPassLabel.alpha = 1.0
                         self.confirmPasswordField.alpha = 1.0
                         self.confirmPassLabel.isHidden = false
