@@ -208,8 +208,9 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         entity.setValue(dateFormatter.string(from: Date()), forKey: "date")
+        let logOwner = UserDefaults.standard.string(forKey:"userID")!
+        entity.setValue(logOwner, forKey: "logOwner")
 
-        
         do{
             try context.save()
         } catch{

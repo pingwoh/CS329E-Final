@@ -45,6 +45,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
     func retrieveMood(d: Int) -> Int16
     {
         let dS = String(format: "%02d", d)
+        print(dS)
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -52,7 +53,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName:"Log")
         var fetchedResults:[NSManagedObject]? = nil
         
-        let predicate = NSPredicate(format: "date ENDSWITH %@",dS)
+        let predicate = NSPredicate(format: "date ENDSWITH %@ AND logOwner == %@",dS,UserDefaults.standard.string(forKey: "userID")!)
         request.predicate = predicate
         
         do {
@@ -62,6 +63,8 @@ class CalendarCollectionViewCell: UICollectionViewCell {
             NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
             abort()
         }
+        
+        print("testing - \(fetchedResults!.count)")
         
         if fetchedResults!.count > 0 {
             return fetchedResults![0].value(forKey: "mood") as! Int16 //associate mood w specific email
@@ -124,6 +127,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         entity.setValue(dateFormatter.string(from: date), forKey: "date")
+        entity.setValue(UserDefaults.standard.string(forKey:"userID"), forKey: "logOwner")
         
         do{
             try context.save()
@@ -144,7 +148,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         let context = appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Log")
-        fetchRequest.predicate = NSPredicate(format: "date == %@",dS)
+        fetchRequest.predicate = NSPredicate(format: "date == %@ AND logOwner == %@",dS,UserDefaults.standard.string(forKey:"userID")!)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest:fetchRequest)
         
         do {

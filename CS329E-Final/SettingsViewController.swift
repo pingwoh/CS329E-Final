@@ -346,6 +346,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         let context = appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Log")
+        fetchRequest.predicate = NSPredicate(format: "logOwner == %@",UserDefaults.standard.string(forKey:"userID")!)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest:fetchRequest)
         
         do {
