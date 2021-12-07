@@ -78,7 +78,7 @@ class LoginViewController: UIViewController {
         
         segCtrl.setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "AmericanTypewriter", size: 16)! ], for: UIControl.State.normal)
         
-        buttonLabel.titleLabel?.font = UIFont(name: "AmericanTypewriter-Semibold", size: 12)
+//        buttonLabel.titleLabel?.font = UIFont(name: "AmericanTypewriter-Semibold", size: 12)
     }
     
     //depending on the page (login or sign up) what elements will we see vs hide
@@ -87,11 +87,11 @@ class LoginViewController: UIViewController {
 //        confirmPasswordField.isHidden = pageType == .login
 //        confirmPassLabel.isHidden = pageType == .login
         
-        if pageType == .login {
-            buttonLabel.setTitle("Sign In", for: .normal)
-        } else {
-            buttonLabel.setTitle("Sign Up", for: .normal)
-        }
+//        if pageType == .login {
+//            buttonLabel.setTitle("Sign In", for: .normal)
+//        } else {
+//            buttonLabel.setTitle("Sign Up", for: .normal)
+//        }
     }
 
     //retrieves user from CoreData
