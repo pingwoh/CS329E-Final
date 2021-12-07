@@ -128,7 +128,7 @@ class LoginViewController: UIViewController {
                             delay: 0.0,
                             options: .curveEaseOut,
                             animations: {
-                                self.buttonLabel.alpha = 0.0
+                                //self.buttonLabel.alpha = 0.0
                                 self.confirmPassLabel.alpha = 0.0
                                 self.confirmPasswordField.alpha = 0.0
                             },
@@ -138,7 +138,7 @@ class LoginViewController: UIViewController {
                                     delay: 0.0,
                                     options: .curveEaseIn,
                                     animations: {
-                                        self.buttonLabel.alpha = 1.0
+                                        //self.buttonLabel.alpha = 1.0
                                         self.confirmPassLabel.isHidden = true
                                         self.confirmPasswordField.isHidden = true
                                     },
@@ -154,7 +154,7 @@ class LoginViewController: UIViewController {
                             delay: 0.0,
                             options: .curveEaseOut,
                             animations: {
-                                self.buttonLabel.alpha = 0.0
+                                //self.buttonLabel.alpha = 0.0
                             },
                             completion: {_ in
                                 UIView.animate(
@@ -162,7 +162,7 @@ class LoginViewController: UIViewController {
                                     delay: 0.0,
                                     options: .curveEaseIn,
                                     animations: {
-                                        self.buttonLabel.alpha = 1.0
+                                        //self.buttonLabel.alpha = 1.0
                                         self.confirmPassLabel.isHidden = false
                                         self.confirmPasswordField.isHidden = false
                                         self.confirmPassLabel.alpha = 1.0

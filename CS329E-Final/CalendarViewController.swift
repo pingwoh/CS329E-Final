@@ -89,14 +89,14 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             self.monthName.textColor = .lightBackground
             self.greetingLabel.textColor = .lightBackground
             self.pickDateLabel.textColor = .lightBackground
-            self.collectionView.layer.borderColor = UIColor.darkBackground.cgColor
+            self.collectionView.layer.borderColor = UIColor.lightBackground.cgColor
         } else {
             view.backgroundColor = .lightBackground
             self.collectionView.backgroundColor = .lightBackground
             self.monthName.textColor = .darkBackground
             self.greetingLabel.textColor = .darkBackground
             self.pickDateLabel.textColor = .darkBackground
-            self.collectionView.layer.borderColor = UIColor.lightBackground.cgColor
+            self.collectionView.layer.borderColor = UIColor.darkBackground.cgColor
         }
         
         if UserDefaults.standard.bool(forKey: email + "large font style") {

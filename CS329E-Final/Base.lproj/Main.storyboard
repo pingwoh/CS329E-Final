@@ -30,6 +30,12 @@
                                 <color key="textColor" name="DarkBackground"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Confirm Pass: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFT-va-Fv4">
+                                <rect key="frame" x="20.000000000000007" y="377" width="115.66666666666669" height="20"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
+                                <color key="textColor" name="DarkBackground"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xD3-Ws-eyH">
                                 <rect key="frame" x="191.66666666666663" y="270.66666666666669" width="205" height="34"/>
                                 <constraints>
@@ -71,7 +77,7 @@
                                     <backgroundConfiguration key="background">
                                         <color key="strokeColor" red="0.0" green="0.67843137249999996" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </backgroundConfiguration>
-                                    <fontDescription key="titleFontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="17"/>
+                                    <fontDescription key="titleFontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="15"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="didTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qIi-cU-hM7"/>
@@ -104,18 +110,6 @@
                                     <constraint firstAttribute="width" constant="176" id="jw3-ff-V0c"/>
                                 </constraints>
                             </imageView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5Np-wz-hn4">
-                                <rect key="frame" x="20" y="431" width="203" height="32"/>
-                                <color key="backgroundColor" name="CellBackground"/>
-                                <segments>
-                                    <segment title="Login"/>
-                                    <segment title="Signup"/>
-                                </segments>
-                                <color key="selectedSegmentTintColor" name="Good"/>
-                                <connections>
-                                    <action selector="segmentedControl:" destination="BYZ-38-t0r" eventType="valueChanged" id="GWe-ar-YSH"/>
-                                </connections>
-                            </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please log in or sign up to continue" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeh-hS-DRU">
                                 <rect key="frame" x="174" y="174" width="240" height="71"/>
                                 <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -127,27 +121,33 @@
                                 <color key="textColor" name="LightBackground"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Confirm Pass: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFT-va-Fv4">
-                                <rect key="frame" x="20.000000000000007" y="377" width="115.66666666666669" height="20"/>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
-                                <color key="textColor" name="DarkBackground"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5Np-wz-hn4">
+                                <rect key="frame" x="20" y="433" width="203" height="32"/>
+                                <color key="backgroundColor" name="CellBackground"/>
+                                <segments>
+                                    <segment title="Login"/>
+                                    <segment title="Signup"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" name="Good"/>
+                                <connections>
+                                    <action selector="segmentedControl:" destination="BYZ-38-t0r" eventType="valueChanged" id="GWe-ar-YSH"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="LightBackground"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="eDQ-qR-Rvj" firstAttribute="leading" secondItem="5Np-wz-hn4" secondAttribute="trailing" constant="25" id="2fM-FC-0ey"/>
                             <constraint firstItem="DTW-0p-8Q6" firstAttribute="leading" secondItem="Oi3-Nf-RFA" secondAttribute="trailing" constant="88.333333333333314" id="38c-2z-PLH"/>
                             <constraint firstItem="eDQ-qR-Rvj" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="59X-o4-kTo"/>
                             <constraint firstItem="xeh-hS-DRU" firstAttribute="centerX" secondItem="gIu-Rl-gA3" secondAttribute="centerX" id="5jx-Hh-k8P"/>
                             <constraint firstItem="Oi3-Nf-RFA" firstAttribute="top" secondItem="qeC-xH-ggo" secondAttribute="bottom" constant="29" id="7H8-Ca-qrC"/>
                             <constraint firstItem="xD3-Ws-eyH" firstAttribute="top" secondItem="xeh-hS-DRU" secondAttribute="bottom" constant="25.666666666666629" id="8tr-3P-35e"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="Ldp-Qu-LM8" secondAttribute="top" constant="30.666666666666664" id="AZv-xQ-4m7"/>
+                            <constraint firstItem="5Np-wz-hn4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="AtH-oF-J3q"/>
                             <constraint firstItem="DTW-0p-8Q6" firstAttribute="height" secondItem="xD3-Ws-eyH" secondAttribute="height" id="BkN-az-ZuK"/>
                             <constraint firstItem="PFT-va-Fv4" firstAttribute="top" secondItem="Oi3-Nf-RFA" secondAttribute="bottom" constant="31" id="GFu-a9-IeZ"/>
-                            <constraint firstItem="eDQ-qR-Rvj" firstAttribute="centerY" secondItem="5Np-wz-hn4" secondAttribute="centerY" id="HZM-rq-IUb"/>
+                            <constraint firstItem="eDQ-qR-Rvj" firstAttribute="leading" secondItem="5Np-wz-hn4" secondAttribute="trailing" constant="25" id="Gv3-bf-9cj"/>
                             <constraint firstItem="Ldp-Qu-LM8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Kcg-OV-l38"/>
                             <constraint firstItem="gIu-Rl-gA3" firstAttribute="top" secondItem="DTW-0p-8Q6" secondAttribute="bottom" constant="17" id="Mdj-rE-MYt"/>
                             <constraint firstItem="xD3-Ws-eyH" firstAttribute="leading" secondItem="qeC-xH-ggo" secondAttribute="trailing" constant="119.66666666666663" id="RdZ-Yt-ag0"/>
@@ -156,10 +156,12 @@
                             <constraint firstItem="xeh-hS-DRU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="86" id="VKI-7t-ym3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="1c6-eF-IeS" secondAttribute="top" constant="29" id="WbN-DE-xJ6"/>
                             <constraint firstItem="DTW-0p-8Q6" firstAttribute="width" secondItem="xD3-Ws-eyH" secondAttribute="width" id="YsB-79-ykx"/>
+                            <constraint firstItem="5Np-wz-hn4" firstAttribute="top" secondItem="PFT-va-Fv4" secondAttribute="bottom" constant="36" id="bIx-iN-UjI"/>
                             <constraint firstItem="qeC-xH-ggo" firstAttribute="top" secondItem="Ldp-Qu-LM8" secondAttribute="bottom" constant="31.333333333333286" id="biz-Wr-W18"/>
                             <constraint firstItem="gIu-Rl-gA3" firstAttribute="leading" secondItem="PFT-va-Fv4" secondAttribute="trailing" constant="55.999999999999943" id="hiY-Iv-Nva"/>
                             <constraint firstItem="eDQ-qR-Rvj" firstAttribute="top" secondItem="gIu-Rl-gA3" secondAttribute="bottom" constant="18.333333333333314" id="krN-fs-mZk"/>
                             <constraint firstItem="xeh-hS-DRU" firstAttribute="centerX" secondItem="xD3-Ws-eyH" secondAttribute="centerX" id="l4J-4F-qOr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5Np-wz-hn4" secondAttribute="bottom" constant="398" id="mEa-9R-EaN"/>
                             <constraint firstItem="xeh-hS-DRU" firstAttribute="centerX" secondItem="DTW-0p-8Q6" secondAttribute="centerX" id="mhV-2o-75P"/>
                             <constraint firstAttribute="trailing" secondItem="xeh-hS-DRU" secondAttribute="trailing" id="n46-6F-8ys"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="1c6-eF-IeS" secondAttribute="bottom" constant="640" id="o1a-Vb-rSN"/>
@@ -167,7 +169,6 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xeh-hS-DRU" secondAttribute="bottom" constant="617" id="rAW-Ps-rZz"/>
                             <constraint firstItem="gIu-Rl-gA3" firstAttribute="width" secondItem="xD3-Ws-eyH" secondAttribute="width" id="s9G-gw-MIS"/>
                             <constraint firstItem="gIu-Rl-gA3" firstAttribute="height" secondItem="xD3-Ws-eyH" secondAttribute="height" id="v98-I9-02V"/>
-                            <constraint firstItem="5Np-wz-hn4" firstAttribute="top" secondItem="PFT-va-Fv4" secondAttribute="bottom" constant="34" id="yqF-wm-QcD"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="JSf-nv-1uI" appends="YES" id="r1y-e2-10T"/>
