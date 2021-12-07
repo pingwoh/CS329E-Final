@@ -67,8 +67,6 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         self.monthName.text = "\(monthStr) - \(yearInt)"
         
-        //comment this out allows for black border regardless
-        //collectionView.layer.borderColor = UIColor.darkBackground.cgColor
         collectionView.layer.borderWidth = 3.0
         collectionView.layer.cornerRadius = 10.0//if you want corner radius.addtional
         
@@ -91,12 +89,14 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             self.monthName.textColor = .lightText
             self.greetingLabel.textColor = .lightText
             self.pickDateLabel.textColor = .lightText
+            collectionView.layer.borderColor = UIColor.lightBackground.cgColor
         } else {
             view.backgroundColor = .lightBackground
             self.collectionView.backgroundColor = .lightBackground
             self.monthName.textColor = .darkText
             self.greetingLabel.textColor = .darkText
             self.pickDateLabel.textColor = .darkText
+            collectionView.layer.borderColor = UIColor.darkBackground.cgColor
         }
         
         if UserDefaults.standard.bool(forKey: email + "large font style") {
@@ -128,13 +128,30 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         cell.dateLabel.text = items[indexPath.row]
         
         cell.createDate(day: items[indexPath.row])
+        
+        //the code before the uiview func was added (below)
         cell.backgroundColor = cell.getMood(d: indexPath.row+1)
+        
+        //my code attempting to do the animation when a date is selected and
+        //a mood is chosen
+/*
+        UIView.animate(withDuration: 1.0) {
+            cell.backgroundColor = cell.getMood(d: indexPath.row+1)
+        }
+        
+        UIView.transition(with: cell, duration: 0.6, options: [.curveEaseInOut, .transitionCrossDissolve], animations: {
+            cell.backgroundColor = cell.getMood(d: indexPath.row+1)
+        })
+        
+        UIVisualEffectView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseInOut, animations: cell.backgroundColor = cell.getMood(d: indexPath.row+1), completion: { (_) in
+            cell.backgroundColor = cell.getMood(d: indexPath.row+1)
+        })
+*/
         if(cell.mood < 0) {
             cell.dateLabel.textColor = UserDefaults.standard.bool(forKey: email + "dark mode") ? .lightBackground : .darkBackground
         } else {
             cell.dateLabel.textColor = .darkBackground
         }
-        
         
         //print("da mood \(cell.mood)")
 
@@ -182,6 +199,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
                 let selectedRow = pickerView.selectedRow(inComponent: 0)
                 let selected = Array(self.mood_dict)[selectedRow]
                 self.finalMood = selected.key
+                
                 cell.setMood(selectedMood: selected.value)
                 collectionView.reloadData()
             } )

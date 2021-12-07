@@ -116,6 +116,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         let entity = NSEntityDescription.insertNewObject(forEntityName: "Log", into: context)
         
         deleteMood()
+        
         //setting mood to w specific email
         entity.setValue(selectedMood, forKey: "mood")
         
