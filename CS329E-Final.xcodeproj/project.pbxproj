@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3E08569C2750CA5800CE7F47 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3E08569B2750CA5800CE7F47 /* FirebaseAuth */; };
 		3E08569E2750CA6B00CE7F47 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E08569D2750CA6B00CE7F47 /* GoogleService-Info.plist */; };
+		6E19B817275F139500857E84 /* appIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E19B816275F139400857E84 /* appIcon.png */; };
 		6E762BB02752A24B00950FED /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E762BAF2752A24B00950FED /* CalendarViewController.swift */; };
 		6E762BB22752A59A00950FED /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E762BB12752A59A00950FED /* SettingsViewController.swift */; };
 		6E762BB42752A72200950FED /* QuestionaireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E762BB32752A72200950FED /* QuestionaireViewController.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		3E08569D2750CA6B00CE7F47 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6E19B816275F139400857E84 /* appIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon.png; sourceTree = "<group>"; };
 		6E762BAF2752A24B00950FED /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		6E762BB12752A59A00950FED /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		6E762BB32752A72200950FED /* QuestionaireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionaireViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		6EC2E7CD273CC6570062B283 /* CS329E-Final */ = {
 			isa = PBXGroup;
 			children = (
+				6E19B816275F139400857E84 /* appIcon.png */,
 				3E08569D2750CA6B00CE7F47 /* GoogleService-Info.plist */,
 				6EC2E7CE273CC6570062B283 /* AppDelegate.swift */,
 				6EC2E7D0273CC6570062B283 /* SceneDelegate.swift */,
@@ -262,6 +265,7 @@
 			files = (
 				6EAD7096275B330D00E8C91C /* Colors.xcassets in Resources */,
 				6EC2E7DE273CC6580062B283 /* LaunchScreen.storyboard in Resources */,
+				6E19B817275F139500857E84 /* appIcon.png in Resources */,
 				3E08569E2750CA6B00CE7F47 /* GoogleService-Info.plist in Resources */,
 				6EC2E7DB273CC6580062B283 /* Assets.xcassets in Resources */,
 				6EC2E7D6273CC6570062B283 /* Main.storyboard in Resources */,
