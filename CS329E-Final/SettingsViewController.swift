@@ -71,27 +71,27 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         if darkModeSwitch.isOn {
             UserDefaults.standard.setValue(true, forKey: email + "dark mode")
             view.backgroundColor = .darkBackground
-            darkModeLabel.textColor = .lightText
-            fontStyleLabel.textColor = .lightText
-            vibrationLabel.textColor = .lightText
+            darkModeLabel.textColor = .lightBackground
+            fontStyleLabel.textColor = .lightBackground
+            vibrationLabel.textColor = .lightBackground
             nameField.backgroundColor = .darkGray
-            nameField.textColor = .lightGray
-            timeLabel.textColor = .lightText
-            settingsLabel.textColor = .lightText
-            profileLabel.textColor = .lightText
+            nameField.textColor = .lightBackground
+            timeLabel.textColor = .lightBackground
+            settingsLabel.textColor = .lightBackground
+            profileLabel.textColor = .lightBackground
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
             navigationController?.navigationBar.barStyle = .black
         } else {
             UserDefaults.standard.setValue(false, forKey: email + "dark mode")
             view.backgroundColor = .lightBackground
-            darkModeLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-            fontStyleLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-            vibrationLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-            profileLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            darkModeLabel.textColor = .darkBackground
+            fontStyleLabel.textColor = .darkBackground
+            vibrationLabel.textColor = .darkBackground
+            profileLabel.textColor = .darkBackground
             nameField.backgroundColor = .white
-            nameField.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            nameField.textColor = .darkBackground
             timeLabel.textColor = .darkBackground
-            settingsLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            settingsLabel.textColor = .darkBackground
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
             navigationController?.navigationBar.barStyle = .default
         }
@@ -384,15 +384,15 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         if UserDefaults.standard.bool(forKey: email + "dark mode") {
             darkModeSwitch.setOn(true, animated: false)
             view.backgroundColor = .darkBackground
-            darkModeLabel.textColor = .lightText
-            fontStyleLabel.textColor = .lightText
-            vibrationLabel.textColor = .lightText
-            settingsLabel.textColor = .lightText
-            timeLabel.textColor = .lightText
-            profileLabel.textColor = .lightText
+            darkModeLabel.textColor = .lightBackground
+            fontStyleLabel.textColor = .lightBackground
+            vibrationLabel.textColor = .lightBackground
+            settingsLabel.textColor = .lightBackground
+            timeLabel.textColor = .lightBackground
+            profileLabel.textColor = .lightBackground
 //            nameField.backgroundColor = UIColor.init(red: 0.11, green: 0.11, blue: 0.118, alpha: 1)
             nameField.backgroundColor = .darkGray
-            nameField.textColor = .lightGray
+            nameField.textColor = .lightBackground
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
             navigationController?.navigationBar.barStyle = .black
         }

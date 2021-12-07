@@ -24,7 +24,7 @@ extension UIColor {
     static let lightBackground : UIColor = UIColor(named: "LightBackground")!
     static let darkBackground : UIColor = UIColor(named: "DarkBackground")!
     static let cellBackground : UIColor = UIColor(named: "CellBackground")!
-    static let darkCellBackground : UIColor = UIColor(named: "darkCellBackground")!
+    static let darkCellBackground : UIColor = UIColor(named: "DarkCellBackground")!
 }
 
 class CalendarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
@@ -86,15 +86,17 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         if UserDefaults.standard.bool(forKey: email + "dark mode") {
             view.backgroundColor = .darkBackground
             self.collectionView.backgroundColor = .darkBackground
-            self.monthName.textColor = .lightText
-            self.greetingLabel.textColor = .lightText
-            self.pickDateLabel.textColor = .lightText
+            self.monthName.textColor = .lightBackground
+            self.greetingLabel.textColor = .lightBackground
+            self.pickDateLabel.textColor = .lightBackground
+            self.collectionView.layer.borderColor = UIColor.darkBackground.cgColor
         } else {
             view.backgroundColor = .lightBackground
             self.collectionView.backgroundColor = .lightBackground
-            self.monthName.textColor = .darkText
-            self.greetingLabel.textColor = .darkText
-            self.pickDateLabel.textColor = .darkText
+            self.monthName.textColor = .darkBackground
+            self.greetingLabel.textColor = .darkBackground
+            self.pickDateLabel.textColor = .darkBackground
+            self.collectionView.layer.borderColor = UIColor.lightBackground.cgColor
         }
         
         if UserDefaults.standard.bool(forKey: email + "large font style") {
