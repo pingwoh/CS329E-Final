@@ -25,6 +25,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var settingsLabel: UILabel!
     @IBOutlet weak var profileLabel: UILabel!
+    @IBOutlet weak var soundEffectLabel: UILabel!
+    @IBOutlet weak var soundEffectsSwitch: UISwitch!
     
     var userEntity : NSManagedObject? = nil
     let picker = UIImagePickerController()
@@ -64,6 +66,18 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
     }
     
+
+    @IBAction func soundEffect(_ sender: UISwitch) {
+        let user = Auth.auth().currentUser
+        let email = user?.email ?? "none"
+
+        if soundEffectsSwitch.isOn {
+            UserDefaults.standard.setValue(true, forKey: email + "sound effect")
+        } else {
+            UserDefaults.standard.setValue(false, forKey: email + "sound effect")
+        }
+    }
+    
     @IBAction func darkMode(_ sender: UISwitch) {
         let user = Auth.auth().currentUser
         let email = user?.email ?? "none"
@@ -77,6 +91,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             nameField.backgroundColor = .darkGray
             nameField.textColor = .lightBackground
             timeLabel.textColor = .lightBackground
+            soundEffectLabel.textColor = .lightBackground
             settingsLabel.textColor = .lightBackground
             profileLabel.textColor = .lightBackground
             timePicker.setValue(UIColor.lightBackground, forKey: "textColor")
@@ -85,6 +100,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         } else {
             UserDefaults.standard.setValue(false, forKey: email + "dark mode")
             view.backgroundColor = .lightBackground
+            soundEffectLabel.textColor = .darkBackground
             darkModeLabel.textColor = .darkBackground
             fontStyleLabel.textColor = .darkBackground
             vibrationLabel.textColor = .darkBackground
@@ -106,6 +122,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         
         if fontStyleSwitch.isOn {
             UserDefaults.standard.setValue(true, forKey: email + "large font style")
+            soundEffectLabel.font = soundEffectLabel.font.withSize(30)
             fontStyleLabel.font = fontStyleLabel.font.withSize(30)
             darkModeLabel.font = darkModeLabel.font.withSize(30)
             vibrationLabel.font = vibrationLabel.font.withSize(30)
@@ -115,6 +132,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             profileLabel.font = profileLabel.font.withSize(30)
         } else {
             UserDefaults.standard.setValue(false, forKey: email + "large font style")
+            soundEffectLabel.font = soundEffectLabel.font.withSize(16)
             fontStyleLabel.font = fontStyleLabel.font.withSize(16)
             darkModeLabel.font = darkModeLabel.font.withSize(16)
             vibrationLabel.font = vibrationLabel.font.withSize(16)
@@ -382,10 +400,17 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         
         let generator = UIImpactFeedbackGenerator(style: .medium)
         
+        if UserDefaults.standard.bool(forKey: email + "sound effect") {
+            soundEffectsSwitch.setOn(true, animated: false)
+        } else {
+            soundEffectsSwitch.setOn(false, animated: false)
+        }
+        
         //view for dark mode
         if UserDefaults.standard.bool(forKey: email + "dark mode") {
             darkModeSwitch.setOn(true, animated: false)
             view.backgroundColor = .darkBackground
+            soundEffectLabel.textColor = .lightBackground
             darkModeLabel.textColor = .lightBackground
             fontStyleLabel.textColor = .lightBackground
             vibrationLabel.textColor = .lightBackground
@@ -401,6 +426,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         else {
             darkModeSwitch.setOn(false, animated: false)
             view.backgroundColor = .lightBackground
+            soundEffectLabel.textColor = .darkBackground
             darkModeLabel.textColor = .darkBackground
             fontStyleLabel.textColor = .darkBackground
             vibrationLabel.textColor = .darkBackground
@@ -417,6 +443,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         //view for font size
         if UserDefaults.standard.bool(forKey: email + "large font style") {
             fontStyleSwitch.setOn(true, animated: false)
+            soundEffectLabel.font = soundEffectLabel.font.withSize(30)
             fontStyleLabel.font = fontStyleLabel.font.withSize(30)
             darkModeLabel.font = darkModeLabel.font.withSize(30)
             vibrationLabel.font = vibrationLabel.font.withSize(30)
@@ -427,6 +454,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         }
         else {
             fontStyleSwitch.setOn(false, animated: false)
+            soundEffectLabel.font = soundEffectLabel.font.withSize(16)
             fontStyleLabel.font = fontStyleLabel.font.withSize(16)
             darkModeLabel.font = darkModeLabel.font.withSize(16)
             vibrationLabel.font = vibrationLabel.font.withSize(16)

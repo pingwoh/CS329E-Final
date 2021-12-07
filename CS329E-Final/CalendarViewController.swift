@@ -24,7 +24,7 @@ extension UIColor {
     static let lightBackground : UIColor = UIColor(named: "LightBackground")!
     static let darkBackground : UIColor = UIColor(named: "DarkBackground")!
     static let cellBackground : UIColor = UIColor(named: "CellBackground")!
-    static let darkCellBackground : UIColor = UIColor(named: "DarkCellBackground")!
+    static let darkCellBackground : UIColor = UIColor(named: "darkCellBackground")!
 }
 
 class CalendarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {

@@ -581,7 +581,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frn-Bd-Iaq">
-                                <rect key="frame" x="104" y="427" width="202" height="45"/>
+                                <rect key="frame" x="106" y="375" width="202" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="19"/>
                                 <color key="textColor" name="DarkBackground"/>
@@ -605,6 +605,21 @@
                                 <rect key="frame" x="43" y="132" width="128" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sound Effects:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0r-Ao-tNW">
+                                <rect key="frame" x="20" y="428" width="269" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="16"/>
+                                <color key="textColor" name="DarkBackground"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X2p-8E-3TO">
+                                <rect key="frame" x="306" y="430" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="onTintColor" name="Good"/>
+                                <connections>
+                                    <action selector="soundEffect:" destination="uB5-Ca-FfY" eventType="valueChanged" id="xWa-Jm-x4f"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sOv-PJ-kIn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -623,6 +638,8 @@
                         <outlet property="profileLabel" destination="1SC-Yb-LWN" id="fqr-yr-nGi"/>
                         <outlet property="profilePic" destination="gCi-16-Wlc" id="e8g-2D-fEF"/>
                         <outlet property="settingsLabel" destination="frn-Bd-Iaq" id="5Pe-JX-iKJ"/>
+                        <outlet property="soundEffectLabel" destination="i0r-Ao-tNW" id="hGg-ct-UXB"/>
+                        <outlet property="soundEffectsSwitch" destination="X2p-8E-3TO" id="PnS-fe-3uA"/>
                         <outlet property="timeLabel" destination="xYl-W1-1HT" id="731-I2-1XO"/>
                         <outlet property="timePicker" destination="1cv-xl-Yoy" id="Jmn-dy-Jgd"/>
                         <outlet property="vibrationLabel" destination="tVd-Nz-Vcr" id="5Jb-Qu-qpU"/>

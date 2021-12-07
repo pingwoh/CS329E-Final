@@ -256,6 +256,7 @@ class LoginViewController: UIViewController {
         UserDefaults.standard.set(false, forKey: leEmail + "dark mode")
         UserDefaults.standard.set(false, forKey: leEmail + "large font style")
         UserDefaults.standard.set(false, forKey: leEmail + "vibration")
+        UserDefaults.standard.set(false, forKey: leEmail + "sound effect")
     }
     
     //unwind segue for calendar view controller when logging out
