@@ -129,7 +129,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             nameField.font = nameField.font?.withSize(30)
             timeLabel.font = timeLabel.font.withSize(30)
             settingsLabel.font = settingsLabel.font.withSize(35)
-            profileLabel.font = profileLabel.font.withSize(30)
+            profileLabel.font = profileLabel.font.withSize(35)
         } else {
             UserDefaults.standard.setValue(false, forKey: email + "large font style")
             soundEffectLabel.font = soundEffectLabel.font.withSize(16)
@@ -139,7 +139,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             nameField.font = nameField.font?.withSize(16)
             timeLabel.font = timeLabel.font.withSize(16)
             settingsLabel.font = settingsLabel.font.withSize(21)
-            profileLabel.font = profileLabel.font.withSize(16)
+            profileLabel.font = profileLabel.font.withSize(21)
         }
     }
     
@@ -191,6 +191,10 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         if vibrationSwitch.isOn {
             generator.impactOccurred()
         }
+        
+        if soundEffectsSwitch.isOn {
+            AudioServicesPlaySystemSound(1026)
+        }
     }
     
     //hides keyboard on background touch
@@ -211,6 +215,11 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         //vibration when clicking button
         if vibrationSwitch.isOn {
             generator.impactOccurred()
+        }
+        
+        //sound when click button
+        if soundEffectsSwitch.isOn {
+            AudioServicesPlaySystemSound(1026)
         }
     }
     
@@ -255,6 +264,11 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         //allow for vibration when clicking button
         if vibrationSwitch.isOn {
             generator.impactOccurred()
+        }
+        
+        //sound when click button
+        if soundEffectsSwitch.isOn {
+            AudioServicesPlaySystemSound(1026)
         }
     }
     
@@ -339,6 +353,11 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         if vibrationSwitch.isOn {
             generator.impactOccurred()
         }
+        
+        //sound when click button
+        if soundEffectsSwitch.isOn {
+            AudioServicesPlaySystemSound(1026)
+        }
     }
     
     @IBAction func onTimeChanged(_ sender: Any) {
@@ -387,6 +406,17 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         // submit the request to iOS
         UNUserNotificationCenter.current().add(request) { (error) in
             print("Request error: ",error as Any)
+        }
+        
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        
+        if vibrationSwitch.isOn {
+            generator.impactOccurred()
+        }
+        
+        //sound when click button
+        if soundEffectsSwitch.isOn {
+            AudioServicesPlaySystemSound(1026)
         }
         
     }
@@ -450,7 +480,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             nameField.font = nameField.font?.withSize(30)
             timeLabel.font = timeLabel.font.withSize(30)
             settingsLabel.font = settingsLabel.font.withSize(35)
-            profileLabel.font = profileLabel.font.withSize(30)
+            profileLabel.font = profileLabel.font.withSize(35)
         }
         else {
             fontStyleSwitch.setOn(false, animated: false)
@@ -461,7 +491,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             nameField.font = nameField.font?.withSize(16)
             timeLabel.font = timeLabel.font.withSize(16)
             settingsLabel.font = settingsLabel.font.withSize(21)
-            profileLabel.font = profileLabel.font.withSize(16)
+            profileLabel.font = profileLabel.font.withSize(21)
         }
         
         //view for vibration
@@ -481,6 +511,16 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         defaults.removeObject(forKey:"userID")
         defaults.synchronize()
         performSegue(withIdentifier: "logoutSegue", sender: nil)
+        
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        
+        if vibrationSwitch.isOn {
+            generator.impactOccurred()
+        }
+        
+        if soundEffectsSwitch.isOn {
+            AudioServicesPlaySystemSound(1026)
+        }
     }
     
     @IBAction func swipeRight (recognizer: UISwipeGestureRecognizer) {

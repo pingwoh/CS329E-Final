@@ -9,6 +9,7 @@ import UIKit
 import CoreData
 import Firebase
 import AudioToolbox
+import AVFoundation
 
 class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -182,6 +183,10 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         if UserDefaults.standard.bool(forKey: leEmail + "vibration") {
             generator.impactOccurred()
         }
+        
+        if UserDefaults.standard.bool(forKey: leEmail + "sound effect") {
+            AudioServicesPlaySystemSound(1026)
+        }
     }
     
     @IBAction func onSubmitPressed(_ sender: Any) {
@@ -218,6 +223,10 @@ class QuestionaireViewController: UIViewController, UIPickerViewDelegate, UIPick
         //allow for vibration if button pressed
         if UserDefaults.standard.bool(forKey: email + "vibration") {
             generator.impactOccurred()
+        }
+        
+        if UserDefaults.standard.bool(forKey: email + "sound effect") {
+            AudioServicesPlaySystemSound(1026)
         }
     }
     

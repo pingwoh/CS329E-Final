@@ -5,6 +5,8 @@ import UIKit
 import CoreData
 import Firebase
 import FirebaseAuth //so we can do the Auth.auth().....
+import AVFoundation
+import AudioToolbox
 
 class LoginViewController: UIViewController {
 
@@ -181,6 +183,18 @@ class LoginViewController: UIViewController {
         let user = Auth.auth().currentUser
         let leEmail = user?.email ?? "none"
         
+        
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        
+        //allow vibration if button pressed
+        if UserDefaults.standard.bool(forKey: leEmail + "vibration") {
+            generator.impactOccurred()
+        }
+        
+        if UserDefaults.standard.bool(forKey: leEmail + "sound effect") {
+            AudioServicesPlaySystemSound(1026)
+        }
+        
         //sign in
         if confirmPassLabel.isHidden {
             guard let email = userIDField.text,
@@ -249,7 +263,7 @@ class LoginViewController: UIViewController {
             
             if password != confirmPass {
                 statusLabel.text = "Passwords dont match"
-            } 
+            }
         }
         
         //set user defaults == nil 
